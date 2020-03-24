@@ -1,4 +1,4 @@
-![HileSystem Local](docs/img/logo_256.png?raw=true "HileSystem Local")
+![HileSystem Local](docs/img/logo_128.png?raw=true "HileSystem Local")
 
 # HileSystem Local
 
@@ -6,8 +6,8 @@ Filesystem abstraction layer and common function wrappers.
 
 [![NPM Version](https://img.shields.io/npm/v/@hilesystem/local.svg?style=flat)]()
 [![NPM Downloads](https://img.shields.io/npm/dt/@hilesystem/local.svg?style=flat)]()
-[![Dependency Status](https://david-dm.org/hilesystem/local.svg)](https://david-dm.org/hilesystem/local)
-[![devDependencies Status](https://david-dm.org/hilesystem/local/dev-status.svg)](https://david-dm.org/hilesystem/local?type=dev)
+[![GitHub stars](https://img.shields.io/github/stars/hilesystem/local.svg?style=social&label=Star)](https://github.com/hilesystem/local)
+[![GitHub followers](https://img.shields.io/github/followers/r37r0m0d3l.svg?style=social&label=Follow)](https://github.com/r37r0m0d3l)
 
 ---
 

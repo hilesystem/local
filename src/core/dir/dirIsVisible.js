@@ -1,15 +1,15 @@
-const R_OK = require("fs").constants.R_OK;
+const F_OK = require("fs").constants.F_OK;
 
 const accessWrapper = require("../access/wrapper.js");
 
 /**
- * @name dirIsReadable
+ * @name dirIsVisible
  * @description Directory is visible to the calling process
- * @since 0.0.1
+ * @since 0.0.5
  * @async
  * @param {string} pathToDir
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-module.exports = async function dirIsReadable(pathToDir) {
-  return accessWrapper(R_OK, pathToDir);
+module.exports = async function dirIsVisible(pathToDir) {
+  return accessWrapper(F_OK, pathToDir);
 };

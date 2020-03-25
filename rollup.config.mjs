@@ -38,5 +38,5 @@ export default {
       warnings: true,
     }),
   ],
-  external: ["fs", "@r37r0m0d3l/of"],
+  external: ["@r37r0m0d3l/of", "fs"],
 };

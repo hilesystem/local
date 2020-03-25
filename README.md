@@ -11,6 +11,10 @@ Filesystem abstraction layer and common function wrappers.
 
 ---
 
+> **Please Note:** This is "Work in Progress" package. The new functionality will be added very slowly.
+
+---
+
 ## Usage
 
 Require CommonJS.
@@ -31,25 +35,49 @@ import {
 
 ## API
 
-## Is Directory Readable
+Is directory executable.
+
+```javascript
+const trueOrError = await dirIsExecutable("path/to/dir");
+```
+
+Is directory readable.
 
 ```javascript
 const trueOrError = await dirIsReadable("path/to/dir");
 ```
 
-## Is Directory Writable
+Is directory visible.
+
+```javascript
+const trueOrError = await dirIsVisible("path/to/dir");
+```
+
+Is directory writable.
 
 ```javascript
 const trueOrError = await dirIsWritable("path/to/dir");
 ```
 
-## Is File Readable
+Is file executable.
+
+```javascript
+const trueOrError = await fileIsExecutable("path/to/file.ext");
+```
+
+Is file readable.
 
 ```javascript
 const trueOrError = await fileIsReadable("path/to/file.ext");
 ```
 
-## Is File Writable
+Is file visible.
+
+```javascript
+const trueOrError = await fileIsVisible("path/to/file.ext");
+```
+
+Is file writable.
 
 ```javascript
 const trueOrError = await fileIsWritable("path/to/file.ext");

@@ -1,6 +1,6 @@
-const fs = require("fs");
+import { promises } from "fs";
 
-const { ofError } = require("@r37r0m0d3l/of");
+import { default as OF } from "@r37r0m0d3l/of";
 
 /**
  * @name fileTruncate
@@ -11,10 +11,10 @@ const { ofError } = require("@r37r0m0d3l/of");
  * @param {number=0} length
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-module.exports = async function fileTruncate(pathToFile, length = 0) {
-  const fsError = await ofError(fs.promises.truncate(pathToFile, length));
+export default async function fileTruncate(pathToFile, length = 0) {
+  const fsError = await OF.ofError(promises.truncate(pathToFile, length));
   if (!fsError) {
     return true;
   }
   return fsError;
-};
+}

@@ -3,7 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
 
-const INPUT_NAME = "index.js";
+const INPUT_NAME = "index.mjs";
 const OUTPUT_NAME = "local";
 
 export default {
@@ -29,7 +29,7 @@ export default {
     }),
     commonjs(),
     terser({
-      keep_classnames: false,
+      keep_classnames: true,
       keep_fnames: true,
       output: {
         comments: false,

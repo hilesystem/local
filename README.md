@@ -21,6 +21,7 @@ Require CommonJS.
 
 ```javascript
 const {
+  HileSystemLocal,
   dirIsReadable, dirIsWritable, fileIsReadable, fileIsWritable
 } = require("@hilesystem/local");
 ```
@@ -29,6 +30,7 @@ Import as ECMAScript module.
 
 ```javascript
 import {
+  HileSystemLocal,
   dirIsReadable, dirIsWritable, fileIsReadable, fileIsWritable
 } from "@hilesystem/local/es";
 ```
@@ -81,6 +83,12 @@ Is file writable.
 
 ```javascript
 const trueOrError = await fileIsWritable("path/to/file.ext");
+```
+
+Truncate a file to a specified length.
+
+```javascript
+const trueOrError = await fileTruncate("path/to/file.ext");
 ```
 
 ---

@@ -1,6 +1,6 @@
-const W_OK = require("fs").constants.W_OK;
+import { constants } from "fs";
 
-const accessWrapper = require("../access/wrapper.js");
+import accessWrapper from "../access/wrapper.mjs";
 
 /**
  * @name dirIsWritable
@@ -10,6 +10,6 @@ const accessWrapper = require("../access/wrapper.js");
  * @param {string} pathToDir
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-module.exports = async function dirIsWritable(pathToDir) {
-  return accessWrapper(W_OK, pathToDir);
-};
+export default async function dirIsWritable(pathToDir) {
+  return accessWrapper(constants.W_OK, pathToDir);
+}

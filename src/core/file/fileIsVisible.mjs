@@ -1,6 +1,6 @@
-const F_OK = require("fs").constants.F_OK;
+import { constants } from "fs";
 
-const accessWrapper = require("../access/wrapper.js");
+import accessWrapper from "../access/wrapper.mjs";
 
 /**
  * @name fileIsVisible
@@ -10,6 +10,6 @@ const accessWrapper = require("../access/wrapper.js");
  * @param {string|Buffer|URL} pathToFile
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-module.exports = async function fileIsVisible(pathToFile) {
-  return accessWrapper(F_OK, pathToFile);
-};
+export default async function fileIsVisible(pathToFile) {
+  return accessWrapper(constants.F_OK, pathToFile);
+}

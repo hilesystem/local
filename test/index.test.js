@@ -13,7 +13,7 @@ const {
 describe("Imported functions", () => {
   it("dirIsExecutable()", async () => {
     const is = await dirIsExecutable("./test");
-    expect(is).not.toBe(true);
+    expect(is).toBe(true);
   });
   it("dirIsReadable()", async () => {
     const is = await dirIsReadable("./test");

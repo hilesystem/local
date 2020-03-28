@@ -13,7 +13,7 @@ const {
 describe("Imported functions", () => {
   it("dirIsExecutable()", async () => {
     const is = await dirIsExecutable("./test");
-    expect(is).toBe(true);
+    expect(is).not.toBe(true);
   });
   it("dirIsReadable()", async () => {
     const is = await dirIsReadable("./test");
@@ -29,7 +29,7 @@ describe("Imported functions", () => {
   });
   it("fileIsExecutable()", async () => {
     const is = await fileIsExecutable("./test/index.test.js");
-    expect(is).toBe(true);
+    expect(is).not.toBe(true);
   });
   it("fileIsReadable()", async () => {
     const is = await fileIsReadable("./test/index.test.js");

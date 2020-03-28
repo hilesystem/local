@@ -109,5 +109,5 @@ export declare function fileIsWritable(
  */
 export declare function fileTruncate(
   pathToFile: PathLike,
-  length: number,
+  length?: number,
 ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;

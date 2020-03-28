@@ -7,6 +7,7 @@ const {
   fileIsReadable,
   fileIsVisible,
   fileIsWritable,
+  fileTruncate,
 } = require("../dist/local.cjs");
 
 describe("Imported functions", () => {
@@ -40,6 +41,10 @@ describe("Imported functions", () => {
   });
   it("fileIsWritable()", async () => {
     const is = await fileIsWritable("./test/index.test.js");
+    expect(is).toBe(true);
+  });
+  it("fileTruncate()", async () => {
+    const is = await fileTruncate("./test/test.file");
     expect(is).toBe(true);
   });
 });

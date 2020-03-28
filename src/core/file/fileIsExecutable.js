@@ -7,7 +7,7 @@ const accessWrapper = require("../access/wrapper.js");
  * @description File can be executed by the calling process
  * @since 0.0.5
  * @async
- * @param {string} pathToFile
+ * @param {string|Buffer|URL} pathToFile
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
 module.exports = async function fileIsExecutable(pathToFile) {

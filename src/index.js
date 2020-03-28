@@ -8,6 +8,8 @@ const fileIsReadable = require("./core/file/fileIsReadable.js");
 const fileIsVisible = require("./core/file/fileIsVisible.js");
 const fileIsWritable = require("./core/file/fileIsWritable.js");
 
+const fileTruncate = require("./core/file/fileTruncate.js");
+
 module.exports.dirIsExecutable = dirIsExecutable;
 module.exports.dirIsReadable = dirIsReadable;
 module.exports.dirIsVisible = dirIsVisible;
@@ -17,3 +19,5 @@ module.exports.fileIsExecutable = fileIsExecutable;
 module.exports.fileIsReadable = fileIsReadable;
 module.exports.fileIsVisible = fileIsVisible;
 module.exports.fileIsWritable = fileIsWritable;
+
+module.exports.fileTruncate = fileTruncate;

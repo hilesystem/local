@@ -18,11 +18,14 @@
 /.yarnrc
 /CHANGELOG.md
 /CNAME
+/LICENSE
 /README.md
 /ROADMAP.md
 /_config.yml
 /docs/
+/package.json
 /renovate.json
+/rollup.config.mjs
 /src/
 /temp/
 /test/

@@ -4,10 +4,11 @@
 
 Filesystem abstraction layer and common function wrappers.
 
-[![NPM Version](https://img.shields.io/npm/v/@hilesystem/local.svg?style=flat)]()
-[![NPM Downloads](https://img.shields.io/npm/dt/@hilesystem/local.svg?style=flat)]()
-[![GitHub stars](https://img.shields.io/github/stars/hilesystem/local.svg?style=social&label=Star)](https://github.com/hilesystem/local)
-[![GitHub followers](https://img.shields.io/github/followers/r37r0m0d3l.svg?style=social&label=Follow)](https://github.com/r37r0m0d3l)
+[![npm](https://badgen.net/npm/v/@hilesystem/local?&icon=npm&label=npm&color=DD3636)](https://www.npmjs.com/package/@hilesystem/local)
+[![downloads](https://badgen.net/npm/dt/@hilesystem/local?&icon=terminal&label=downloads&color=009688)](https://github.com/hilesystem/local)
+[![stars](https://badgen.net/github/stars/r37r0m0d3l/vicis-transform-date?&icon=github&label=stars&color=ffcc33)](https://github.com/hilesystem/local)
+[![types](https://badgen.net/npm/types/@hilesystem/local?&icon=typescript&label=types&color=1E90FF)](https://github.com/hilesystem/local)
+[![build](https://badgen.net/travis/r37r0m0d3l/vicis-transform-date?&icon=travis&label=build)](https://github.com/hilesystem/local)
 
 ---
 

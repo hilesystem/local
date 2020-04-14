@@ -1,6 +1,6 @@
 import * as fs from "fs";
 
-import { default as OF } from "@r37r0m0d3l/of";
+import { ofError } from "@r37r0m0d3l/of";
 
 /**
  * @name accessWrapper
@@ -12,7 +12,7 @@ import { default as OF } from "@r37r0m0d3l/of";
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
 export default async function accessWrapper(mode, path) {
-  const fsError = await OF.ofError(fs.promises.access(path, mode));
+  const fsError = await ofError(fs.promises.access(path, mode));
   if (!fsError) {
     return true;
   }

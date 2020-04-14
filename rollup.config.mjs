@@ -11,6 +11,12 @@ export default {
   output: [
     {
       exports: "named",
+      file: `./dist/${OUTPUT_NAME}.js`,
+      format: "cjs",
+      sourcemap: true,
+    },
+    {
+      exports: "named",
       file: `./dist/${OUTPUT_NAME}.cjs`,
       format: "cjs",
       sourcemap: true,

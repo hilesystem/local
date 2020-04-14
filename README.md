@@ -23,8 +23,10 @@ Require CommonJS.
 
 ```javascript
 const {
-  HileSystemLocal,
-  dirIsReadable, dirIsWritable, fileIsReadable, fileIsWritable
+  HileSystemLocal, createDirectory,
+  dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
+  fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
+  fileTruncate, writeFile,
 } = require("@hilesystem/local");
 ```
 
@@ -32,12 +34,20 @@ Import as ECMAScript module.
 
 ```javascript
 import {
-  HileSystemLocal,
-  dirIsReadable, dirIsWritable, fileIsReadable, fileIsWritable
+  HileSystemLocal, createDirectory,
+  dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
+  fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
+  fileTruncate, writeFile,
 } from "@hilesystem/local";
 ```
 
 ## API
+
+Asynchronous create a directory.
+
+```javascript
+const trueOrError = await createDirectory("path/to/dir", "0777", true);
+```
 
 Is directory executable.
 
@@ -91,6 +101,12 @@ Truncate a file to a specified length.
 
 ```javascript
 const trueOrError = await fileTruncate("path/to/file.ext");
+```
+
+Asynchronous create a directory.
+
+```javascript
+const trueOrError = await writeFile("path/to/file.txt", "Text", { encoding: "utf8" });
 ```
 
 ---

@@ -1,5 +1,6 @@
 const {
   HileSystemLocal,
+  createDirectory,
   dirIsExecutable,
   dirIsReadable,
   dirIsVisible,
@@ -9,11 +10,16 @@ const {
   fileIsVisible,
   fileIsWritable,
   fileTruncate,
+  writeFile,
 } = require("../dist/local.cjs");
 
 const IS_EXECUTABLE = true;
 
 describe("Imported functions", () => {
+  it("createDirectory()", async () => {
+    const is = await createDirectory("./test/temp/");
+    expect(is).toBe(true);
+  });
   it("dirIsExecutable()", async () => {
     const is = await dirIsExecutable("./test");
     expect(is).toBe(true);
@@ -50,9 +56,17 @@ describe("Imported functions", () => {
     const is = await fileTruncate("./test/test.file");
     expect(is).toBe(true);
   });
+  it("writeFile()", async () => {
+    const is = await writeFile("./test/temp.txt", "test");
+    expect(is).toBe(true);
+  });
 });
 
 describe("Class with static helpers", () => {
+  it("HileSystemLocal.createDirectory()", async () => {
+    const is = await HileSystemLocal.createDirectory("./test/temp2/");
+    expect(is).toBe(true);
+  });
   it("HileSystemLocal.dirIsExecutable()", async () => {
     const is = await HileSystemLocal.dirIsExecutable("./test");
     expect(is).toBe(true);
@@ -87,6 +101,10 @@ describe("Class with static helpers", () => {
   });
   it("HileSystemLocal.fileTruncate()", async () => {
     const is = await HileSystemLocal.fileTruncate("./test/test.file");
+    expect(is).toBe(true);
+  });
+  it("HileSystemLocal.writeFile()", async () => {
+    const is = await HileSystemLocal.writeFile("./test/temp2.txt", "test2");
     expect(is).toBe(true);
   });
 });

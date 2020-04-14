@@ -7,7 +7,7 @@ import accessWrapper from "../access/wrapper.mjs";
  * @description Directory can be written by the calling process
  * @since 0.0.1
  * @async
- * @param {string} pathToDir
+ * @param {string|Buffer|URL} pathToDir
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
 export default async function dirIsWritable(pathToDir) {

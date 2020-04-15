@@ -23,10 +23,13 @@ Require CommonJS.
 
 ```javascript
 const {
-  HileSystemLocal, createDirectory,
+  HileSystemLocal,
+  createDirectory, createFile,
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
-  fileTruncate, writeFile,
+  fileTruncate,
+  getStatus, isDirExists, isFileExists, isPathExists,
+  writeFile,
 } = require("@hilesystem/local");
 ```
 
@@ -34,10 +37,13 @@ Import as ECMAScript module.
 
 ```javascript
 import {
-  HileSystemLocal, createDirectory,
+  HileSystemLocal,
+  createDirectory, createFile,
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
-  fileTruncate, writeFile,
+  fileTruncate,
+  getStatus, isDirExists, isFileExists, isPathExists,
+  writeFile,
 } from "@hilesystem/local";
 ```
 

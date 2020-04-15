@@ -1,6 +1,6 @@
 import { constants } from "fs";
 
-import accessWrapper from "../access/wrapper.mjs";
+import { accessWrapper } from "../access/wrapper.mjs";
 
 /**
  * @name dirIsVisible
@@ -10,6 +10,6 @@ import accessWrapper from "../access/wrapper.mjs";
  * @param {string|Buffer|URL} pathToDir
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-export default async function dirIsVisible(pathToDir) {
+export async function dirIsVisible(pathToDir) {
   return accessWrapper(constants.F_OK, pathToDir);
 }

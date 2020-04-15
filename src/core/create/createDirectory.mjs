@@ -12,10 +12,10 @@ import { ofError } from "@r37r0m0d3l/of";
  * @param {boolean=} recursive
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-export default async function createDirectory(dirPath, mode = "0777", recursive = true) {
-  const fsError = await ofError(promises.mkdir(dirPath, { mode, recursive }));
-  if (!fsError) {
-    return true;
+export async function createDirectory(dirPath, mode = "0777", recursive = true) {
+  const dirError = await ofError(promises.mkdir(dirPath, { mode, recursive }));
+  if (dirError) {
+    return dirError;
   }
-  return fsError;
+  return true;
 }

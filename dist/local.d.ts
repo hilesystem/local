@@ -1,7 +1,17 @@
 import { URL } from "url";
 import { promises } from "fs";
+import * as fs from "fs";
 
 export type PathLike = string | Buffer | URL;
+export type ErrorLike = Error | { readonly name: string; readonly message: string; readonly stack?: string };
+export type TrueOrError = true | ErrorLike;
+export type FileMode = number | string;
+
+export interface IWriteFileOptions {
+  encoding?: string | null;
+  mode?: FileMode;
+  flag?: string | number;
+}
 
 /**
  * @name createDirectory
@@ -13,11 +23,18 @@ export type PathLike = string | Buffer | URL;
  * @param {boolean=} recursive
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function createDirectory(
-  dirPath: PathLike,
-  mode?: number | string,
-  recursive?: boolean,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function createDirectory(dirPath: PathLike, mode?: FileMode, recursive?: boolean): Promise<TrueOrError>;
+
+/**
+ * @name createFile
+ * @description Asynchronous create a file.
+ * @since 0.0.11
+ * @async
+ * @param {string|Buffer|URL} pathLike
+ * @param {number|string=} mode
+ * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
+ */
+declare function createFile(pathLike: PathLike, mode?: FileMode): Promise<TrueOrError>;
 
 /**
  * @name dirIsExecutable
@@ -27,9 +44,7 @@ declare function createDirectory(
  * @param {string|Buffer|URL} pathToDir
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function dirIsExecutable(
-  pathToDir: PathLike,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function dirIsExecutable(pathToDir: PathLike): Promise<TrueOrError>;
 
 /**
  * @name dirIsReadable
@@ -39,9 +54,7 @@ declare function dirIsExecutable(
  * @param {string|Buffer|URL} pathToDir
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function dirIsReadable(
-  pathToDir: PathLike,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function dirIsReadable(pathToDir: PathLike): Promise<TrueOrError>;
 
 /**
  * @name dirIsVisible
@@ -51,9 +64,7 @@ declare function dirIsReadable(
  * @param {string|Buffer|URL} pathToDir
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function dirIsVisible(
-  pathToDir: PathLike,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function dirIsVisible(pathToDir: PathLike): Promise<TrueOrError>;
 
 /**
  * @name dirIsWritable
@@ -63,9 +74,47 @@ declare function dirIsVisible(
  * @param {string|Buffer|URL} pathToDir
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function dirIsWritable(
-  pathToDir: PathLike,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function dirIsWritable(pathToDir: PathLike): Promise<TrueOrError>;
+
+/**
+ * @name getStatus
+ * @description Get file status.
+ * @since 0.0.11
+ * @async
+ * @param {string|Buffer|URL} path
+ * @returns {Promise<[fs.Stats|undefined][Error|{readonly name: string, readonly message: string, readonly stack?: string}]>}
+ */
+declare function getStatus(path: PathLike): Promise<[fs.Stats | undefined, ErrorLike | undefined]>;
+
+/**
+ * @name isDirExists
+ * @description Get directory status.
+ * @since 0.0.11
+ * @async
+ * @param {string|Buffer|URL} path
+ * @returns {Promise<boolean>}
+ */
+declare function isDirExists(path: PathLike): Promise<boolean>;
+
+/**
+ * @name isFileExists
+ * @description Get file status.
+ * @since 0.0.11
+ * @async
+ * @param {string|Buffer|URL} path
+ * @returns {Promise<boolean>}
+ */
+declare function isFileExists(path: PathLike): Promise<boolean>;
+
+/**
+ * @name isPathExists
+ * @description Get path status.
+ * @since 0.0.11
+ * @async
+ * @param {string|Buffer|URL} path
+ * @returns {Promise<boolean>}
+ */
+declare function isPathExists(path: PathLike): Promise<boolean>;
 
 /**
  * @name fileIsExecutable
@@ -75,9 +124,7 @@ declare function dirIsWritable(
  * @param {string|Buffer|URL} pathToFile
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function fileIsExecutable(
-  pathToFile: PathLike,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function fileIsExecutable(pathToFile: PathLike): Promise<TrueOrError>;
 
 /**
  * @name fileIsReadable
@@ -87,9 +134,7 @@ declare function fileIsExecutable(
  * @param {string|Buffer|URL} pathToFile
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function fileIsReadable(
-  pathToFile: PathLike,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function fileIsReadable(pathToFile: PathLike): Promise<TrueOrError>;
 
 /**
  * @name fileIsVisible
@@ -99,9 +144,7 @@ declare function fileIsReadable(
  * @param {string|Buffer|URL} pathToFile
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function fileIsVisible(
-  pathToFile: PathLike,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function fileIsVisible(pathToFile: PathLike): Promise<TrueOrError>;
 
 /**
  * @name fileIsWritable
@@ -111,9 +154,7 @@ declare function fileIsVisible(
  * @param {string|Buffer|URL} pathToFile
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function fileIsWritable(
-  pathToFile: PathLike,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function fileIsWritable(pathToFile: PathLike): Promise<TrueOrError>;
 
 /**
  * @name fileTruncate
@@ -124,10 +165,7 @@ declare function fileIsWritable(
  * @param {number=0} length
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-declare function fileTruncate(
-  pathToFile: PathLike,
-  length?: number,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+declare function fileTruncate(pathToFile: PathLike, length?: number): Promise<TrueOrError>;
 
 /**
  * @name writeFile
@@ -142,8 +180,8 @@ declare function fileTruncate(
 declare function writeFile(
   filePath: PathLike | promises.FileHandle,
   data: any,
-  options?: { encoding?: string | null; mode?: string | number; flag?: string | number } | string | null,
-): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  options?: IWriteFileOptions | string | null,
+): Promise<TrueOrError>;
 
 declare class HileSystemLocal {
   /**
@@ -157,11 +195,19 @@ declare class HileSystemLocal {
    * @param {boolean=} recursive
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static createDirectory(
-    dirPath: PathLike,
-    mode?: number | string,
-    recursive?: boolean,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static createDirectory(dirPath: PathLike, mode?: FileMode, recursive?: boolean): Promise<TrueOrError>;
+
+  /**
+   * @name createFile
+   * @description Asynchronous create a file.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} pathLike
+   * @param {number|string=} mode
+   * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
+   */
+  public static createFile(pathLike: PathLike, mode?: FileMode): Promise<TrueOrError>;
 
   /**
    * @name dirIsExecutable
@@ -172,9 +218,7 @@ declare class HileSystemLocal {
    * @param {string|Buffer|URL} pathToDir
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static dirIsExecutable(
-    pathToDir: PathLike,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static dirIsExecutable(pathToDir: PathLike): Promise<TrueOrError>;
 
   /**
    * @name dirIsReadable
@@ -185,9 +229,7 @@ declare class HileSystemLocal {
    * @param {string|Buffer|URL} pathToDir
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static dirIsReadable(
-    pathToDir: PathLike,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static dirIsReadable(pathToDir: PathLike): Promise<TrueOrError>;
 
   /**
    * @name dirIsVisible
@@ -198,9 +240,7 @@ declare class HileSystemLocal {
    * @param {string|Buffer|URL} pathToDir
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static dirIsVisible(
-    pathToDir: PathLike,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static dirIsVisible(pathToDir: PathLike): Promise<TrueOrError>;
 
   /**
    * @name dirIsWritable
@@ -211,9 +251,51 @@ declare class HileSystemLocal {
    * @param {string|Buffer|URL} pathToDir
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static dirIsWritable(
-    pathToDir: PathLike,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static dirIsWritable(pathToDir: PathLike): Promise<TrueOrError>;
+
+  /**
+   * @name getStatus
+   * @description Get file status.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<[fs.Stats|undefined][Error|{readonly name: string, readonly message: string, readonly stack?: string}]>}
+   */
+  public static getStatus(path: PathLike): Promise<[fs.Stats | undefined, ErrorLike | undefined]>;
+
+  /**
+   * @name isDirExists
+   * @description Get directory status.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<boolean>}
+   */
+  public static isDirExists(path: PathLike): Promise<boolean>;
+
+  /**
+   * @name isFileExists
+   * @description Get file status.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<boolean>}
+   */
+  public static isFileExists(path: PathLike): Promise<boolean>;
+
+  /**
+   * @name isPathExists
+   * @description Get path status.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<boolean>}
+   */
+  public static isPathExists(path: PathLike): Promise<boolean>;
 
   /**
    * @name fileIsExecutable
@@ -224,9 +306,7 @@ declare class HileSystemLocal {
    * @param {string|Buffer|URL} pathToFile
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static fileIsExecutable(
-    pathToFile: PathLike,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static fileIsExecutable(pathToFile: PathLike): Promise<TrueOrError>;
 
   /**
    * @name fileIsReadable
@@ -237,9 +317,7 @@ declare class HileSystemLocal {
    * @param {string|Buffer|URL} pathToFile
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static fileIsReadable(
-    pathToFile: PathLike,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static fileIsReadable(pathToFile: PathLike): Promise<TrueOrError>;
 
   /**
    * @name fileIsVisible
@@ -250,9 +328,7 @@ declare class HileSystemLocal {
    * @param {string|Buffer|URL} pathToFile
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static fileIsVisible(
-    pathToFile: PathLike,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static fileIsVisible(pathToFile: PathLike): Promise<TrueOrError>;
 
   /**
    * @name fileIsWritable
@@ -263,9 +339,7 @@ declare class HileSystemLocal {
    * @param {string|Buffer|URL} pathToFile
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static fileIsWritable(
-    pathToFile: PathLike,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static fileIsWritable(pathToFile: PathLike): Promise<TrueOrError>;
 
   /**
    * @name fileTruncate
@@ -277,10 +351,7 @@ declare class HileSystemLocal {
    * @param {number=0} length
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
-  public static fileTruncate(
-    pathToFile: PathLike,
-    length?: number,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+  public static fileTruncate(pathToFile: PathLike, length?: number): Promise<TrueOrError>;
 
   /**
    * @name writeFile
@@ -296,13 +367,14 @@ declare class HileSystemLocal {
   public static writeFile(
     filePath: PathLike | promises.FileHandle,
     data: any,
-    options?: { encoding?: string | null; mode?: string | number; flag?: string | number } | string | null,
-  ): Promise<true | Error | { readonly name: string; readonly message: string; readonly stack?: string }>;
+    options?: IWriteFileOptions | string | null,
+  ): Promise<TrueOrError>;
 }
 
 export {
   HileSystemLocal,
   createDirectory,
+  createFile,
   dirIsExecutable,
   dirIsReadable,
   dirIsVisible,
@@ -312,5 +384,9 @@ export {
   fileIsVisible,
   fileIsWritable,
   fileTruncate,
+  getStatus,
+  isDirExists,
+  isFileExists,
+  isPathExists,
   writeFile,
 };

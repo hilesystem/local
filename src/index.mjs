@@ -1,9 +1,16 @@
-import createDirectory from "./core/create/createDirectory.mjs";
+import { createDirectory } from "./core/create/createDirectory.mjs";
+import { createFile } from "./core/create/createFile.mjs";
 
 import dirIsExecutable from "./core/dir/dirIsExecutable.mjs";
 import dirIsReadable from "./core/dir/dirIsReadable.mjs";
 import dirIsVisible from "./core/dir/dirIsVisible.mjs";
 import dirIsWritable from "./core/dir/dirIsWritable.mjs";
+
+import { getStatus } from "./core/status/getStatus.mjs";
+
+import { isDirExists } from "./core/status/isDirExists.mjs";
+import { isFileExists } from "./core/status/isFileExists.mjs";
+import { isPathExists } from "./core/status/isPathExists.mjs";
 
 import fileIsExecutable from "./core/file/fileIsExecutable.mjs";
 import fileIsReadable from "./core/file/fileIsReadable.mjs";
@@ -12,7 +19,8 @@ import fileIsWritable from "./core/file/fileIsWritable.mjs";
 
 import fileTruncate from "./core/file/fileTruncate.mjs";
 
-import writeFile from "./core/write/writeFile.mjs";
+import { writeFile } from "./core/write/writeFile.mjs";
+
 
 class HileSystemLocal {
   /**
@@ -27,6 +35,17 @@ class HileSystemLocal {
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
   static createDirectory = createDirectory;
+  /**
+   * @name createFile
+   * @description Asynchronous create a file.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} pathLike
+   * @param {number|string=} mode
+   * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
+   */
+  static createFile = createFile;
   /**
    * @name dirIsExecutable
    * @description Directory can be executed by the calling process
@@ -67,6 +86,46 @@ class HileSystemLocal {
    * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
    */
   static dirIsWritable = dirIsWritable;
+  /**
+   * @name getStatus
+   * @description Get file status.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<[fs.Stats|undefined][Error|{readonly name: string, readonly message: string, readonly stack?: string}]>}
+   */
+  static getStatus = getStatus;
+  /**
+   * @name isDirExists
+   * @description Get directory status.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<boolean>}
+   */
+  static isDirExists = isDirExists;
+  /**
+   * @name isFileExists
+   * @description Get file status.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<boolean>}
+   */
+  static isFileExists = isFileExists;
+  /**
+   * @name isPathExists
+   * @description Get path status.
+   * @since 0.0.11
+   * @async
+   * @static
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<boolean>}
+   */
+  static isPathExists = isPathExists;
   /**
    * @name fileIsExecutable
    * @description File can be executed by the calling process
@@ -135,6 +194,7 @@ class HileSystemLocal {
 export {
   HileSystemLocal,
   createDirectory,
+  createFile,
   dirIsExecutable,
   dirIsReadable,
   dirIsVisible,
@@ -144,5 +204,9 @@ export {
   fileIsVisible,
   fileIsWritable,
   fileTruncate,
+  getStatus,
+  isDirExists,
+  isFileExists,
+  isPathExists,
   writeFile,
 };

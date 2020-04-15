@@ -64,6 +64,9 @@
     "dist/local.mjs",
     "dist/local.mjs.map"
   ],
+  "jest": {
+    "verbose": true
+  },
   "keywords": [
     "@hilesystem",
     "file system",
@@ -83,9 +86,10 @@
     "lint": "eslint ./src/**/*.mjs",
     "lint-md": "remark .",
     "test": "jest",
+    "test:coverage": "jest --collect-coverage",
     "upgrade": "yarn upgrade-interactive --latest"
   },
   "type": "module",
   "types": "./dist/local.d.ts",
-  "version": "0.0.10"
+  "version": "0.0.11"
 }

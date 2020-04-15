@@ -12,10 +12,10 @@ import { ofError } from "@r37r0m0d3l/of";
  * @param {*|null|string=} options
  * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
  */
-export default async function writeFile(filePath, data, options) {
-  const fsError = await ofError(promises.writeFile(filePath, data, options));
-  if (!fsError) {
-    return true;
+export async function writeFile(filePath, data, options) {
+  const writeError = await ofError(promises.writeFile(filePath, data, options));
+  if (writeError) {
+    return writeError;
   }
-  return fsError;
+  return true;
 }

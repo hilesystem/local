@@ -49,6 +49,12 @@ Asynchronous create a directory.
 const trueOrError = await createDirectory("path/to/dir", "0777", true);
 ```
 
+Asynchronous create a file.
+
+```javascript
+const trueOrError = await createFile("path/to/dir", "0777");
+```
+
 Is directory executable.
 
 ```javascript
@@ -101,6 +107,30 @@ Truncate a file to a specified length.
 
 ```javascript
 const trueOrError = await fileTruncate("path/to/file.ext");
+```
+
+Get file status.
+
+```javascript
+const [status, error] = await getStatus("path/to/file.ext");
+```
+
+Get directory status.
+
+```javascript
+const trueOrFalse = await isDirExists("path/to/");
+```
+
+Get file status.
+
+```javascript
+const trueOrFalse = await isFileExists("path/to/file.ext");
+```
+
+Get path status.
+
+```javascript
+const trueOrFalse = await isPathExists("path/to/file_or_directory");
 ```
 
 Asynchronous create a directory.

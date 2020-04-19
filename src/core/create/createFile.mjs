@@ -3,9 +3,9 @@ import { promises } from "fs";
 
 import { ofError } from "@r37r0m0d3l/of";
 
-import { createDirectory } from "./createDirectory.mjs";
-import { getStatus } from "../status/getStatus.mjs";
-import { writeFile } from "../write/writeFile.mjs";
+import { createDirectory } from "./createDirectory";
+import { getStatus } from "../status/getStatus";
+import { writeFile } from "../write/writeFile";
 
 /**
  * @name createFile
@@ -14,7 +14,7 @@ import { writeFile } from "../write/writeFile.mjs";
  * @async
  * @param {string|Buffer|URL} pathLike
  * @param {number|string=} mode
- * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
+ * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export async function createFile(pathLike, mode = "0777") {
   const [status, error] = await getStatus(pathLike);

@@ -142,7 +142,7 @@ const trueOrFalse = await isPathExists("path/to/file_or_directory");
 Asynchronous create a directory.
 
 ```javascript
-const trueOrError = await writeFile("path/to/file.txt", "Text", { encoding: "utf8" });
+const trueOrError = await writeFile("./f.txt", "Text", { encoding: "utf8" });
 ```
 
 ---

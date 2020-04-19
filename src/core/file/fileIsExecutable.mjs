@@ -1,6 +1,6 @@
 import { constants } from "fs";
 
-import { accessWrapper } from "../access/wrapper.mjs";
+import { accessWrapper } from "../access/wrapper";
 
 /**
  * @name fileIsExecutable
@@ -8,7 +8,7 @@ import { accessWrapper } from "../access/wrapper.mjs";
  * @since 0.0.5
  * @async
  * @param {string|Buffer|URL} pathToFile
- * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
+ * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export async function fileIsExecutable(pathToFile) {
   return accessWrapper(constants.X_OK, pathToFile);

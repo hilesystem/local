@@ -89,69 +89,70 @@ describe("Imported functions", () => {
 });
 
 describe("Class with static helpers", () => {
+  const hileSystemLocal = new HileSystemLocal();
   it("HileSystemLocal.createDirectory()", async () => {
-    const is = await HileSystemLocal.createDirectory("./test/temp2/");
+    const is = await hileSystemLocal.createDirectory("./test/temp2/");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.createFile()", async () => {
-    const is = await HileSystemLocal.createFile("./test/temp2/cf.txt");
+    const is = await hileSystemLocal.createFile("./test/temp2/cf.txt");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.dirIsExecutable()", async () => {
-    const is = await HileSystemLocal.dirIsExecutable("./test");
+    const is = await hileSystemLocal.dirIsExecutable("./test");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.dirIsReadable()", async () => {
-    const is = await HileSystemLocal.dirIsReadable("./test");
+    const is = await hileSystemLocal.dirIsReadable("./test");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.dirIsVisible()", async () => {
-    const is = await HileSystemLocal.dirIsVisible("./test");
+    const is = await hileSystemLocal.dirIsVisible("./test");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.dirIsWritable()", async () => {
-    const is = await HileSystemLocal.dirIsWritable("./test");
+    const is = await hileSystemLocal.dirIsWritable("./test");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.fileIsExecutable()", async () => {
-    const is = await fileIsExecutable("./test/index.test.js");
+    const is = await hileSystemLocal.fileIsExecutable("./test/index.test.js");
     expect(is).not.toBe(IS_EXECUTABLE);
   });
   it("HileSystemLocal.fileIsReadable()", async () => {
-    const is = await HileSystemLocal.fileIsReadable("./test/index.test.js");
+    const is = await hileSystemLocal.fileIsReadable("./test/index.test.js");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.fileIsVisible()", async () => {
-    const is = await HileSystemLocal.fileIsVisible("./test/index.test.js");
+    const is = await hileSystemLocal.fileIsVisible("./test/index.test.js");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.fileIsWritable()", async () => {
-    const is = await HileSystemLocal.fileIsWritable("./test/index.test.js");
+    const is = await hileSystemLocal.fileIsWritable("./test/index.test.js");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.fileTruncate()", async () => {
-    const is = await HileSystemLocal.fileTruncate("./test/test.file");
+    const is = await hileSystemLocal.fileTruncate("./test/test.file");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.getStatus()", async () => {
-    const [status, error] = await HileSystemLocal.getStatus("./test/index.test.js");
+    const [status, error] = await hileSystemLocal.getStatus("./test/index.test.js");
     expect(status).not.toBe(undefined);
     expect(error).toBe(undefined);
   });
   it("HileSystemLocal.isDirExists()", async () => {
-    const is = await HileSystemLocal.isDirExists("./test/");
+    const is = await hileSystemLocal.isDirExists("./test/");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.isFileExists()", async () => {
-    const is = await HileSystemLocal.isFileExists("./test/index.test.js");
+    const is = await hileSystemLocal.isFileExists("./test/index.test.js");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.isPathExists()", async () => {
-    const is = await HileSystemLocal.isPathExists("./test/");
+    const is = await hileSystemLocal.isPathExists("./test/");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.writeFile()", async () => {
-    const is = await HileSystemLocal.writeFile("./test/temp2.txt", "test2");
+    const is = await hileSystemLocal.writeFile("./test/temp2.txt", "test2");
     expect(is).toBe(true);
   });
 });

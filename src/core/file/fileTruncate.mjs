@@ -8,8 +8,8 @@ import { ofError } from "@r37r0m0d3l/of";
  * @since 0.0.6
  * @async
  * @param {string|Buffer|URL} pathToFile
- * @param {number=0} length
- * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
+ * @param {number=} length
+ * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export async function fileTruncate(pathToFile, length = 0) {
   const fsError = await ofError(promises.truncate(pathToFile, length));

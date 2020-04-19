@@ -9,7 +9,7 @@ import { ofError } from "@r37r0m0d3l/of";
  * @async
  * @param {number} mode
  * @param {string|Buffer|URL} path
- * @returns {Promise<boolean|Error|{readonly name: string, readonly message: string, readonly stack?: string}>}
+ * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export async function accessWrapper(mode, path) {
   const fsError = await ofError(fs.promises.access(path, mode));

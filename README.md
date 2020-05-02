@@ -7,7 +7,7 @@ Filesystem abstraction layer and common function wrappers.
 [![npm](https://badgen.net/npm/v/@hilesystem/local?&icon=npm&label=npm&color=DD3636)](https://www.npmjs.com/package/@hilesystem/local)
 [![downloads](https://badgen.net/npm/dt/@hilesystem/local?&icon=terminal&label=downloads&color=009688)](https://github.com/hilesystem/local)
 [![stars](https://badgen.net/github/stars/hilesystem/local?&icon=github&label=stars&color=ffcc33)](https://github.com/hilesystem/local)
-[![types](https://badgen.net/npm/types/@hilesystem/local?&icon=typescript&label=types&color=1E90FF)](https://github.com/hilesystem/local)
+[![types](https://badgen.net/npm/types/@hilesystem/local?&icon=typescript&label=types&color=1E90FF)](https://github.com/hilesystem/local/blob/master/dist/local.d.ts)
 [![build](https://badgen.net/travis/hilesystem/local?&icon=travis&label=build)](https://github.com/hilesystem/local)
 [![lgtm](https://badgen.net/lgtm/grade/g/hilesystem/local?&icon=lgtm&label=lgtm:js/ts&color=00C853)](https://github.com/hilesystem/local)
 

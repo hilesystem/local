@@ -1,4 +1,4 @@
-import { getStatus } from "./getStatus";
+import { getStatus } from "./getStatus.mjs";
 
 /**
  * @name isPathExists

@@ -3,9 +3,9 @@ import { promises } from "fs";
 
 import { ofError } from "@r37r0m0d3l/of";
 
-import { createDirectory } from "./createDirectory";
-import { getStatus } from "../status/getStatus";
-import { writeFile } from "../write/writeFile";
+import { createDirectory } from "./createDirectory.mjs";
+import { getStatus } from "../status/getStatus.mjs";
+import { writeFile } from "../write/writeFile.mjs";
 
 /**
  * @name createFile

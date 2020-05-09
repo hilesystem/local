@@ -1,19 +1,19 @@
-import { createDirectory } from "./create/createDirectory";
-import { createFile } from "./create/createFile";
-import { dirIsExecutable } from "./dir/dirIsExecutable";
-import { dirIsReadable } from "./dir/dirIsReadable";
-import { dirIsVisible } from "./dir/dirIsVisible";
-import { dirIsWritable } from "./dir/dirIsWritable";
-import { fileIsExecutable } from "./file/fileIsExecutable";
-import { fileIsReadable } from "./file/fileIsReadable";
-import { fileIsVisible } from "./file/fileIsVisible";
-import { fileIsWritable } from "./file/fileIsWritable";
-import { fileTruncate } from "./file/fileTruncate";
-import { getStatus } from "./status/getStatus";
-import { isDirExists } from "./status/isDirExists";
-import { isFileExists } from "./status/isFileExists";
-import { isPathExists } from "./status/isPathExists";
-import { writeFile } from "./write/writeFile";
+import { createDirectory } from "./create/createDirectory.mjs";
+import { createFile } from "./create/createFile.mjs";
+import { dirIsExecutable } from "./dir/dirIsExecutable.mjs";
+import { dirIsReadable } from "./dir/dirIsReadable.mjs";
+import { dirIsVisible } from "./dir/dirIsVisible.mjs";
+import { dirIsWritable } from "./dir/dirIsWritable.mjs";
+import { fileIsExecutable } from "./file/fileIsExecutable.mjs";
+import { fileIsReadable } from "./file/fileIsReadable.mjs";
+import { fileIsVisible } from "./file/fileIsVisible.mjs";
+import { fileIsWritable } from "./file/fileIsWritable.mjs";
+import { fileTruncate } from "./file/fileTruncate.mjs";
+import { getStatus } from "./status/getStatus.mjs";
+import { isDirExists } from "./status/isDirExists.mjs";
+import { isFileExists } from "./status/isFileExists.mjs";
+import { isPathExists } from "./status/isPathExists.mjs";
+import { writeFile } from "./write/writeFile.mjs";
 
 export class HileSystemLocal {
   /**

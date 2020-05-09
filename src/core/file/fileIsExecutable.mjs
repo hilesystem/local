@@ -1,6 +1,6 @@
 import { constants } from "fs";
 
-import { accessWrapper } from "../access/wrapper";
+import { accessWrapper } from "../access/wrapper.mjs";
 
 /**
  * @name fileIsExecutable

@@ -1,48 +1,8 @@
-import babel from "rollup-plugin-babel";
-import commonjs from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
-import rollupPluginTerser from "rollup-plugin-terser";
+/*  eslint-env node */
+import rollupConfigPkg from "@r37r0m0d3l/rollup-config-pkg";
 
-const INPUT_NAME = "index.mjs";
-const OUTPUT_NAME = "local";
+let config = {};
+Object.assign(config, rollupConfigPkg("index", "index"));
+Object.assign(config, { external: ["@r37r0m0d3l/of", "fs", "path"] });
 
-export default {
-  input: `./src/${INPUT_NAME}`,
-  output: [
-    {
-      exports: "named",
-      file: `./dist/${OUTPUT_NAME}.js`,
-      format: "cjs",
-      sourcemap: true,
-    },
-    {
-      exports: "named",
-      file: `./dist/${OUTPUT_NAME}.cjs`,
-      format: "cjs",
-      sourcemap: true,
-    },
-    {
-      exports: "named",
-      file: `./dist/${OUTPUT_NAME}.mjs`,
-      format: "es",
-      sourcemap: true,
-    },
-  ],
-  plugins: [
-    babel({ babelrc: true }),
-    resolve({
-      preferBuiltins: true,
-    }),
-    commonjs(),
-    rollupPluginTerser.terser({
-      keep_classnames: true,
-      keep_fnames: true,
-      output: {
-        comments: false,
-      },
-      sourcemap: true,
-      warnings: true,
-    }),
-  ],
-  external: ["@r37r0m0d3l/of", "fs", "path"],
-};
+export default config;

@@ -16,7 +16,7 @@ const {
   fileIsWritable,
   fileTruncate,
   writeFile,
-} = require("../dist/local.cjs");
+} = require("../dist/index.cjs");
 
 const IS_EXECUTABLE = true;
 

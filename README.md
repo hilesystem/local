@@ -4,12 +4,15 @@
 
 Filesystem abstraction layer and common function wrappers.
 
-[![npm](https://badgen.net/npm/v/@hilesystem/local?&icon=npm&label=npm&color=DD3636)](https://www.npmjs.com/package/@hilesystem/local)
-[![downloads](https://badgen.net/npm/dt/@hilesystem/local?&icon=terminal&label=downloads&color=009688)](https://github.com/hilesystem/local)
-[![stars](https://badgen.net/github/stars/hilesystem/local?&icon=github&label=stars&color=ffcc33)](https://github.com/hilesystem/local)
-[![types](https://badgen.net/npm/types/@hilesystem/local?&icon=typescript&label=types&color=1E90FF)](https://github.com/hilesystem/local/blob/master/dist/local.d.ts)
-[![build](https://badgen.net/travis/hilesystem/local?&icon=travis&label=build)](https://github.com/hilesystem/local)
-[![lgtm](https://badgen.net/lgtm/grade/g/hilesystem/local?&icon=lgtm&label=lgtm:js/ts&color=00C853)](https://github.com/hilesystem/local)
+[![Buy Me A Coffee][buymeacoffee-img]][buymeacoffee-url]
+[![Follow New Releases][releasly-img]][releasly-url]
+
+[![NPM Version][npm-version-img]][npm-version-url]
+[![NPM Downloads][npm-downloads-img]][npm-downloads-url]
+[![GitHub Stars][gh-stars-img]][gh-stars-url]
+[![TypeScript Typings][ts-img]][ts-url]
+[![Travis CI][travis-img]][travis-url]
+[![LGTM][lgtm-img]][lgtm-url]
 
 ---
 
@@ -17,9 +20,13 @@ Filesystem abstraction layer and common function wrappers.
 
 ---
 
+*If you use this project don't forget to give a ⭐ [star](https://github.com/hilesystem/local) ⭐ to it on GitHub!*
+
+---
+
 ## Usage
 
-Require CommonJS.
+CommonJS import.
 
 ```javascript
 const {
@@ -33,7 +40,7 @@ const {
 } = require("@hilesystem/local");
 ```
 
-Import as ECMAScript module.
+ECMAScript Module.
 
 ```javascript
 import {
@@ -45,6 +52,20 @@ import {
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile,
 } from "@hilesystem/local";
+```
+
+Deno (Pika [https://pika.dev/](https://pika.dev/))
+
+```javascript
+import {
+  HileSystemLocal,
+  createDirectory, createFile,
+  dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
+  fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
+  fileTruncate,
+  getStatus, isDirExists, isFileExists, isPathExists,
+  writeFile,
+} from "https://cdn.pika.dev/@hilesystem/local";
 ```
 
 ## API
@@ -158,4 +179,21 @@ const trueOrError = await writeFile("./f.txt", "Text", { encoding: "utf8" });
 
 <img src="https://raw.githubusercontent.com/r37r0m0d3l/r37r0m0d3l/master/osmap.svg?sanitize=true" width="960" height="520" style="display:block;height:auto;margin-left:auto;margin-right:auto;min-height:520px;min-width:960px;width:100%;">
 
----
+<!-- Badges -->
+
+[buymeacoffee-url]: https://buymeacoffee.com/r37r0m0d3l
+[buymeacoffee-img]: https://img.shields.io/badge/support-buymeacoffee-1E90FF.svg?&logo=buy-me-a-coffee&label=support
+[gh-stars-url]: https://github.com/hilesystem/local
+[gh-stars-img]: https://badgen.net/github/stars/hilesystem/local?&icon=github&label=stars&color=FFCC33
+[lgtm-url]: https://lgtm.com/projects/g/hilesystem/local
+[lgtm-img]: https://badgen.net/lgtm/grade/g/hilesystem/local?&icon=lgtm&label=lgtm:js/ts&color=00C853
+[npm-version-url]: https://npmjs.com/package/@hilesystem/local
+[npm-version-img]: https://badgen.net/npm/v/@hilesystem/local?&icon=npm&label=npm&color=DD3636
+[npm-downloads-url]: https://npmjs.com/package/@hilesystem/local
+[npm-downloads-img]: https://badgen.net/npm/dt/@hilesystem/local?&icon=terminal&label=downloads&color=009688
+[releasly-url]: https://app.releasly.co/sites/hilesystem/local?utm_source=github_badge
+[releasly-img]: https://app.releasly.co/assets/badges/badge-blue-classic.svg
+[travis-url]: https://travis-ci.com/github/hilesystem/local
+[travis-img]: https://badgen.net/travis/hilesystem/local?&icon=travis&label=build
+[ts-url]: https://github.com/hilesystem/local/blob/master/dist/http.d.ts
+[ts-img]: https://badgen.net/npm/types/@hilesystem/local?&icon=typescript&label=types&color=1E90FF

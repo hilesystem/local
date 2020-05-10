@@ -19,6 +19,7 @@ const {
   isDirExists,
   isFileExists,
   isPathExists,
+  pathFrom,
   remove,
   writeFile,
 } = require("../dist/index.cjs");
@@ -98,6 +99,9 @@ describe("Imported functions", () => {
   it("isPathExists()", async () => {
     const is = await isPathExists("./test/");
     expect(is).toBe(true);
+  });
+  it("pathFrom()", () => {
+    expect(pathFrom(["path", "to", "file.txt"])).toBe("path/to/file.txt");
   });
   it("writeFile()", async () => {
     const is = await writeFile("./test/temp.txt", "test");
@@ -183,6 +187,9 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.isPathExists()", async () => {
     const is = await hileSystemLocal.isPathExists("./test/");
     expect(is).toBe(true);
+  });
+  it("HileSystemLocal.pathFrom()", () => {
+    expect(hileSystemLocal.pathFrom(["path", "to", "file.txt"])).toBe("path/to/file.txt");
   });
   it("HileSystemLocal.writeFile()", async () => {
     const is = await hileSystemLocal.writeFile("./test/temp2.txt", "test2");

@@ -23,6 +23,7 @@ export { fileExtension } from "./core/path/fileExtension.mjs";
 export { fileName } from "./core/path/fileName.mjs";
 export { fileNameExt } from "./core/path/fileNameExt.mjs";
 export { filePath } from "./core/path/filePath.mjs";
+export { pathFrom } from "./core/path/pathFrom.mjs";
 //#endregion
 
 //#region remove

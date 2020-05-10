@@ -1,5 +1,5 @@
 import { PathLike, Stats } from "fs";
-import { basename, dirname, extname, parse } from "path";
+import { basename, dirname, extname, join, parse } from "path";
 
 //#region create
 
@@ -164,6 +164,16 @@ export function fileNameExt(path: string): string;
  * @returns {string}
  */
 export function filePath(path: string): string;
+
+/**
+ * @name pathFrom
+ * @description Join all arguments together and normalize the resulting path.
+ * @since 0.1.3
+ * @param {string|Array.<string>} paths
+ * @param {...string} morePaths
+ * @returns {string}
+ */
+export function pathFrom(paths: string | string[], ...morePaths: string[]): string;
 
 //#endregion
 

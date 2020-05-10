@@ -4,21 +4,22 @@ import { dirIsExecutable } from "./dir/dirIsExecutable.mjs";
 import { dirIsReadable } from "./dir/dirIsReadable.mjs";
 import { dirIsVisible } from "./dir/dirIsVisible.mjs";
 import { dirIsWritable } from "./dir/dirIsWritable.mjs";
+import { fileExtension } from "./path/fileExtension.mjs";
 import { fileIsExecutable } from "./file/fileIsExecutable.mjs";
 import { fileIsReadable } from "./file/fileIsReadable.mjs";
 import { fileIsVisible } from "./file/fileIsVisible.mjs";
 import { fileIsWritable } from "./file/fileIsWritable.mjs";
+import { fileName } from "./path/fileName.mjs";
+import { fileNameExt } from "./path/fileNameExt.mjs";
+import { filePath } from "./path/filePath.mjs";
 import { fileTruncate } from "./file/fileTruncate.mjs";
 import { getStatus } from "./status/getStatus.mjs";
 import { isDirExists } from "./status/isDirExists.mjs";
 import { isFileExists } from "./status/isFileExists.mjs";
 import { isPathExists } from "./status/isPathExists.mjs";
-import { writeFile } from "./write/writeFile.mjs";
-import { fileExtension } from "./path/fileExtension.mjs";
-import { fileName } from "./path/fileName.mjs";
-import { fileNameExt } from "./path/fileNameExt.mjs";
-import { filePath } from "./path/filePath.mjs";
+import { pathFrom } from "./path/pathFrom.mjs";
 import { remove } from "./remove/remove.mjs";
+import { writeFile } from "./write/writeFile.mjs";
 
 export class HileSystemLocal {
   /**
@@ -211,6 +212,16 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   fileTruncate = fileTruncate;
+  /**
+   * @name pathFrom
+   * @description Join all arguments together and normalize the resulting path.
+   * @since 0.1.3
+   * @public
+   * @param {string|Array.<string>} paths
+   * @param {...string} morePaths
+   * @returns {string}
+   */
+  pathFrom = pathFrom;
   /**
    * @name remove
    * @description Removes a file or directory.

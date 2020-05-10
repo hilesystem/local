@@ -35,7 +35,7 @@ const {
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
-  fileExtension, fileName, fileNameExt, filePath,
+  fileExtension, fileName, fileNameExt, filePath, pathFrom,
   remove,
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile,
@@ -51,7 +51,7 @@ import {
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
-  fileExtension, fileName, fileNameExt, filePath,
+  fileExtension, fileName, fileNameExt, filePath, pathFrom,
   remove,
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile,
@@ -67,7 +67,7 @@ import {
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
-  fileExtension, fileName, fileNameExt, filePath,
+  fileExtension, fileName, fileNameExt, filePath, pathFrom,
   remove,
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile,
@@ -166,10 +166,16 @@ Return the directory name of a path.
 const str = filePath("path/to/file.txt"); // "path/to"
 ```
 
+Join all arguments together and normalize the resulting path.
+
+```javascript
+const str = pathFrom(["path", "to", "file.txt"]) // "path/to/file.txt"
+```
+
 Removes a file or directory.
 
 ```javascript
-const voidOrError = remove("path/to/file.txt");
+const voidOrError = await remove("path/to/file.txt");
 ```
 
 Get file status.

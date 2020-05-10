@@ -444,6 +444,17 @@ export class HileSystemLocal {
    */
   public filePath(path: string): string;
 
+  /**
+   * @name pathFrom
+   * @description Join all arguments together and normalize the resulting path.
+   * @since 0.1.3
+   * @public
+   * @param {string|Array.<string>} paths
+   * @param {...string} morePaths
+   * @returns {string}
+   */
+  public pathFrom(paths: string | string[], ...morePaths: string[]): string;
+
   //#endregion
 
   //#region status

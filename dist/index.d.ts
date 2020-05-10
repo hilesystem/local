@@ -248,6 +248,8 @@ export function writeFile(
 //#region default
 
 export class HileSystemLocal {
+  //#region create
+
   /**
    * @name createDirectory
    * @description Asynchronous create a directory.
@@ -271,6 +273,11 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   public createFile(pathLike: PathLike, mode?: number | string): Promise<true | Error>;
+
+  //#endregion
+
+  //#region dir
+
   /**
    * @name dirIsExecutable
    * @description Directory can be executed by the calling process
@@ -311,46 +318,11 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   public dirIsWritable(pathToDir: PathLike): Promise<true | Error>;
-  /**
-   * @name getStatus
-   * @description Get file status.
-   * @since 0.0.11
-   * @async
-   * @public
-   * @param {string|Buffer|URL} path
-   * @returns {Promise<[fs.Stats|undefined],[Error|{name: string, message: string, stack?: string}]>}
-   */
-  public getStatus(path: PathLike): Promise<[Stats?, Error?]>;
-  /**
-   * @name isDirExists
-   * @description Get directory status.
-   * @since 0.0.11
-   * @async
-   * @public
-   * @param {string|Buffer|URL} path
-   * @returns {Promise<boolean>}
-   */
-  public isDirExists(path: PathLike): Promise<boolean>;
-  /**
-   * @name isFileExists
-   * @description Get file status.
-   * @since 0.0.11
-   * @async
-   * @public
-   * @param {string|Buffer|URL} path
-   * @returns {Promise<boolean>}
-   */
-  public isFileExists(path: PathLike): Promise<boolean>;
-  /**
-   * @name isPathExists
-   * @description Get path status.
-   * @since 0.0.11
-   * @async
-   * @public
-   * @param {string|Buffer|URL} path
-   * @returns {Promise<boolean>}
-   */
-  public isPathExists(path: PathLike): Promise<boolean>;
+
+  //#endregion
+
+  //#region file
+
   /**
    * @name fileIsExecutable
    * @description File can be executed by the calling process
@@ -402,6 +374,115 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   public fileTruncate(pathToFile: PathLike, length?: number): Promise<true | Error>;
+
+  //#endregion
+
+  //#region remove
+
+  /**
+   * @name remove
+   * @description Removes a file or directory.
+   * @since 0.1.1
+   * @async
+   * @public
+   * @param {string} pathLike
+   * @returns {Promise<undefined|Error|{name: string, message: string, stack?: string}>}
+   */
+  public remove(pathLike: string): Promise<undefined | Error>;
+
+  //#endregion
+
+  //#region path
+
+  /**
+   * @name fileExtension
+   * @description Get file extension.
+   * @since 0.1.1
+   * @public
+   * @param {string} path
+   * @returns {string}
+   */
+  public fileExtension(path: string): string;
+
+  /**
+   * @name fileName
+   * @description Return the file name without extension.
+   * @since 0.1.1
+   * @public
+   * @param {string} path
+   * @returns {string}
+   */
+  public fileName(path: string): string;
+
+  /**
+   * @name fileNameExt
+   * @description Return the last portion of a path.
+   * @since 0.1.1
+   * @public
+   * @param {string} path
+   * @returns {string}
+   */
+  public fileNameExt(path: string): string;
+
+  /**
+   * @name filePath
+   * @description Return the directory name of a path.
+   * @since 0.1.1
+   * @public
+   * @param {string} path
+   * @returns {string}
+   */
+  public filePath(path: string): string;
+
+  //#endregion
+
+  //#region status
+
+  /**
+   * @name getStatus
+   * @description Get file status.
+   * @since 0.0.11
+   * @async
+   * @public
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<[fs.Stats|undefined],[Error|{name: string, message: string, stack?: string}]>}
+   */
+  public getStatus(path: PathLike): Promise<[Stats?, Error?]>;
+  /**
+   * @name isDirExists
+   * @description Get directory status.
+   * @since 0.0.11
+   * @async
+   * @public
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<boolean>}
+   */
+  public isDirExists(path: PathLike): Promise<boolean>;
+  /**
+   * @name isFileExists
+   * @description Get file status.
+   * @since 0.0.11
+   * @async
+   * @public
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<boolean>}
+   */
+  public isFileExists(path: PathLike): Promise<boolean>;
+  /**
+   * @name isPathExists
+   * @description Get path status.
+   * @since 0.0.11
+   * @async
+   * @public
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<boolean>}
+   */
+  public isPathExists(path: PathLike): Promise<boolean>;
+
+  //#endregion
+
+  //#region write
+
   /**
    * @name writeFile
    * @description Asynchronously writes data to a file, replacing the file if it already exists.
@@ -418,6 +499,8 @@ export class HileSystemLocal {
     data: any,
     options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
   ): Promise<true | Error>;
+
+  //#endregion
 }
 
 //#endregion

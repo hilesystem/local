@@ -14,6 +14,11 @@ import { isDirExists } from "./status/isDirExists.mjs";
 import { isFileExists } from "./status/isFileExists.mjs";
 import { isPathExists } from "./status/isPathExists.mjs";
 import { writeFile } from "./write/writeFile.mjs";
+import { fileExtension } from "./path/fileExtension.mjs";
+import { fileName } from "./path/fileName.mjs";
+import { fileNameExt } from "./path/fileNameExt.mjs";
+import { filePath } from "./path/filePath.mjs";
+import { remove } from "./remove/remove.mjs";
 
 export class HileSystemLocal {
   /**
@@ -120,6 +125,42 @@ export class HileSystemLocal {
    */
   isPathExists = isPathExists;
   /**
+   * @name fileExtension
+   * @description Get file extension.
+   * @since 0.1.1
+   * @public
+   * @param {string} path
+   * @returns {string}
+   */
+  fileExtension = fileExtension;
+  /**
+   * @name fileName
+   * @description Return the file name without extension.
+   * @since 0.1.1
+   * @public
+   * @param {string} path
+   * @returns {string}
+   */
+  fileName = fileName;
+  /**
+   * @name fileNameExt
+   * @description Return the last portion of a path.
+   * @since 0.1.1
+   * @public
+   * @param {string} path
+   * @returns {string}
+   */
+  fileNameExt = fileNameExt;
+  /**
+   * @name filePath
+   * @description Return the directory name of a path.
+   * @since 0.1.1
+   * @public
+   * @param {string} path
+   * @returns {string}
+   */
+  filePath = filePath;
+  /**
    * @name fileIsExecutable
    * @description File can be executed by the calling process
    * @since 0.0.5
@@ -170,6 +211,16 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   fileTruncate = fileTruncate;
+  /**
+   * @name remove
+   * @description Removes a file or directory.
+   * @since 0.1.1
+   * @async
+   * @public
+   * @param {string} pathLike
+   * @returns {Promise<undefined|Error|{name: string, message: string, stack?: string}>}
+   */
+  remove = remove;
   /**
    * @name writeFile
    * @description Asynchronously writes data to a file, replacing the file if it already exists.

@@ -1,4 +1,4 @@
-import * as fs from "fs";
+import { promises } from "fs";
 
 import { ofError } from "@r37r0m0d3l/of";
 
@@ -12,7 +12,7 @@ import { ofError } from "@r37r0m0d3l/of";
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export async function accessWrapper(mode, path) {
-  const fsError = await ofError(fs.promises.access(path, mode));
+  const fsError = await ofError(promises.access(path, mode));
   if (!fsError) {
     return true;
   }

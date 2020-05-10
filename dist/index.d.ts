@@ -1,4 +1,7 @@
 import { PathLike, Stats } from "fs";
+import { basename, dirname, extname, parse } from "path";
+
+//#region create
 
 /**
  * @name createDirectory
@@ -22,6 +25,10 @@ export function createDirectory(dirPath: PathLike, mode?: number | string, recur
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export function createFile(pathLike: PathLike, mode?: number | string): Promise<true | Error>;
+
+//#endregion
+
+//#region dir
 
 /**
  * @name dirIsExecutable
@@ -62,6 +69,10 @@ export function dirIsVisible(pathToDir: PathLike): Promise<true | Error>;
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export function dirIsWritable(pathToDir: PathLike): Promise<true | Error>;
+
+//#endregion
+
+//#region file
 
 /**
  * @name fileIsExecutable
@@ -114,6 +125,64 @@ export function fileIsWritable(pathToFile: PathLike): Promise<true | Error>;
  */
 export function fileTruncate(pathToFile: PathLike, length?: number): Promise<true | Error>;
 
+//#endregion
+
+//#region path
+
+/**
+ * @name fileExtension
+ * @description Get file extension.
+ * @since 0.1.1
+ * @param {string} path
+ * @returns {string}
+ */
+export function fileExtension(path: string): string;
+
+/**
+ * @name fileName
+ * @description Return the file name without extension.
+ * @since 0.1.1
+ * @param {string} path
+ * @returns {string}
+ */
+export function fileName(path: string): string;
+
+/**
+ * @name fileNameExt
+ * @description Return the last portion of a path.
+ * @since 0.1.1
+ * @param {string} path
+ * @returns {string}
+ */
+export function fileNameExt(path: string): string;
+
+/**
+ * @name filePath
+ * @description Return the directory name of a path.
+ * @since 0.1.1
+ * @param {string} path
+ * @returns {string}
+ */
+export function filePath(path: string): string;
+
+//#endregion
+
+//#region remove
+
+/**
+ * @name remove
+ * @description Removes a file or directory.
+ * @since 0.1.1
+ * @async
+ * @param {string} pathLike
+ * @returns {Promise<undefined|Error|{name: string, message: string, stack?: string}>}
+ */
+export function remove(pathLike: string): Promise<undefined | Error>;
+
+//#endregion
+
+//#region status
+
 /**
  * @name getStatus
  * @description Get file status.
@@ -154,6 +223,10 @@ export function isFileExists(path: PathLike): Promise<boolean>;
  */
 export function isPathExists(path: PathLike): Promise<boolean>;
 
+//#endregion
+
+//#region write
+
 /**
  * @name writeFile
  * @description Asynchronously writes data to a file, replacing the file if it already exists.
@@ -169,6 +242,10 @@ export function writeFile(
   data: any,
   options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
 ): Promise<true | Error>;
+
+//#endregion
+
+//#region default
 
 export class HileSystemLocal {
   /**
@@ -342,3 +419,5 @@ export class HileSystemLocal {
     options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
   ): Promise<true | Error>;
 }
+
+//#endregion

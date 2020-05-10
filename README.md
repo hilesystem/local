@@ -35,6 +35,8 @@ const {
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
+  fileExtension, fileName, fileNameExt, filePath,
+  remove,
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile,
 } = require("@hilesystem/local");
@@ -49,6 +51,8 @@ import {
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
+  fileExtension, fileName, fileNameExt, filePath,
+  remove,
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile,
 } from "@hilesystem/local";
@@ -63,6 +67,8 @@ import {
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
+  fileExtension, fileName, fileNameExt, filePath,
+  remove,
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile,
 } from "https://cdn.pika.dev/@hilesystem/local";
@@ -134,6 +140,36 @@ Truncate a file to a specified length.
 
 ```javascript
 const trueOrError = await fileTruncate("path/to/file.ext");
+```
+
+Get file extension.
+
+```javascript
+const str = fileExtension("path/to/file.txt"); // "txt"
+```
+
+Return the file name without extension.
+
+```javascript
+const str = fileName("path/to/file.txt"); // "file"
+```
+
+Return the last portion of a path.
+
+```javascript
+const str = fileNameExt("path/to/file.txt"); // "file.txt"
+```
+
+Return the directory name of a path.
+
+```javascript
+const str = filePath("path/to/file.txt"); // "path/to"
+```
+
+Removes a file or directory.
+
+```javascript
+const voidOrError = remove("path/to/file.txt");
 ```
 
 Get file status.

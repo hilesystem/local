@@ -6,19 +6,24 @@ const {
   dirIsReadable,
   dirIsVisible,
   dirIsWritable,
-  getStatus,
-  isDirExists,
-  isFileExists,
-  isPathExists,
+  fileExtension,
   fileIsExecutable,
   fileIsReadable,
   fileIsVisible,
   fileIsWritable,
+  fileName,
+  fileNameExt,
+  filePath,
   fileTruncate,
+  getStatus,
+  isDirExists,
+  isFileExists,
+  isPathExists,
+  remove,
   writeFile,
 } = require("../dist/index.cjs");
 
-const IS_EXECUTABLE = true;
+const IS_EXECUTABLE = false;
 
 describe("Imported functions", () => {
   it("createDirectory()", async () => {
@@ -44,6 +49,18 @@ describe("Imported functions", () => {
   it("dirIsWritable()", async () => {
     const is = await dirIsWritable("./test");
     expect(is).toBe(true);
+  });
+  it("fileExtension()", () => {
+    expect(fileExtension("path/to/file.txt")).toBe("txt");
+  });
+  it("fileName()", () => {
+    expect(fileName("path/to/file.txt")).toBe("file");
+  });
+  it("fileNameExt()", () => {
+    expect(fileNameExt("path/to/file.txt")).toBe("file.txt");
+  });
+  it("filePath()", () => {
+    expect(filePath("path/to/file.txt")).toBe("path/to");
   });
   it("fileIsExecutable()", async () => {
     const is = await fileIsExecutable("./test/index.test.js");
@@ -86,6 +103,10 @@ describe("Imported functions", () => {
     const is = await writeFile("./test/temp.txt", "test");
     expect(is).toBe(true);
   });
+  it("remove()", async () => {
+    const result = await remove("./temp");
+    expect(result).toBe(undefined);
+  });
 });
 
 describe("Class with static helpers", () => {
@@ -113,6 +134,18 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.dirIsWritable()", async () => {
     const is = await hileSystemLocal.dirIsWritable("./test");
     expect(is).toBe(true);
+  });
+  it("HileSystemLocal.fileExtension()", () => {
+    expect(hileSystemLocal.fileExtension("path/to/file.txt")).toBe("txt");
+  });
+  it("HileSystemLocal.fileName()", () => {
+    expect(hileSystemLocal.fileName("path/to/file.txt")).toBe("file");
+  });
+  it("HileSystemLocal.fileNameExt()", () => {
+    expect(hileSystemLocal.fileNameExt("path/to/file.txt")).toBe("file.txt");
+  });
+  it("HileSystemLocal.filePath()", () => {
+    expect(hileSystemLocal.filePath("path/to/file.txt")).toBe("path/to");
   });
   it("HileSystemLocal.fileIsExecutable()", async () => {
     const is = await hileSystemLocal.fileIsExecutable("./test/index.test.js");
@@ -154,5 +187,9 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.writeFile()", async () => {
     const is = await hileSystemLocal.writeFile("./test/temp2.txt", "test2");
     expect(is).toBe(true);
+  });
+  it("HileSystemLocal.remove()", async () => {
+    const result = await hileSystemLocal.remove("./temp");
+    expect(result).toBe(undefined);
   });
 });

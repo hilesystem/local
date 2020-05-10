@@ -231,5 +231,5 @@ const trueOrError = await writeFile("./f.txt", "Text", { encoding: "utf8" });
 [releasly-img]: https://app.releasly.co/assets/badges/badge-blue-classic.svg
 [travis-url]: https://travis-ci.com/github/hilesystem/local
 [travis-img]: https://badgen.net/travis/hilesystem/local?&icon=travis&label=build
-[ts-url]: https://github.com/hilesystem/local/blob/master/dist/http.d.ts
+[ts-url]: https://github.com/hilesystem/local/blob/master/dist/index.d.ts
 [ts-img]: https://badgen.net/npm/types/@hilesystem/local?&icon=typescript&label=types&color=1E90FF

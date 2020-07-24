@@ -130,6 +130,17 @@ export function fileTruncate(pathToFile: PathLike, length?: number): Promise<tru
 //#region path
 
 /**
+ * @name absolutePathFrom
+ * @description Join all arguments together and normalize the resulting path.
+ * Creates absolute path from right to left until an absolute path is constructed.
+ * @since 0.1.5
+ * @param {string|Array.<string>} paths
+ * @param {...string} morePaths
+ * @returns {string}
+ */
+export function absolutePathFrom(paths: string | string[], ...morePaths: string[]): string;
+
+/**
  * @name fileExtension
  * @description Get file extension.
  * @since 0.1.1

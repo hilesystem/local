@@ -27,6 +27,10 @@ export { filePath } from "./core/path/filePath.mjs";
 export { pathFrom } from "./core/path/pathFrom.mjs";
 //#endregion
 
+//#region read
+export { readFileToString } from "./core/read/readFileToString.mjs";
+//#endregion
+
 //#region remove
 export { remove } from "./core/remove/remove.mjs";
 //#endregion

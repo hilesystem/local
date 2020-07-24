@@ -181,6 +181,12 @@ Join all arguments together and normalize the resulting path.
 const str = pathFrom(["path", "to", "file.txt"]) // "path/to/file.txt"
 ```
 
+Reads the file into a string.
+
+```javascript
+const stringOrError = await readFileToString("path/to/file.txt");
+```
+
 Removes a file or directory.
 
 ```javascript

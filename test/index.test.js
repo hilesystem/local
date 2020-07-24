@@ -21,6 +21,7 @@ const {
   isFileExists,
   isPathExists,
   pathFrom,
+  readFileToString,
   remove,
   writeFile,
 } = require("../dist/index.cjs");
@@ -116,6 +117,10 @@ describe("Imported functions", () => {
     const result = await remove("./temp");
     expect(result).toBe(undefined);
   });
+  it("readFileToString()", async () => {
+    const is = await readFileToString("./test/temp.txt");
+    expect(is).toBe("test");
+  });
 });
 
 describe("Class with static helpers", () => {
@@ -207,5 +212,9 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.remove()", async () => {
     const result = await hileSystemLocal.remove("./temp");
     expect(result).toBe(undefined);
+  });
+  it("HileSystemLocal.readFileToString()", async () => {
+    const is = await hileSystemLocal.readFileToString("./test/temp.txt");
+    expect(is).toBe("test");
   });
 });

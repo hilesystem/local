@@ -19,6 +19,7 @@ import { isDirExists } from "./status/isDirExists.mjs";
 import { isFileExists } from "./status/isFileExists.mjs";
 import { isPathExists } from "./status/isPathExists.mjs";
 import { pathFrom } from "./path/pathFrom.mjs";
+import { readFileToString } from "./read/readFileToString.mjs";
 import { remove } from "./remove/remove.mjs";
 import { writeFile } from "./write/writeFile.mjs";
 
@@ -234,6 +235,17 @@ export class HileSystemLocal {
    * @returns {string}
    */
   pathFrom = pathFrom;
+
+  /**
+   * @name readFileToString
+   * @description Asynchronously reads the entire contents of a file into string.
+   * @since 0.1.7
+   * @async
+   * @param {string|Buffer|URL} pathLike
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  readFileToString = readFileToString;
+
   /**
    * @name remove
    * @description Removes a file or directory.

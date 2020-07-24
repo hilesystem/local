@@ -188,6 +188,20 @@ export function pathFrom(paths: string | string[], ...morePaths: string[]): stri
 
 //#endregion
 
+//#region read
+
+/**
+ * @name readFileToString
+ * @description Asynchronously reads the entire contents of a file into string.
+ * @since 0.1.7
+ * @async
+ * @param {string|Buffer|URL} pathLike
+ * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+ */
+export function readFileToString(pathLike: string): Promise<string | Error>;
+
+//#endregion
+
 //#region remove
 
 /**

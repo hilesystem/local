@@ -31,6 +31,7 @@ CommonJS import.
 ```javascript
 const {
   HileSystemLocal,
+  absolutePathFrom,
   createDirectory, createFile,
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
@@ -47,6 +48,7 @@ ECMAScript Module.
 ```javascript
 import {
   HileSystemLocal,
+  absolutePathFrom,
   createDirectory, createFile,
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
@@ -63,6 +65,7 @@ Deno (Pika [https://pika.dev/](https://pika.dev/))
 ```javascript
 import {
   HileSystemLocal,
+  absolutePathFrom,
   createDirectory, createFile,
   dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
@@ -75,6 +78,12 @@ import {
 ```
 
 ## API
+
+Join all arguments together and normalize the resulting path to absolute URI.
+
+```javascript
+const str = absolutePathFrom(["path", "to", "file.txt"]) // "/user/me/path/to/file.txt"
+```
 
 Asynchronous create a directory.
 

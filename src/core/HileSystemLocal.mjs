@@ -1,3 +1,4 @@
+import { absolutePathFrom } from "./path/absolutePathFrom.mjs";
 import { createDirectory } from "./create/createDirectory.mjs";
 import { createFile } from "./create/createFile.mjs";
 import { dirIsExecutable } from "./dir/dirIsExecutable.mjs";
@@ -22,6 +23,17 @@ import { remove } from "./remove/remove.mjs";
 import { writeFile } from "./write/writeFile.mjs";
 
 export class HileSystemLocal {
+  /**
+   * @name absolutePathFrom
+   * @description Join all arguments together and normalize the resulting path.
+   * reates absolute path from right to left until an absolute path is constructed.
+   * @since 0.1.5
+   * @public
+   * @param {string|Array.<string>} paths
+   * @param {...string} morePaths
+   * @returns {string}
+   */
+  absolutePathFrom = absolutePathFrom;
   /**
    * @name createDirectory
    * @description Asynchronous create a directory.

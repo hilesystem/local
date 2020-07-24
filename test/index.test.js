@@ -1,5 +1,6 @@
 const {
   HileSystemLocal,
+  absolutePathFrom,
   createDirectory,
   createFile,
   dirIsExecutable,
@@ -27,6 +28,10 @@ const {
 const IS_EXECUTABLE = false;
 
 describe("Imported functions", () => {
+  it("absolutePathFrom()", () => {
+    expect(absolutePathFrom(["path", "to", "file.txt"]))
+      .toBe(__dirname.replace("test", "") + "path/to/file.txt");
+  });
   it("createDirectory()", async () => {
     const is = await createDirectory("./test/temp/");
     expect(is).toBe(true);
@@ -115,6 +120,10 @@ describe("Imported functions", () => {
 
 describe("Class with static helpers", () => {
   const hileSystemLocal = new HileSystemLocal();
+  it("HileSystemLocal.absolutePathFrom()", () => {
+    expect(hileSystemLocal.absolutePathFrom(["path", "to", "file.txt"]))
+      .toBe(__dirname.replace("test", "") + "path/to/file.txt");
+  });
   it("HileSystemLocal.createDirectory()", async () => {
     const is = await hileSystemLocal.createDirectory("./test/temp2/");
     expect(is).toBe(true);

@@ -19,6 +19,7 @@ export { fileTruncate } from "./core/file/fileTruncate.mjs";
 //#endregion
 
 //#region path
+export { absolutePathFrom } from "./core/path/absolutePathFrom.mjs";
 export { fileExtension } from "./core/path/fileExtension.mjs";
 export { fileName } from "./core/path/fileName.mjs";
 export { fileNameExt } from "./core/path/fileNameExt.mjs";

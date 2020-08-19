@@ -14,31 +14,34 @@ function defaults(options) {
 
 function rimraf(pathLike, options, callback) {
   let busyTries = 0;
-  if (typeof options === "function") {
-    callback = options;
-    options = {};
+  let localCallback = callback;
+  let localOptions = options;
+  if (typeof localOptions === "function") {
+    localCallback = localOptions;
+    localOptions = {};
   }
   assert(pathLike, "remove(): missing path");
   assert.strictEqual(typeof pathLike, "string", "remove(): path should be a string");
-  assert.strictEqual(typeof callback, "function", "remove(): callback function required");
-  assert(options, "remove(): invalid options argument provided");
-  assert.strictEqual(typeof options, "object", "remove(): options should be object");
-  defaults(options);
-  rimraf_(pathLike, options, function callbackRimraf(error) {
+  assert.strictEqual(typeof localCallback, "function", "remove(): callback function required");
+  assert(localOptions, "remove(): invalid options argument provided");
+  assert.strictEqual(typeof localOptions, "object", "remove(): options should be object");
+  defaults(localOptions);
+  rimraf_(pathLike, localOptions, function callbackRimraf(error) {
     if (error) {
       if (
         (error.code === "EBUSY" || error.code === "ENOTEMPTY" || error.code === "EPERM") &&
-        busyTries < options.maxBusyTries
+        busyTries < localOptions.maxBusyTries
       ) {
         busyTries++;
         const time = busyTries * 100;
-        return setTimeout(() => rimraf_(pathLike, options, callbackRimraf), time);
+        return setTimeout(() => rimraf_(pathLike, localOptions, callbackRimraf), time);
       }
       if (error.code === "ENOENT") {
-        error = null;
+        localCallback(null);
+        return;
       }
     }
-    callback(error);
+    localCallback(error);
   });
 }
 
@@ -86,11 +89,19 @@ function fixWinEPERM(pathLike, options, error, callback) {
   }
   options.chmod(pathLike, 0o666, (errorChMod) => {
     if (errorChMod) {
-      callback(errorChMod.code === "ENOENT" ? null : error);
+      if (errorChMod.code === "ENOENT") {
+        callback(null);
+      } else {
+        callback(error);
+      }
     } else {
       options.stat(pathLike, (errorStat, stats) => {
         if (errorStat) {
-          callback(errorStat.code === "ENOENT" ? null : error);
+          if (errorStat.code === "ENOENT") {
+            callback(null);
+          } else {
+            callback(error);
+          }
         } else if (stats.isDirectory()) {
           rmdir(pathLike, options, error, callback);
         } else {

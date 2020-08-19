@@ -11,8 +11,10 @@ Filesystem abstraction layer and common function wrappers.
 [![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 [![GitHub Stars][gh-stars-img]][gh-stars-url]
 [![TypeScript Typings][ts-img]][ts-url]
+
 [![Travis CI][travis-img]][travis-url]
 [![LGTM][lgtm-img]][lgtm-url]
+[![deepcode][deepcode-img]][deepcode-url]
 
 ---
 
@@ -240,6 +242,9 @@ const trueOrError = await writeFile("./f.txt", "Text", { encoding: "utf8" });
 
 [buymeacoffee-url]: https://buymeacoffee.com/r37r0m0d3l
 [buymeacoffee-img]: https://img.shields.io/badge/support-buymeacoffee-1E90FF.svg?&logo=buy-me-a-coffee&label=support
+
+[deepcode-img]: https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6ImhpbGVzeXN0ZW0iLCJyZXBvMSI6ImxvY2FsIiwiaW5jbHVkZUxpbnQiOmZhbHNlLCJhdXRob3JJZCI6MjA1OTEsImlhdCI6MTU5Nzg3NzU2NX0.ZPpTGdzeeHtgm0Vc-AfTBw_PQC4DGN135Vc6jAxk8H0
+[deepcode-url]: https://www.deepcode.ai/app/gh/hilesystem/local/_/dashboard?utm_content=gh%2Fhilesystem%2Flocal
 [gh-stars-url]: https://github.com/hilesystem/local
 [gh-stars-img]: https://badgen.net/github/stars/hilesystem/local?&icon=github&label=stars&color=FFCC33
 [lgtm-url]: https://lgtm.com/projects/g/hilesystem/local

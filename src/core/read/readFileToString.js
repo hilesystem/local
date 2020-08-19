@@ -11,7 +11,7 @@ import { of } from "@r37r0m0d3l/of";
  * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
  */
 export async function readFileToString(pathLike) {
-  const [result, error] = await of(promises.readFile(pathLike, "utf-8"));
+  const [result, error] = await of(promises.readFile(pathLike, "utf8"));
   if (error) {
     return error;
   }

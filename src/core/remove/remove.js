@@ -4,6 +4,9 @@ import path from "path";
 
 const IS_WINDOWS = process.platform === "win32";
 
+/**
+ * @param {object} options
+ */
 function defaults(options) {
   const methods = ["unlink", "chmod", "stat", "lstat", "rmdir", "readdir"];
   methods.forEach((method) => {
@@ -12,6 +15,11 @@ function defaults(options) {
   options.maxBusyTries = options.maxBusyTries || 3;
 }
 
+/**
+ * @param {string} pathLike
+ * @param {Function|object=} options
+ * @param {Function=} callback
+ */
 function rimraf(pathLike, options, callback) {
   let busyTries = 0;
   let localCallback = callback;
@@ -45,6 +53,11 @@ function rimraf(pathLike, options, callback) {
   });
 }
 
+/**
+ * @param {string} pathLike
+ * @param {Function|object=} options
+ * @param {Function=} callback
+ */
 function rimraf_(pathLike, options, callback) {
   assert(pathLike);
   assert(options);
@@ -80,6 +93,12 @@ function rimraf_(pathLike, options, callback) {
   });
 }
 
+/**
+ * @param {string} pathLike
+ * @param {Function|object=} options
+ * @param {Error|null} error
+ * @param {Function=} callback
+ */
 function fixWinEPERM(pathLike, options, error, callback) {
   assert(pathLike);
   assert(options);
@@ -112,6 +131,12 @@ function fixWinEPERM(pathLike, options, error, callback) {
   });
 }
 
+/**
+ * @param {string} pathLike
+ * @param {Function|object=} options
+ * @param {Error|null} originalError
+ * @param {Function=} callback
+ */
 function rmdir(pathLike, options, originalError, callback) {
   assert(pathLike);
   assert(options);
@@ -130,6 +155,11 @@ function rmdir(pathLike, options, originalError, callback) {
   });
 }
 
+/**
+ * @param {string} pathLike
+ * @param {Function|object=} options
+ * @param {Function=} callback
+ */
 function removeSubPath(pathLike, options, callback) {
   assert(pathLike);
   assert(options);
@@ -151,7 +181,8 @@ function removeSubPath(pathLike, options, callback) {
         if (error) {
           return callback((errState = error));
         }
-        if (--count === 0) {
+        --count;
+        if (count === 0) {
           options.rmdir(pathLike, callback);
         }
       });

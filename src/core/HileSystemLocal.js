@@ -1,3 +1,5 @@
+import * as fs from "fs";
+
 import { absolutePathFrom } from "./path/absolutePathFrom.js";
 import { createDirectory } from "./create/createDirectory.js";
 import { createFile } from "./create/createFile.js";
@@ -105,7 +107,7 @@ export class HileSystemLocal {
    * @async
    * @public
    * @param {string|Buffer|URL} path
-   * @returns {Promise<[fs.Stats|undefined],[Error|{name: string, message: string, stack?: string}]>}
+   * @returns {Promise<Array.<(fs.Stats|undefined|Error|{name: string, message: string, stack?: string})>>}
    */
   getStatus = getStatus;
   /**
@@ -262,7 +264,7 @@ export class HileSystemLocal {
    * @since 0.0.10
    * @async
    * @public
-   * @param {string|Buffer|URL|FileHandle} filePath
+   * @param {string|Buffer|URL|fs.promises.FileHandle} filePath
    * @param {*=} data
    * @param {*|null|string=} options
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}

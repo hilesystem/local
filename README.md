@@ -16,7 +16,7 @@ Filesystem abstraction layer and common function wrappers.
 
 ---
 
-> ⏳ **Please Note:** This is "Work in Progress" package. The new functionality will be added very slowly.
+> ⏳ **Please Note:** This is "Work In Progress" package. The new functionality will be added very slowly.
 
 ---
 
@@ -53,7 +53,8 @@ const isDirectoryCreated = await hs.createDirectory("./test/");
 Join all arguments together and normalize the resulting path to absolute URI.
 
 ```javascript
-const str = absolutePathFrom(["path", "to", "file.txt"]) // "/user/me/path/to/file.txt"
+const paths = ["path", "to", "file.txt"];
+const str = absolutePathFrom(paths) // "/user/me/path/to/file.txt"
 ```
 
 Asynchronous create a directory.
@@ -191,7 +192,10 @@ const trueOrFalse = await isPathExists("path/to/file_or_directory");
 synchronously writes data to a file, replacing the file if it already exists.
 
 ```javascript
-const trueOrError = await writeFile("./f.txt", "Text", { encoding: "utf8" });
+const filePath = "./file.txt";
+const data = "Text";
+const options = { encoding: "utf8" };
+const trueOrError = await writeFile(filePath, data, options);
 ```
 
 ---
@@ -204,22 +208,16 @@ const trueOrError = await writeFile("./f.txt", "Text", { encoding: "utf8" });
 
 <!-- Badges -->
 
-[buymeacoffee-img]: https://img.shields.io/badge/support-buymeacoffee-1E90FF.svg?&logo=buy-me-a-coffee&label=support
-[buymeacoffee-url]: https://buymeacoffee.com/r37r0m0d3l
 [codacy-img]: https://api.codacy.com/project/badge/Grade/3a4f33788cd44b799242cae7e080f9e3
 [codacy-url]: https://www.codacy.com/gh/hilesystem/local?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hilesystem/local&amp;utm_campaign=Badge_Grade
 [deepcode-img]: https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6ImhpbGVzeXN0ZW0iLCJyZXBvMSI6ImxvY2FsIiwiaW5jbHVkZUxpbnQiOmZhbHNlLCJhdXRob3JJZCI6MjA1OTEsImlhdCI6MTU5Nzg3NzU2NX0.ZPpTGdzeeHtgm0Vc-AfTBw_PQC4DGN135Vc6jAxk8H0
 [deepcode-url]: https://www.deepcode.ai/app/gh/hilesystem/local/_/dashboard?utm_content=gh%2Fhilesystem%2Flocal
-[gh-stars-img]: https://badgen.net/github/stars/hilesystem/local?&icon=github&label=stars&color=FFCC33
-[gh-stars-url]: https://github.com/hilesystem/local
 [lgtm-img]: https://badgen.net/lgtm/grade/g/hilesystem/local?&icon=lgtm&label=lgtm:js/ts&color=00C853
 [lgtm-url]: https://lgtm.com/projects/g/hilesystem/local
 [npm-downloads-img]: https://badgen.net/npm/dt/@hilesystem/local?&icon=terminal&label=downloads&color=009688
 [npm-downloads-url]: https://npmjs.com/package/@hilesystem/local
 [npm-version-img]: https://badgen.net/npm/v/@hilesystem/local?&icon=npm&label=npm&color=DD3636
 [npm-version-url]: https://npmjs.com/package/@hilesystem/local
-[releasly-img]: https://app.releasly.co/assets/badges/badge-blue-classic.svg
-[releasly-url]: https://app.releasly.co/sites/hilesystem/local?utm_source=github_badge
 [sonarcloud-img]: https://sonarcloud.io/api/project_badges/measure?project=hilesystem_local&metric=sqale_rating
 [sonarcloud-url]: https://sonarcloud.io/dashboard?id=hilesystem_local
 [travis-img]: https://badgen.net/travis/hilesystem/local?&icon=travis&label=build

@@ -189,7 +189,7 @@ Get path status.
 const trueOrFalse = await isPathExists("path/to/file_or_directory");
 ```
 
-synchronously writes data to a file, replacing the file if it already exists.
+Asynchronously writes data to a file, replacing the file if it already exists.
 
 ```javascript
 const filePath = "./file.txt";

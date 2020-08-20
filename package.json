@@ -10,7 +10,7 @@
     }
   ],
   "dependencies": {
-    "@r37r0m0d3l/of": "2.4.*"
+    "@r37r0m0d3l/of": "2.4.4"
   },
   "description": "Filesystem abstraction layer and common function wrappers",
   "devDependencies": {
@@ -86,5 +86,5 @@
   },
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "0.1.12"
+  "version": "0.1.13"
 }

@@ -1,4 +1,3 @@
-import * as fs from "fs";
 import { promises } from "fs";
 
 import { ofError } from "@r37r0m0d3l/of";
@@ -8,7 +7,7 @@ import { ofError } from "@r37r0m0d3l/of";
  * @description Asynchronously writes data to a file, replacing the file if it already exists.
  * @since 0.0.10
  * @async
- * @param {string|Buffer|URL|fs.promises.FileHandle} filePath
+ * @param {string|Buffer|URL} filePath
  * @param {*=} data
  * @param {*|null|string=} options
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}

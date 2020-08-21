@@ -42,7 +42,8 @@ function rimraf(pathLike, options, callback) {
       ) {
         busyTries++;
         const time = busyTries * 100;
-        return setTimeout(() => rimraf_(pathLike, localOptions, callbackRimraf), time);
+        setTimeout(() => rimraf_(pathLike, localOptions, callbackRimraf), time);
+        return;
       }
       if (error.code === "ENOENT") {
         localCallback(null);
@@ -179,7 +180,8 @@ function removeSubPath(pathLike, options, callback) {
           return;
         }
         if (error) {
-          return callback((errState = error));
+          callback((errState = error));
+          return;
         }
         --count;
         if (count === 0) {

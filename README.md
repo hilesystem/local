@@ -50,24 +50,64 @@ const isDirectoryCreated = await hs.createDirectory("./test/");
 
 ### Import functions
 
-Join all arguments together and normalize the resulting path to absolute URI.
+#### Path
+
+<details>
+    <summary><i>absolutePathFrom(paths, ...morePaths)</i></summary>
+Join all arguments together and normalize the resulting path.
 
 ```javascript
 const paths = ["path", "to", "file.txt"];
 const str = absolutePathFrom(paths) // "/user/me/path/to/file.txt"
 ```
+</details>
 
-Asynchronous create a directory.
-
-```javascript
-const trueOrError = await createDirectory("path/to/dir", "0777", true);
-```
-
-Asynchronous create a file.
+<details>
+    <summary><i>fileExtension(path)</i></summary>
+Get file extension.
 
 ```javascript
-const trueOrError = await createFile("path/to/dir", "0777");
+const str = fileExtension("path/to/file.txt"); // "txt"
 ```
+</details>
+
+<details>
+    <summary><i>fileName(path)</i></summary>
+Return the file name without extension.
+
+```javascript
+const str = fileName("path/to/file.txt"); // "file"
+```
+</details>
+
+<details>
+    <summary><i>fileNameExt(path)</i></summary>
+Return the last portion of a path.
+
+```javascript
+const str = fileNameExt("path/to/file.txt"); // "file.txt"
+```
+</details>
+
+<details>
+    <summary><i>filePath(path)</i></summary>
+Return the directory name of a path.
+
+```javascript
+const str = filePath("path/to/file.txt"); // "path/to"
+```
+</details>
+
+<details>
+    <summary><i>pathFrom(paths, ...morePaths)</i></summary>
+Join all arguments together and normalize the resulting path.
+
+```javascript
+const str = pathFrom(["path", "to", "file.txt"]) // "path/to/file.txt"
+```
+</details>
+
+#### Check
 
 Is directory executable.
 
@@ -117,41 +157,38 @@ Is file writable.
 const trueOrError = await fileIsWritable("path/to/file.ext");
 ```
 
+#### Create
+
+Asynchronous create a directory.
+
+```javascript
+const trueOrError = await createDirectory("path/to/dir", "0777", true);
+```
+
+Asynchronous create a file.
+
+```javascript
+const trueOrError = await createFile("path/to/dir", "0777");
+```
+
+#### Write
+
 Truncate a file to a specified length.
 
 ```javascript
 const trueOrError = await fileTruncate("path/to/file.ext");
 ```
 
-Get file extension.
+Asynchronously writes data to a file, replacing the file if it already exists.
 
 ```javascript
-const str = fileExtension("path/to/file.txt"); // "txt"
+const filePath = "./file.txt";
+const data = "Text";
+const options = { encoding: "utf8" };
+const trueOrError = await writeFile(filePath, data, options);
 ```
 
-Return the file name without extension.
-
-```javascript
-const str = fileName("path/to/file.txt"); // "file"
-```
-
-Return the last portion of a path.
-
-```javascript
-const str = fileNameExt("path/to/file.txt"); // "file.txt"
-```
-
-Return the directory name of a path.
-
-```javascript
-const str = filePath("path/to/file.txt"); // "path/to"
-```
-
-Join all arguments together and normalize the resulting path.
-
-```javascript
-const str = pathFrom(["path", "to", "file.txt"]) // "path/to/file.txt"
-```
+#### Read
 
 Reads the file into a string.
 
@@ -159,11 +196,15 @@ Reads the file into a string.
 const stringOrError = await readFileToString("path/to/file.txt");
 ```
 
+#### Delete
+
 Removes a file or directory.
 
 ```javascript
 const voidOrError = await remove("path/to/file.txt");
 ```
+
+#### Information
 
 Get file status.
 
@@ -187,15 +228,6 @@ Get path status.
 
 ```javascript
 const trueOrFalse = await isPathExists("path/to/file_or_directory");
-```
-
-Asynchronously writes data to a file, replacing the file if it already exists.
-
-```javascript
-const filePath = "./file.txt";
-const data = "Text";
-const options = { encoding: "utf8" };
-const trueOrError = await writeFile(filePath, data, options);
 ```
 
 ---

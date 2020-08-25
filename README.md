@@ -53,7 +53,7 @@ const isDirectoryCreated = await hs.createDirectory("./test/");
 #### Path
 
 <details>
-    <summary><i>absolutePathFrom(paths, ...morePaths)</i></summary>
+    <summary><b>absolutePathFrom(paths, ...morePaths)</b></summary>
 Join all arguments together and normalize the resulting path.
 
 ```javascript
@@ -63,7 +63,7 @@ const str = absolutePathFrom(paths) // "/user/me/path/to/file.txt"
 </details>
 
 <details>
-    <summary><i>fileExtension(path)</i></summary>
+    <summary><b>fileExtension(path)</b></summary>
 Get file extension.
 
 ```javascript
@@ -72,7 +72,7 @@ const str = fileExtension("path/to/file.txt"); // "txt"
 </details>
 
 <details>
-    <summary><i>fileName(path)</i></summary>
+    <summary><b>fileName(path)</b></summary>
 Return the file name without extension.
 
 ```javascript
@@ -81,7 +81,7 @@ const str = fileName("path/to/file.txt"); // "file"
 </details>
 
 <details>
-    <summary><i>fileNameExt(path)</i></summary>
+    <summary><b>fileNameExt(path)</b></summary>
 Return the last portion of a path.
 
 ```javascript
@@ -90,7 +90,7 @@ const str = fileNameExt("path/to/file.txt"); // "file.txt"
 </details>
 
 <details>
-    <summary><i>filePath(path)</i></summary>
+    <summary><b>filePath(path)</b></summary>
 Return the directory name of a path.
 
 ```javascript
@@ -99,7 +99,7 @@ const str = filePath("path/to/file.txt"); // "path/to"
 </details>
 
 <details>
-    <summary><i>pathFrom(paths, ...morePaths)</i></summary>
+    <summary><b>pathFrom(paths, ...morePaths)</b></summary>
 Join all arguments together and normalize the resulting path.
 
 ```javascript
@@ -107,78 +107,50 @@ const str = pathFrom(["path", "to", "file.txt"]) // "path/to/file.txt"
 ```
 </details>
 
-#### Check
-
-Is directory executable.
-
-```javascript
-const trueOrError = await dirIsExecutable("path/to/dir");
-```
-
-Is directory readable.
-
-```javascript
-const trueOrError = await dirIsReadable("path/to/dir");
-```
-
-Is directory visible.
-
-```javascript
-const trueOrError = await dirIsVisible("path/to/dir");
-```
-
-Is directory writable.
-
-```javascript
-const trueOrError = await dirIsWritable("path/to/dir");
-```
-
-Is file executable.
-
-```javascript
-const trueOrError = await fileIsExecutable("path/to/file.ext");
-```
-
-Is file readable.
-
-```javascript
-const trueOrError = await fileIsReadable("path/to/file.ext");
-```
-
-Is file visible.
-
-```javascript
-const trueOrError = await fileIsVisible("path/to/file.ext");
-```
-
-Is file writable.
-
-```javascript
-const trueOrError = await fileIsWritable("path/to/file.ext");
-```
-
 #### Create
 
+<details>
+    <summary><b>createDirectory(dirPath, mode, recursive)</b></summary>
 Asynchronous create a directory.
 
 ```javascript
 const trueOrError = await createDirectory("path/to/dir", "0777", true);
 ```
+</details>
 
+<details>
+    <summary><b>createFile(pathLike, mode)</b></summary>
 Asynchronous create a file.
 
 ```javascript
 const trueOrError = await createFile("path/to/dir", "0777");
 ```
+</details>
+
+#### Read
+
+<details>
+    <summary><b>readFileToString(pathLike)</b></summary>
+Reads the file into a string.
+
+```javascript
+const stringOrError = await readFileToString("path/to/file.txt");
+```
+</details>
 
 #### Write
 
+<details>
+    <summary><b>fileTruncate(pathToFile, length)</b></summary>
 Truncate a file to a specified length.
 
 ```javascript
 const trueOrError = await fileTruncate("path/to/file.ext");
 ```
+</details>
 
+<details>
+    <summary><b>writeFile(filePath, data, options)</b></summary>
 Asynchronously writes data to a file, replacing the file if it already exists.
 
 ```javascript
@@ -187,48 +159,130 @@ const data = "Text";
 const options = { encoding: "utf8" };
 const trueOrError = await writeFile(filePath, data, options);
 ```
-
-#### Read
-
-Reads the file into a string.
-
-```javascript
-const stringOrError = await readFileToString("path/to/file.txt");
-```
+</details>
 
 #### Delete
 
+<details>
+    <summary><b>remove(pathLike)</b></summary>
 Removes a file or directory.
 
 ```javascript
 const voidOrError = await remove("path/to/file.txt");
 ```
+</details>
 
 #### Information
 
+<details>
+    <summary><b>getStatus(path)</b></summary>
 Get file status.
 
 ```javascript
 const [status, error] = await getStatus("path/to/file.ext");
 ```
+</details>
 
+<details>
+    <summary><b>isDirExists(path)</b></summary>
 Get directory status.
 
 ```javascript
 const trueOrFalse = await isDirExists("path/to/");
 ```
+</details>
 
+<details>
+    <summary><b>isFileExists(path)</b></summary>
 Get file status.
 
 ```javascript
 const trueOrFalse = await isFileExists("path/to/file.ext");
 ```
+</details>
 
+<details>
+    <summary><b>isPathExists(path)</b></summary>
 Get path status.
 
 ```javascript
 const trueOrFalse = await isPathExists("path/to/file_or_directory");
 ```
+</details>
+
+#### Check
+
+<details>
+    <summary><b>dirIsExecutable(pathToDir)</b></summary>
+Is directory executable.
+
+```javascript
+const trueOrError = await dirIsExecutable("path/to/dir");
+```
+</details>
+
+<details>
+    <summary><b>dirIsReadable(pathToDir)</b></summary>
+Is directory readable.
+
+```javascript
+const trueOrError = await dirIsReadable("path/to/dir");
+```
+</details>
+
+<details>
+    <summary><b>dirIsVisible(pathToDir)</b></summary>
+Is directory visible.
+
+```javascript
+const trueOrError = await dirIsVisible("path/to/dir");
+```
+</details>
+
+<details>
+    <summary><b>dirIsWritable(pathToDir)</b></summary>
+Is directory writable.
+
+```javascript
+const trueOrError = await dirIsWritable("path/to/dir");
+```
+</details>
+
+<details>
+    <summary><b>fileIsExecutable(pathToFile)</b></summary>
+Is file executable.
+
+```javascript
+const trueOrError = await fileIsExecutable("path/to/file.ext");
+```
+</details>
+
+<details>
+    <summary><b>fileIsReadable(pathToFile)</b></summary>
+Is file readable.
+
+```javascript
+const trueOrError = await fileIsReadable("path/to/file.ext");
+```
+</details>
+
+<details>
+    <summary><b>fileIsVisible(pathToFile)</b></summary>
+Is file visible.
+
+```javascript
+const trueOrError = await fileIsVisible("path/to/file.ext");
+```
+</details>
+
+<details>
+    <summary><b>fileIsWritable(pathToFile)</b></summary>
+Is file writable.
+
+```javascript
+const trueOrError = await fileIsWritable("path/to/file.ext");
+```
+</details>
 
 ---
 

@@ -31,7 +31,7 @@ import {
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
   fileExtension, fileName, fileNameExt, filePath, pathFrom,
-  remove,
+  remove, removeNonBlocking,
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile,
 } from "@hilesystem/local";
@@ -169,6 +169,15 @@ Removes a file or directory.
 
 ```javascript
 const voidOrError = await remove("path/to/file.txt");
+```
+</details>
+
+<details>
+    <summary><b>removeNonBlocking(pathLike)</b></summary>
+Non-blocking remove of a file or directory.
+
+```javascript
+removeNonBlocking("path/to/file.txt");
 ```
 </details>
 

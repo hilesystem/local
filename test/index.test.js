@@ -23,6 +23,7 @@ const {
   pathFrom,
   readFileToString,
   remove,
+  removeNonBlocking,
   writeFile,
 } = require("../dist/index.cjs");
 
@@ -115,6 +116,10 @@ describe("Imported functions", () => {
   });
   it("remove()", async () => {
     const result = await remove("./temp");
+    expect(result).toBe(undefined);
+  });
+  it("removeNonBlocking()", async () => {
+    const result = removeNonBlocking("./temp_that_not_exists");
     expect(result).toBe(undefined);
   });
   it("readFileToString()", async () => {
@@ -211,6 +216,10 @@ describe("Class with static helpers", () => {
   });
   it("HileSystemLocal.remove()", async () => {
     const result = await hileSystemLocal.remove("./temp");
+    expect(result).toBe(undefined);
+  });
+  it("HileSystemLocal.removeNonBlocking()", async () => {
+    const result = hileSystemLocal.removeNonBlocking("./temp_that_not_exists");
     expect(result).toBe(undefined);
   });
   it("HileSystemLocal.readFileToString()", async () => {

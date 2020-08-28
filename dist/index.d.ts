@@ -214,6 +214,16 @@ export function readFileToString(pathLike: string): Promise<string | Error>;
  */
 export function remove(pathLike: string): Promise<undefined | Error>;
 
+/**
+ * @name removeNonBlocking
+ * @description Non-blocking remove of a file or directory.
+ * @since 0.1.18
+ * @sync
+ * @param {string} pathLike
+ * @returns {void}
+ */
+export function removeNonBlocking(pathLike: string): void;
+
 //#endregion
 
 //#region status

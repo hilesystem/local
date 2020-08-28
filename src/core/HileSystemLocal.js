@@ -1,5 +1,3 @@
-import * as fs from "fs";
-
 import { absolutePathFrom } from "./path/absolutePathFrom.js";
 import { createDirectory } from "./create/createDirectory.js";
 import { createFile } from "./create/createFile.js";
@@ -23,6 +21,7 @@ import { isPathExists } from "./status/isPathExists.js";
 import { pathFrom } from "./path/pathFrom.js";
 import { readFileToString } from "./read/readFileToString.js";
 import { remove } from "./remove/remove.js";
+import { removeNonBlocking } from "./remove/removeNonBlocking.js";
 import { writeFile } from "./write/writeFile.js";
 
 export class HileSystemLocal {
@@ -107,7 +106,7 @@ export class HileSystemLocal {
    * @async
    * @public
    * @param {string|Buffer|URL} path
-   * @returns {Promise<Array.<(fs.Stats|undefined|Error|{name: string, message: string, stack?: string})>>}
+   * @returns {Promise<Array.<(object|undefined|Error|{name: string, message: string, stack?: string})>>}
    */
   getStatus = getStatus;
   /**
@@ -258,13 +257,24 @@ export class HileSystemLocal {
    * @returns {Promise<undefined|Error|{name: string, message: string, stack?: string}>}
    */
   remove = remove;
+
+  /**
+   * @name removeNonBlocking
+   * @description Non-blocking remove of a file or directory.
+   * @since 0.1.18
+   * @public
+   * @param {string} pathLike
+   * @returns {void}
+   */
+  removeNonBlocking = removeNonBlocking;
+
   /**
    * @name writeFile
    * @description Asynchronously writes data to a file, replacing the file if it already exists.
    * @since 0.0.10
    * @async
    * @public
-   * @param {string|Buffer|URL|fs.promises.FileHandle} filePath
+   * @param {string|Buffer|URL} filePath
    * @param {*=} data
    * @param {*|null|string=} options
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}

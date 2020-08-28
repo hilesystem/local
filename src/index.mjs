@@ -33,6 +33,7 @@ export { readFileToString } from "./core/read/readFileToString.js";
 
 //#region remove
 export { remove } from "./core/remove/remove.js";
+export { removeNonBlocking } from "./core/remove/removeNonBlocking.js";
 //#endregion
 
 //#region status

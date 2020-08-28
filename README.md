@@ -1,6 +1,6 @@
 ![HileSystem Local](.github/assets/banner.webp?raw=true "HileSystem Local")
 
-# HileSystem Local
+# 🖴 HileSystem Local
 
 Filesystem abstraction layer and common function wrappers.
 
@@ -22,6 +22,8 @@ Filesystem abstraction layer and common function wrappers.
 
 ## Usage
 
+### Tree-shaking imports
+
 ```javascript
 import {
   HileSystemLocal,
@@ -37,18 +39,26 @@ import {
 } from "@hilesystem/local";
 ```
 
-## API
+### Import all as named import
+
+```javascript
+import * as hileSystem from "@hilesystem/local";
+const isDirectoryCreated = await hileSystem.createDirectory("./test/");
+```
 
 ### Working with instance
 
 If you prefer object-oriented style.
 
+> 🚧 At the moment, no functionality has been implemented inside the object instance. Reserved for future functionality. You can safely skip it.
+
 ```javascript
-const hs = new HileSystemLocal();
-const isDirectoryCreated = await hs.createDirectory("./test/");
+import { HileSystemLocal } from "@hilesystem/local";
+const hileSystem = new HileSystemLocal();
+const isDirectoryCreated = await hileSystem.createDirectory("./test/");
 ```
 
-### Import functions
+## API
 
 #### Path
 

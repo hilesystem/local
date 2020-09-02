@@ -191,6 +191,16 @@ export function pathFrom(paths: string | string[], ...morePaths: string[]): stri
 //#region read
 
 /**
+ * @name readFileToBuffer
+ * @description Asynchronously reads the entire contents of a file into buffer.
+ * @since 0.1.19
+ * @async
+ * @param {string|Buffer|URL} pathLike
+ * @returns {Promise<Buffer|Error|{name: string, message: string, stack?: string}>}
+ */
+export function readFileToBuffer(pathLike: string): Promise<Buffer | Error>;
+
+/**
  * @name readFileToString
  * @description Asynchronously reads the entire contents of a file into string.
  * @since 0.1.7
@@ -419,6 +429,30 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   public fileTruncate(pathToFile: PathLike, length?: number): Promise<true | Error>;
+
+  //#endregion
+
+  //#region read
+
+  /**
+   * @name readFileToBuffer
+   * @description Asynchronously reads the entire contents of a file into buffer.
+   * @since 0.1.19
+   * @async
+   * @param {string|Buffer|URL} pathLike
+   * @returns {Promise<Buffer|Error|{name: string, message: string, stack?: string}>}
+   */
+  public readFileToBuffer(pathLike: string): Promise<Buffer | Error>;
+
+  /**
+   * @name readFileToString
+   * @description Asynchronously reads the entire contents of a file into string.
+   * @since 0.1.7
+   * @async
+   * @param {string|Buffer|URL} pathLike
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  public readFileToString(pathLike: string): Promise<string | Error>;
 
   //#endregion
 

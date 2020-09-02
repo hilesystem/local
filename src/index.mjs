@@ -28,6 +28,7 @@ export { pathFrom } from "./core/path/pathFrom.js";
 //#endregion
 
 //#region read
+export { readFileToBuffer } from "./core/read/readFileToBuffer.js";
 export { readFileToString } from "./core/read/readFileToString.js";
 //#endregion
 

@@ -21,6 +21,7 @@ const {
   isFileExists,
   isPathExists,
   pathFrom,
+  readFileToBuffer,
   readFileToString,
   remove,
   removeNonBlocking,
@@ -31,8 +32,7 @@ const IS_EXECUTABLE = false;
 
 describe("Imported functions", () => {
   it("absolutePathFrom()", () => {
-    expect(absolutePathFrom(["path", "to", "file.txt"]))
-      .toBe(__dirname.replace("test", "") + "path/to/file.txt");
+    expect(absolutePathFrom(["path", "to", "file.txt"])).toBe(__dirname.replace("test", "") + "path/to/file.txt");
   });
   it("createDirectory()", async () => {
     const is = await createDirectory("./test/temp/");
@@ -126,13 +126,18 @@ describe("Imported functions", () => {
     const is = await readFileToString("./test/temp.txt");
     expect(is).toBe("test");
   });
+  it("readFileToBuffer()", async () => {
+    const buf = await readFileToBuffer("./test/temp.txt");
+    expect(buf.constructor.name).toBe("Buffer");
+  });
 });
 
 describe("Class with static helpers", () => {
   const hileSystemLocal = new HileSystemLocal();
   it("HileSystemLocal.absolutePathFrom()", () => {
-    expect(hileSystemLocal.absolutePathFrom(["path", "to", "file.txt"]))
-      .toBe(__dirname.replace("test", "") + "path/to/file.txt");
+    expect(hileSystemLocal.absolutePathFrom(["path", "to", "file.txt"])).toBe(
+      __dirname.replace("test", "") + "path/to/file.txt",
+    );
   });
   it("HileSystemLocal.createDirectory()", async () => {
     const is = await hileSystemLocal.createDirectory("./test/temp2/");
@@ -225,5 +230,9 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.readFileToString()", async () => {
     const is = await hileSystemLocal.readFileToString("./test/temp.txt");
     expect(is).toBe("test");
+  });
+  it("HileSystemLocal.readFileToBuffer()", async () => {
+    const buf = await hileSystemLocal.readFileToBuffer("./test/temp.txt");
+    expect(buf.constructor.name).toBe("Buffer");
   });
 });

@@ -140,6 +140,15 @@ const trueOrError = await createFile("path/to/dir", "0777");
 #### Read
 
 <details>
+    <summary><b>readFileToBuffer(pathLike)</b></summary>
+Reads the file into a buffer.
+
+```javascript
+const bufferOrError = await readFileToBuffer("path/to/file.txt");
+```
+</details>
+
+<details>
     <summary><b>readFileToString(pathLike)</b></summary>
 Reads the file into a string.
 

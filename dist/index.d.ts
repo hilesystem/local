@@ -435,6 +435,16 @@ export class HileSystemLocal {
   //#region read
 
   /**
+   * @name readFileToString
+   * @description Asynchronously reads the entire contents of a file into string.
+   * @since 0.1.21
+   * @async
+   * @param {string|Buffer|URL} pathLike
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  public readFileToBase64(pathLike: string): Promise<string | Error>;
+
+  /**
    * @name readFileToBuffer
    * @description Asynchronously reads the entire contents of a file into buffer.
    * @since 0.1.19

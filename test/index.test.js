@@ -21,6 +21,7 @@ const {
   isFileExists,
   isPathExists,
   pathFrom,
+  readFileToBase64,
   readFileToBuffer,
   readFileToString,
   remove,
@@ -130,6 +131,10 @@ describe("Imported functions", () => {
     const buf = await readFileToBuffer("./test/temp.txt");
     expect(buf.constructor.name).toBe("Buffer");
   });
+  it("readFileToBase64()", async () => {
+    const is = await readFileToString("./test/temp.txt");
+    expect(is).toBe("dGVzdA==");
+  });
 });
 
 describe("Class with static helpers", () => {
@@ -234,5 +239,9 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.readFileToBuffer()", async () => {
     const buf = await hileSystemLocal.readFileToBuffer("./test/temp.txt");
     expect(buf.constructor.name).toBe("Buffer");
+  });
+  it("HileSystemLocal.readFileToBase64()", async () => {
+    const is = await hileSystemLocal.readFileToBase64("./test/temp.txt");
+    expect(is).toBe("dGVzdA==");
   });
 });

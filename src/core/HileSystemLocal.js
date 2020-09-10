@@ -19,6 +19,7 @@ import { isDirExists } from "./status/isDirExists.js";
 import { isFileExists } from "./status/isFileExists.js";
 import { isPathExists } from "./status/isPathExists.js";
 import { pathFrom } from "./path/pathFrom.js";
+import { readFileToBase64 } from "./read/readFileToBase64.js";
 import { readFileToBuffer } from "./read/readFileToBuffer.js";
 import { readFileToString } from "./read/readFileToString.js";
 import { remove } from "./remove/remove.js";
@@ -237,6 +238,16 @@ export class HileSystemLocal {
    * @returns {string}
    */
   pathFrom = pathFrom;
+
+  /**
+   * @name readFileToBase64
+   * @description Asynchronously reads the entire contents of a file into string.
+   * @since 0.1.21
+   * @async
+   * @param {string|Buffer|URL} pathLike
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  readFileToBase64 = readFileToBase64;
 
   /**
    * @name readFileToBuffer

@@ -140,6 +140,15 @@ const trueOrError = await createFile("path/to/dir", "0777");
 #### Read
 
 <details>
+    <summary><b>readFileToBase64(pathLike)</b></summary>
+Reads the file into a string.
+
+```javascript
+const stringOrError = await readFileToBase64("path/to/img.png");
+```
+</details>
+
+<details>
     <summary><b>readFileToBuffer(pathLike)</b></summary>
 Reads the file into a buffer.
 

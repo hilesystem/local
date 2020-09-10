@@ -191,14 +191,14 @@ export function pathFrom(paths: string | string[], ...morePaths: string[]): stri
 //#region read
 
 /**
- * @name readFileBase64
+ * @name readFileToBase64
  * @description Asynchronously reads the entire contents of a file into string.
  * @since 0.1.21
  * @async
  * @param {string|Buffer|URL} pathLike
  * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
  */
-export function readFileBase64(pathLike: string): Promise<string | Error>;
+export function readFileToBase64(pathLike: string): Promise<string | Error>;
 
 /**
  * @name readFileToBuffer

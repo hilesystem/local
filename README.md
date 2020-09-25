@@ -35,7 +35,7 @@ import {
   fileExtension, fileName, fileNameExt, filePath, pathFrom,
   remove, removeNonBlocking,
   getStatus, isDirExists, isFileExists, isPathExists,
-  writeFile,
+  writeFile, writeJSON,
 } from "@hilesystem/local";
 ```
 
@@ -186,6 +186,18 @@ const filePath = "./file.txt";
 const data = "Text";
 const options = { encoding: "utf8" };
 const trueOrError = await writeFile(filePath, data, options);
+```
+</details>
+
+<details>
+    <summary><b>writeJSON(filePath, data, options)</b></summary>
+Asynchronously writes data to a file, replacing the file if it already exists.
+
+```javascript
+const filePath = "./file.json";
+const data = { key: "value" };
+const options = { encoding: "utf8" };
+const trueOrError = await writeJSON(filePath, data, options);
 ```
 </details>
 

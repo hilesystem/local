@@ -8,7 +8,7 @@ import { ofError } from "@r37r0m0d3l/of";
  * @since 0.0.10
  * @async
  * @param {string|Buffer|URL} filePath
- * @param {*=} data
+ * @param {string} data
  * @param {*|null|string=} options
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */

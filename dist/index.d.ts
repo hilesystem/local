@@ -298,11 +298,27 @@ export function isPathExists(path: PathLike): Promise<boolean>;
  * @since 0.0.10
  * @async
  * @param {string|Buffer|URL|FileHandle} filePath
- * @param {*=} data
+ * @param {string} data
  * @param {*|null|string=} options
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export function writeFile(
+  filePath: PathLike,
+  data: string,
+  options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
+): Promise<true | Error>;
+
+/**
+ * @name writeJSON
+ * @description Asynchronously writes data to a file, replacing the file if it already exists.
+ * @since 0.1.25
+ * @async
+ * @param {string|Buffer|URL|FileHandle} filePath
+ * @param {*} data
+ * @param {*|null|string=} options
+ * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+ */
+export function writeJSON(
   filePath: PathLike,
   data: any,
   options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
@@ -605,6 +621,23 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   public writeFile(
+    filePath: PathLike,
+    data: string,
+    options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
+  ): Promise<true | Error>;
+
+  /**
+   * @name writeJSON
+   * @description Asynchronously writes data to a file, replacing the file if it already exists.
+   * @since 0.1.25
+   * @async
+   * @public
+   * @param {string|Buffer|URL|FileHandle} filePath
+   * @param {*} data
+   * @param {*|null|string=} options
+   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   */
+  public writeJSON(
     filePath: PathLike,
     data: any,
     options?: { encoding?: string | null; mode?: string | number; flag?: string | number },

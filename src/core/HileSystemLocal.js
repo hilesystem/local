@@ -25,6 +25,7 @@ import { readFileToString } from "./read/readFileToString.js";
 import { remove } from "./remove/remove.js";
 import { removeNonBlocking } from "./remove/removeNonBlocking.js";
 import { writeFile } from "./write/writeFile.js";
+import { writeJSON } from "./write/writeJSON.js";
 
 export class HileSystemLocal {
   /**
@@ -297,9 +298,22 @@ export class HileSystemLocal {
    * @async
    * @public
    * @param {string|Buffer|URL} filePath
-   * @param {*=} data
+   * @param {string} data
    * @param {*|null|string=} options
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   writeFile = writeFile;
+
+  /**
+   * @name writeJSON
+   * @description Asynchronously writes data to a file, replacing the file if it already exists.
+   * @since 0.1.25
+   * @async
+   * @public
+   * @param {string|Buffer|URL} filePath
+   * @param {*} data
+   * @param {*|null|string=} options
+   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   */
+  writeJSON = writeJSON;
 }

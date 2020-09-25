@@ -27,6 +27,7 @@ const {
   remove,
   removeNonBlocking,
   writeFile,
+  writeJSON,
 } = require("../dist/index.cjs");
 
 const IS_EXECUTABLE = false;
@@ -113,6 +114,10 @@ describe("Imported functions", () => {
   });
   it("writeFile()", async () => {
     const is = await writeFile("./test/temp.txt", "test");
+    expect(is).toBe(true);
+  });
+  it("writeJSON()", async () => {
+    const is = await writeJSON("./test/temp.json", "test");
     expect(is).toBe(true);
   });
   it("remove()", async () => {
@@ -222,6 +227,10 @@ describe("Class with static helpers", () => {
   });
   it("HileSystemLocal.writeFile()", async () => {
     const is = await hileSystemLocal.writeFile("./test/temp2.txt", "test2");
+    expect(is).toBe(true);
+  });
+  it("HileSystemLocal.writeJSON()", async () => {
+    const is = await hileSystemLocal.writeJSON("./test/temp2.json", "test2");
     expect(is).toBe(true);
   });
   it("HileSystemLocal.remove()", async () => {

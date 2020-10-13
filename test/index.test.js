@@ -137,7 +137,7 @@ describe("Imported functions", () => {
     expect(buf.constructor.name).toBe("Buffer");
   });
   it("readFileToBase64()", async () => {
-    const is = await readFileToString("./test/temp.txt");
+    const is = await readFileToBase64("./test/temp.txt");
     expect(is).toBe("dGVzdA==");
   });
 });

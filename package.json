@@ -15,20 +15,20 @@
   "description": "Filesystem abstraction layer and common function wrappers",
   "devDependencies": {
     "@r37r0m0d3l/rollup-config-pkg": "git+https://github.com/r37r0m0d3l/rollup-config-pkg.git",
-    "@types/node": "14.11.2",
+    "@types/node": "14.11.8",
     "babel-eslint": "10.1.0",
-    "eslint": "7.9.0",
-    "eslint-config-prettier": "6.11.0",
-    "eslint-plugin-jsdoc": "30.5.2",
+    "eslint": "7.11.0",
+    "eslint-config-prettier": "6.12.0",
+    "eslint-plugin-jsdoc": "30.6.4",
     "eslint-plugin-prettier": "3.1.4",
-    "jest": "26.4.2",
+    "jest": "26.5.3",
     "npm-check": "5.9.2",
     "prettier": "2.1.2",
     "remark-cli": "8.0.1",
-    "remark-lint": "7.0.1",
-    "remark-preset-lint-consistent": "3.0.1",
-    "remark-preset-lint-markdown-style-guide": "3.0.1",
-    "remark-preset-lint-recommended": "4.0.1"
+    "remark-lint": "8.0.0",
+    "remark-preset-lint-consistent": "4.0.0",
+    "remark-preset-lint-markdown-style-guide": "4.0.0",
+    "remark-preset-lint-recommended": "5.0.0"
   },
   "engines": {
     "node": ">=12.9.0"
@@ -86,5 +86,5 @@
   },
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "0.1.27"
+  "version": "0.1.28"
 }

@@ -99,6 +99,7 @@ function rimraf_(pathLike, options, callback) {
  * @param {Function|object=} options
  * @param {Error|null} error
  * @param {Function=} callback
+ * @returns {null}
  */
 function fixWinEPERM(pathLike, options, error, callback) {
   assert(pathLike);
@@ -130,6 +131,7 @@ function fixWinEPERM(pathLike, options, error, callback) {
       });
     }
   });
+  return null;
 }
 
 /**
@@ -137,6 +139,7 @@ function fixWinEPERM(pathLike, options, error, callback) {
  * @param {Function|object=} options
  * @param {Error|null} originalError
  * @param {Function=} callback
+ * @returns {null}
  */
 function rmdir(pathLike, options, originalError, callback) {
   assert(pathLike);
@@ -154,6 +157,7 @@ function rmdir(pathLike, options, originalError, callback) {
       callback(error);
     }
   });
+  return null;
 }
 
 /**

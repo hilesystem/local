@@ -31,7 +31,7 @@ const {
   writeJSON,
 } = require("../dist/index.cjs");
 
-const IS_EXECUTABLE = true;
+const IS_EXECUTABLE = false;
 
 describe("Imported functions", () => {
   it("absolutePathFrom()", () => {

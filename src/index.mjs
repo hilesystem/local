@@ -18,6 +18,10 @@ export { fileIsWritable } from "./core/file/fileIsWritable.js";
 export { fileTruncate } from "./core/file/fileTruncate.js";
 //#endregion
 
+//#region move
+export { move } from "./core/move/move.js";
+//#endregion
+
 //#region path
 export { absolutePathFrom } from "./core/path/absolutePathFrom.js";
 export { fileExtension } from "./core/path/fileExtension.js";

@@ -20,6 +20,7 @@ const {
   isDirExists,
   isFileExists,
   isPathExists,
+  move,
   pathFrom,
   readFileToBase64,
   readFileToBuffer,
@@ -30,7 +31,7 @@ const {
   writeJSON,
 } = require("../dist/index.cjs");
 
-const IS_EXECUTABLE = false;
+const IS_EXECUTABLE = true;
 
 describe("Imported functions", () => {
   it("absolutePathFrom()", () => {
@@ -108,6 +109,15 @@ describe("Imported functions", () => {
   it("isPathExists()", async () => {
     const is = await isPathExists("./test/");
     expect(is).toBe(true);
+  });
+  it("move()", async () => {
+    const testPathFrom = "./test/test_from.file";
+    const testPathTo = "./test/test_to.file";
+    await createFile(testPathFrom, "0777");
+    const result = await move(testPathFrom, testPathTo);
+    await remove(testPathFrom);
+    await remove(testPathTo);
+    expect(result).toBe(true);
   });
   it("pathFrom()", () => {
     expect(pathFrom(["path", "to", "file.txt"])).toBe("path/to/file.txt");
@@ -221,6 +231,15 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.isPathExists()", async () => {
     const is = await hileSystemLocal.isPathExists("./test/");
     expect(is).toBe(true);
+  });
+  it("HileSystemLocal.move()", async () => {
+    const testPathFrom = "./test/test_from.file";
+    const testPathTo = "./test/test_to.file";
+    await hileSystemLocal.createFile(testPathFrom, "0777");
+    const result = await hileSystemLocal.move(testPathFrom, testPathTo);
+    await hileSystemLocal.remove(testPathFrom);
+    await hileSystemLocal.remove(testPathTo);
+    expect(result).toBe(true);
   });
   it("HileSystemLocal.pathFrom()", () => {
     expect(hileSystemLocal.pathFrom(["path", "to", "file.txt"])).toBe("path/to/file.txt");

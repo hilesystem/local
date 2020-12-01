@@ -11,6 +11,19 @@ import { ofError } from "@r37r0m0d3l/of";
  * @param {string} data
  * @param {*|null|string=} options
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+ * @example
+ * const controller = new AbortController();
+ * const { signal } = controller;
+ * const data = new Uint8Array(Buffer.from('Hello Node.js'));
+ * (async () => {
+ *  try {
+ *     await writeFile('message.txt', data, { signal });
+ *   } catch (error) {
+ *     // When a request is aborted - error is an AbortError
+ *   }
+ * })();
+ * // When the request should be aborted
+ * controller.abort();
  */
 export async function writeFile(filePath, data, options) {
   const writeError = await ofError(promises.writeFile(filePath, data, options));

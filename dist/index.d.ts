@@ -1,5 +1,6 @@
-import { PathLike, Stats } from "fs";
+import { PathLike, promises, Stats } from "fs";
 import { basename, dirname, extname, join, parse } from "path";
+import { ofError } from "@r37r0m0d3l/of";
 
 //#region create
 
@@ -124,6 +125,20 @@ export function fileIsWritable(pathToFile: PathLike): Promise<true | Error>;
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export function fileTruncate(pathToFile: PathLike, length?: number): Promise<true | Error>;
+
+//#endregion
+
+//#region move
+
+/**
+ * @name move
+ * @description Change the name or location of a file or directory.
+ * @since 0.1.29
+ * @param {string} pathFrom
+ * @param {string} pathTo
+ * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+ */
+export function move(pathFrom: PathLike, pathTo: PathLike): Promise<true | Error>;
 
 //#endregion
 
@@ -455,6 +470,22 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   public fileTruncate(pathToFile: PathLike, length?: number): Promise<true | Error>;
+
+  //#endregion
+
+  //#region move
+
+  /**
+   * @name move
+   * @description Change the name or location of a file or directory.
+   * @since 0.1.29
+   * @async
+   * @public
+   * @param {string} pathFrom
+   * @param {string} pathTo
+   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   */
+  public move(pathFrom: PathLike, pathTo: PathLike): Promise<true | Error>;
 
   //#endregion
 

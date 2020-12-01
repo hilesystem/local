@@ -18,6 +18,7 @@ import { getStatus } from "./status/getStatus.js";
 import { isDirExists } from "./status/isDirExists.js";
 import { isFileExists } from "./status/isFileExists.js";
 import { isPathExists } from "./status/isPathExists.js";
+import { move } from "./move/move.js";
 import { pathFrom } from "./path/pathFrom.js";
 import { readFileToBase64 } from "./read/readFileToBase64.js";
 import { readFileToBuffer } from "./read/readFileToBuffer.js";
@@ -229,6 +230,18 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   fileTruncate = fileTruncate;
+
+  /**
+   * @name move
+   * @description Change the name or location of a file or directory.
+   * @since 0.1.29
+   * @public
+   * @param {string} pathFrom
+   * @param {string} pathTo
+   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   */
+  move = move;
+
   /**
    * @name pathFrom
    * @description Join all arguments together and normalize the resulting path.

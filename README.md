@@ -33,6 +33,7 @@ import {
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
   fileExtension, fileName, fileNameExt, filePath, pathFrom,
+  move,
   remove, removeNonBlocking,
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile, writeJSON,
@@ -163,6 +164,17 @@ Reads the file into a string.
 
 ```javascript
 const stringOrError = await readFileToString("path/to/file.txt");
+```
+</details>
+
+#### Move
+
+<details>
+    <summary><b>move(pathFrom, pathTo)</b></summary>
+Change the name or location of a file or directory.
+
+```javascript
+const trueOrError = await move("path/to/file.ext", "path/to-another/file.ext");
 ```
 </details>
 

@@ -1,6 +1,6 @@
 import { promises } from "fs";
 
-import { of } from "@r37r0m0d3l/of";
+import { of } from "@await-of/of";
 
 /**
  * @name getStatus

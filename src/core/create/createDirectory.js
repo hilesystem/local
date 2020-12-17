@@ -1,6 +1,6 @@
 import { promises } from "fs";
 
-import { ofError } from "@r37r0m0d3l/of";
+import { ofError } from "@await-of/of";
 
 /**
  * @name createDirectory

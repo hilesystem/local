@@ -1,6 +1,4 @@
-import { PathLike, promises, Stats } from "fs";
-import { basename, dirname, extname, join, parse } from "path";
-import { ofError } from "@r37r0m0d3l/of";
+import { PathLike, Stats } from "fs";
 
 //#region create
 

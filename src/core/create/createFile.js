@@ -1,7 +1,7 @@
 import path from "path";
 import { promises } from "fs";
 
-import { ofError } from "@r37r0m0d3l/of";
+import { ofError } from "@await-of/of";
 
 import { createDirectory } from "./createDirectory.js";
 import { getStatus } from "../status/getStatus.js";

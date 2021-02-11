@@ -14,12 +14,6 @@ Filesystem abstraction layer and common function wrappers.
 [![Codacy Badge][codacy-img]][codacy-url]
 [![deepcode][deepcode-img]][deepcode-url]
 
----
-
-> ⏳ **Please Note:** This is "Work In Progress" package. The new functionality will be added very slowly.
-
----
-
 ## Usage
 
 ### Tree-shaking imports
@@ -50,8 +44,6 @@ const isDirectoryCreated = await hileSystem.createDirectory("./test/");
 ### Working with instance
 
 If you prefer object-oriented style.
-
-> 🚧 At the moment, no functionality has been implemented inside the object instance. Reserved for future functionality. You can safely skip it.
 
 ```javascript
 import { HileSystemLocal } from "@hilesystem/local";

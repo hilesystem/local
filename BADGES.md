@@ -1,3 +1,11 @@
+---
+
+> ⏳ **Please Note:** This is "Work In Progress" package. The new functionality will be added very slowly.
+
+---
+
+> 🚧 At the moment, no functionality has been implemented inside the object instance. Reserved for future functionality. You can safely skip it.
+
 #### Codacy
 
 [![codacy](https://badgen.net/codacy/grade/3a4f33788cd44b799242cae7e080f9e3)](https://github.com/hilesystem/local)

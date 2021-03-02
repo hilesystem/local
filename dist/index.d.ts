@@ -1,4 +1,5 @@
-import { PathLike, Stats } from "fs";
+import { PathLike, promises, Stats } from "fs";
+import { ofAny } from "@await-of/of";
 
 //#region create
 
@@ -123,6 +124,40 @@ export function fileIsWritable(pathToFile: PathLike): Promise<true | Error>;
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export function fileTruncate(pathToFile: PathLike, length?: number): Promise<true | Error>;
+
+//#endregion
+
+//#region list
+
+/**
+ * @name listContents
+ * @description Lists files and directories in path
+ * @since 0.1.32
+ * @async
+ * @param {string|Buffer|URL} pathToDir
+ * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
+ */
+export function listContents(pathToDir: PathLike): Promise<string[] | Error>;
+
+/**
+ * @name listDirectories
+ * @description Lists directories in path
+ * @since 0.1.32
+ * @async
+ * @param {string|Buffer|URL} pathToDir
+ * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
+ */
+export function listDirectories(pathToDir: PathLike): Promise<string[] | Error>;
+
+/**
+ * @name listFiles
+ * @description Lists files in path
+ * @since 0.1.32
+ * @async
+ * @param {string|Buffer|URL} pathToDir
+ * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
+ */
+export function listFiles(pathToDir): Promise<string[] | Error>;
 
 //#endregion
 
@@ -468,6 +503,43 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   public fileTruncate(pathToFile: PathLike, length?: number): Promise<true | Error>;
+
+  //#endregion
+
+  //#region list
+
+  /**
+   * @name listContents
+   * @description Lists files and directories in path
+   * @since 0.1.32
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToDir
+   * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
+   */
+  public listContents(pathToDir: PathLike): Promise<string[] | Error>;
+
+  /**
+   * @name listDirectories
+   * @description Lists directories path
+   * @since 0.1.32
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToDir
+   * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
+   */
+  public listDirectories(pathToDir: PathLike): Promise<string[] | Error>;
+
+  /**
+   * @name listFiles
+   * @description Lists files path
+   * @since 0.1.32
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToDir
+   * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
+   */
+  public listFiles(pathToDir): Promise<string[] | Error>;
 
   //#endregion
 

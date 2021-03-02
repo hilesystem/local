@@ -14,6 +14,9 @@ import { fileName } from "./path/fileName.js";
 import { fileNameExt } from "./path/fileNameExt.js";
 import { filePath } from "./path/filePath.js";
 import { fileTruncate } from "./file/fileTruncate.js";
+import { listContents } from "./list/contents.js";
+import { listDirectories } from "./list/directories.js";
+import { listFiles } from "./list/files.js";
 import { getStatus } from "./status/getStatus.js";
 import { isDirExists } from "./status/isDirExists.js";
 import { isFileExists } from "./status/isFileExists.js";
@@ -230,7 +233,33 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   fileTruncate = fileTruncate;
-
+  /**
+   * @name listContents
+   * @description Lists files and directories in path
+   * @since 0.1.32
+   * @async
+   * @param {string|Buffer|URL} pathToDir
+   * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
+   */
+  listContents = listContents;
+  /**
+   * @name listDirectories
+   * @description Lists directories in path
+   * @since 0.1.32
+   * @async
+   * @param {string|Buffer|URL} pathToDir
+   * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
+   */
+  listDirectories = listDirectories;
+  /**
+   * @name listFiles
+   * @description Lists files in path
+   * @since 0.1.32
+   * @async
+   * @param {string|Buffer|URL} pathToDir
+   * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
+   */
+  listFiles = listFiles;
   /**
    * @name move
    * @description Change the name or location of a file or directory.
@@ -241,7 +270,6 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   move = move;
-
   /**
    * @name pathFrom
    * @description Join all arguments together and normalize the resulting path.
@@ -252,7 +280,6 @@ export class HileSystemLocal {
    * @returns {string}
    */
   pathFrom = pathFrom;
-
   /**
    * @name readFileToBase64
    * @description Asynchronously reads the entire contents of a file into string.
@@ -262,7 +289,6 @@ export class HileSystemLocal {
    * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
    */
   readFileToBase64 = readFileToBase64;
-
   /**
    * @name readFileToBuffer
    * @description Asynchronously reads the entire contents of a file into buffer.
@@ -272,7 +298,6 @@ export class HileSystemLocal {
    * @returns {Promise<Buffer|Error|{name: string, message: string, stack?: string}>}
    */
   readFileToBuffer = readFileToBuffer;
-
   /**
    * @name readFileToString
    * @description Asynchronously reads the entire contents of a file into string.
@@ -282,7 +307,6 @@ export class HileSystemLocal {
    * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
    */
   readFileToString = readFileToString;
-
   /**
    * @name remove
    * @description Removes a file or directory.
@@ -293,7 +317,6 @@ export class HileSystemLocal {
    * @returns {Promise<undefined|Error|{name: string, message: string, stack?: string}>}
    */
   remove = remove;
-
   /**
    * @name removeNonBlocking
    * @description Non-blocking remove of a file or directory.
@@ -303,7 +326,6 @@ export class HileSystemLocal {
    * @returns {void}
    */
   removeNonBlocking = removeNonBlocking;
-
   /**
    * @name writeFile
    * @description Asynchronously writes data to a file, replacing the file if it already exists.
@@ -316,7 +338,6 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   writeFile = writeFile;
-
   /**
    * @name writeJSON
    * @description Asynchronously writes data to a file, replacing the file if it already exists.

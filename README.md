@@ -27,6 +27,7 @@ import {
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
   fileExtension, fileName, fileNameExt, filePath, pathFrom,
+  listContents, listDirectories, listFiles,
   move,
   remove, removeNonBlocking,
   getStatus, isDirExists, isFileExists, isPathExists,
@@ -334,6 +335,37 @@ Is file writable.
 
 ```javascript
 const trueOrError = await fileIsWritable("path/to/file.ext");
+```
+</details>
+
+---
+
+#### List
+
+<details>
+    <summary><b>listContents(pathToDir)</b></summary>
+Lists files and directories in path.
+
+```javascript
+const arrayOfStringsOrError = await listContents("path/to/dir");
+```
+</details>
+
+<details>
+    <summary><b>listDirectories(pathToDir)</b></summary>
+Lists files and directories in path.
+
+```javascript
+const arrayOfStringsOrError = await listDirectories("path/to/dir");
+```
+</details>
+
+<details>
+    <summary><b>listFiles(pathToDir)</b></summary>
+Lists files in path.
+
+```javascript
+const arrayOfStringsOrError = await listFiles("path/to/dir");
 ```
 </details>
 

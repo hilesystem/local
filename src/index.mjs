@@ -18,6 +18,12 @@ export { fileIsWritable } from "./core/file/fileIsWritable.js";
 export { fileTruncate } from "./core/file/fileTruncate.js";
 //#endregion
 
+//#region list
+export { listContents } from "./core/list/contents.js";
+export { listDirectories } from "./core/list/directories.js";
+export { listFiles } from "./core/list/files.js";
+//#endregion
+
 //#region move
 export { move } from "./core/move/move.js";
 //#endregion

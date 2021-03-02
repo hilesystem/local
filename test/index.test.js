@@ -29,6 +29,9 @@ const {
   removeNonBlocking,
   writeFile,
   writeJSON,
+  listContents,
+  listDirectories,
+  listFiles,
 } = require("../dist/index.cjs");
 
 const IS_EXECUTABLE = false;
@@ -149,6 +152,18 @@ describe("Imported functions", () => {
   it("readFileToBase64()", async () => {
     const is = await readFileToBase64("./test/temp.txt");
     expect(is).toBe("dGVzdA==");
+  });
+  it("listContents()", async () => {
+    const contents = await listContents(".");
+    expect(Array.isArray(contents)).toBe(true);
+  });
+  it("listDirectories()", async () => {
+    const contents = await listDirectories(".");
+    expect(Array.isArray(contents)).toBe(true);
+  });
+  it("listFiles()", async () => {
+    const contents = await listFiles(".");
+    expect(Array.isArray(contents)).toBe(true);
   });
 });
 
@@ -271,5 +286,17 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.readFileToBase64()", async () => {
     const is = await hileSystemLocal.readFileToBase64("./test/temp.txt");
     expect(is).toBe("dGVzdA==");
+  });
+  it("HileSystemLocal.listContents()", async () => {
+    const contents = await hileSystemLocal.listContents(".");
+    expect(Array.isArray(contents)).toBe(true);
+  });
+  it("HileSystemLocal.listDirectories()", async () => {
+    const contents = await hileSystemLocal.listDirectories(".");
+    expect(Array.isArray(contents)).toBe(true);
+  });
+  it("HileSystemLocal.listFiles()", async () => {
+    const contents = await hileSystemLocal.listFiles(".");
+    expect(Array.isArray(contents)).toBe(true);
   });
 });

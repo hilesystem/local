@@ -4,6 +4,7 @@ export { createFile } from "./core/create/createFile.js";
 //#endregion
 
 //#region dir
+export { dirIsEmpty } from "./core/dir/dirIsEmpty.js";
 export { dirIsExecutable } from "./core/dir/dirIsExecutable.js";
 export { dirIsReadable } from "./core/dir/dirIsReadable.js";
 export { dirIsVisible } from "./core/dir/dirIsVisible.js";

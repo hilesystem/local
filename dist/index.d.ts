@@ -70,6 +70,17 @@ export function dirIsVisible(pathToDir: PathLike): Promise<true | Error>;
  */
 export function dirIsWritable(pathToDir: PathLike): Promise<true | Error>;
 
+/**
+ * @name dirIsEmpty
+ * @description Check If a directory is empty
+ * @since 0.1.33
+ * @async
+ * @param {string|Buffer|URL} pathToDir
+ * @param {boolean=} excludeSystemFiles
+ * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+ */
+export function dirIsEmpty(pathToDir: PathLike, excludeSystemFiles: boolean): Promise<boolean | Error>;
+
 //#endregion
 
 //#region file
@@ -447,6 +458,18 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   public dirIsWritable(pathToDir: PathLike): Promise<true | Error>;
+
+  /**
+   * @name dirIsEmpty
+   * @description Check If a directory is empty
+   * @since 0.1.33
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToDir
+   * @param {boolean=} excludeSystemFiles
+   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   */
+  public dirIsEmpty(pathToDir: PathLike, excludeSystemFiles: boolean): Promise<boolean | Error>;
 
   //#endregion
 

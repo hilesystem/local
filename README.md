@@ -23,7 +23,7 @@ import {
   HileSystemLocal,
   absolutePathFrom,
   createDirectory, createFile,
-  dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
+  dirIsEmpty, dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
   fileTruncate,
   fileExtension, fileName, fileNameExt, filePath, pathFrom,
@@ -265,6 +265,15 @@ const trueOrFalse = await isPathExists("path/to/file_or_directory");
 </details>
 
 #### Check
+
+<details>
+    <summary><b>dirIsEmpty(pathToDir, excludeSystemFiles)</b></summary>
+Check if a directory is empty.
+
+```javascript
+const booleanOrError = await dirIsEmpty("path/to/dir", true);
+```
+</details>
 
 <details>
     <summary><b>dirIsExecutable(pathToDir)</b></summary>

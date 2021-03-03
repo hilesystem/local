@@ -5,6 +5,7 @@ import { dirIsExecutable } from "./dir/dirIsExecutable.js";
 import { dirIsReadable } from "./dir/dirIsReadable.js";
 import { dirIsVisible } from "./dir/dirIsVisible.js";
 import { dirIsWritable } from "./dir/dirIsWritable.js";
+import { dirIsEmpty } from "./dir/dirIsEmpty.js";
 import { fileExtension } from "./path/fileExtension.js";
 import { fileIsExecutable } from "./file/fileIsExecutable.js";
 import { fileIsReadable } from "./file/fileIsReadable.js";
@@ -106,6 +107,17 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   dirIsWritable = dirIsWritable;
+  /**
+   * @name dirIsEmpty
+   * @description Check if a directory is empty
+   * @since 0.1.33
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToDir
+   * @param {boolean=} excludeSystemFiles
+   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   */
+  dirIsEmpty = dirIsEmpty;
   /**
    * @name getStatus
    * @description Get file status.

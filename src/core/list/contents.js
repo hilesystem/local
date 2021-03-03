@@ -11,9 +11,9 @@ import { ofAny } from "@await-of/of";
  * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
  */
 export async function listContents(pathToDir) {
-  const [result, fsError] = await ofAny(promises.readdir(pathToDir));
+  const [contents, fsError] = await ofAny(promises.readdir(pathToDir));
   if (fsError) {
     return fsError;
   }
-  return result;
+  return contents;
 }

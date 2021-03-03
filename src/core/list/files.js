@@ -11,12 +11,12 @@ import { pathFrom } from "../path/pathFrom.js";
  * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
  */
 export async function listFiles(pathToDir) {
-  const result = await listContents(pathToDir);
-  if (!Array.isArray(result)) {
-    return result;
+  const contents = await listContents(pathToDir);
+  if (!Array.isArray(contents)) {
+    return contents;
   }
-  const contents = await Promise.all(
-    result.map(async (content) => {
+  const files = await Promise.all(
+    contents.map(async (content) => {
       const contentPath = pathFrom(pathToDir, content);
       const [status, error] = await getStatus(contentPath);
       if (error) {
@@ -28,5 +28,5 @@ export async function listFiles(pathToDir) {
       return content;
     }),
   );
-  return contents.filter((content) => content);
+  return files.filter((content) => content);
 }

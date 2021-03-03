@@ -3,6 +3,7 @@ const {
   absolutePathFrom,
   createDirectory,
   createFile,
+  dirIsEmpty,
   dirIsExecutable,
   dirIsReadable,
   dirIsVisible,
@@ -165,6 +166,10 @@ describe("Imported functions", () => {
     const contents = await listFiles(".");
     expect(Array.isArray(contents)).toBe(true);
   });
+  it("dirIsEmpty()", async () => {
+    const isEmpty = await dirIsEmpty(".");
+    expect(isEmpty).toBe(false);
+  });
 });
 
 describe("Class with static helpers", () => {
@@ -298,5 +303,9 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.listFiles()", async () => {
     const contents = await hileSystemLocal.listFiles(".");
     expect(Array.isArray(contents)).toBe(true);
+  });
+  it("HileSystemLocal.dirIsEmpty()", async () => {
+    const isEmpty = await hileSystemLocal.dirIsEmpty(".");
+    expect(isEmpty).toBe(false);
   });
 });

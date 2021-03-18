@@ -5,9 +5,9 @@ import { resolve } from "path";
  * @description Join all arguments together and normalize the resulting path.
  * Creates absolute path from right to left until an absolute path is constructed.
  * @since 0.1.5
- * @param {String|Array.<string>} paths
- * @param {...String} morePaths
- * @returns {String}
+ * @param {string|Array.<string>} paths
+ * @param {...string} morePaths
+ * @returns {string}
  */
 export function absolutePathFrom(paths, ...morePaths) {
   let routes;

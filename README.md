@@ -54,7 +54,7 @@ const isDirectoryCreated = await hileSystem.createDirectory("./test/");
 
 ## API
 
-#### Path
+### Path
 
 <details>
     <summary><b>absolutePathFrom(paths, ...morePaths)</b></summary>
@@ -111,7 +111,7 @@ const str = pathFrom(["path", "to", "file.txt"]) // "path/to/file.txt"
 ```
 </details>
 
-#### Create
+### Create
 
 <details>
     <summary><b>createDirectory(dirPath, mode, recursive)</b></summary>
@@ -131,7 +131,7 @@ const trueOrError = await createFile("path/to/dir", "0777");
 ```
 </details>
 
-#### Read
+### Read
 
 <details>
     <summary><b>readFileToBase64(pathLike)</b></summary>
@@ -160,7 +160,7 @@ const stringOrError = await readFileToString("path/to/file.txt");
 ```
 </details>
 
-#### Move
+### Move
 
 <details>
     <summary><b>move(pathFrom, pathTo)</b></summary>
@@ -171,7 +171,7 @@ const trueOrError = await move("path/to/file.ext", "path/to-another/file.ext");
 ```
 </details>
 
-#### Write
+### Write
 
 <details>
     <summary><b>fileTruncate(pathToFile, length)</b></summary>
@@ -206,7 +206,7 @@ const trueOrError = await writeJSON(filePath, data, options);
 ```
 </details>
 
-#### Delete
+### Delete
 
 <details>
     <summary><b>remove(pathLike)</b></summary>
@@ -226,7 +226,7 @@ removeNonBlocking("path/to/file.txt");
 ```
 </details>
 
-#### Information
+### Information
 
 <details>
     <summary><b>getStatus(path)</b></summary>
@@ -264,7 +264,7 @@ const trueOrFalse = await isPathExists("path/to/file_or_directory");
 ```
 </details>
 
-#### Check
+### Check
 
 <details>
     <summary><b>dirIsEmpty(pathToDir, excludeSystemFiles)</b></summary>
@@ -349,7 +349,7 @@ const trueOrError = await fileIsWritable("path/to/file.ext");
 
 ---
 
-#### List
+### List
 
 <details>
     <summary><b>listContents(pathToDir)</b></summary>

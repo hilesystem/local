@@ -57,6 +57,6 @@
 
 #### Travis CI
 
-[![Build Status](https://badgen.net/travis/hilesystem/local?&icon=travis)](https://travis-ci.org/hilesystem/local)
+[![Build Status](https://badgen.net/travis/hilesystem/local?&icon=travis)](https://travis-ci.com/hilesystem/local)
 
-[![Build Status](https://travis-ci.org/hilesystem/local.svg?branch=master)](https://travis-ci.org/hilesystem/local)
+[![Build Status](https://travis-ci.com/hilesystem/local.svg?branch=master)](https://travis-ci.com/hilesystem/local)

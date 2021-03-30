@@ -10,7 +10,7 @@
     }
   ],
   "dependencies": {
-    "@await-of/of": "2.4.8"
+    "@await-of/of": "2.4.9"
   },
   "description": "Filesystem abstraction layer and common function wrappers",
   "devDependencies": {

@@ -168,7 +168,7 @@ export function listDirectories(pathToDir: PathLike): Promise<string[] | Error>;
  * @param {string|Buffer|URL} pathToDir
  * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
  */
-export function listFiles(pathToDir): Promise<string[] | Error>;
+export function listFiles(pathToDir: PathLike): Promise<string[] | Error>;
 
 //#endregion
 
@@ -562,7 +562,7 @@ export class HileSystemLocal {
    * @param {string|Buffer|URL} pathToDir
    * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
    */
-  public listFiles(pathToDir): Promise<string[] | Error>;
+  public listFiles(pathToDir: PathLike): Promise<string[] | Error>;
 
   //#endregion
 

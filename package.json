@@ -17,7 +17,7 @@
     "@r37r0m0d3l/rollup-config-pkg": "git+https://github.com/r37r0m0d3l/rollup-config-pkg.git",
     "@types/node": "14.14.37",
     "babel-eslint": "10.1.0",
-    "eslint": "7.23.0",
+    "eslint": "7.30.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-jsdoc": "32.3.0",
     "eslint-plugin-prettier": "3.3.1",

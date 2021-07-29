@@ -29,6 +29,7 @@ import { readFileToBuffer } from "./read/readFileToBuffer.js";
 import { readFileToString } from "./read/readFileToString.js";
 import { remove } from "./remove/remove.js";
 import { removeNonBlocking } from "./remove/removeNonBlocking.js";
+import { removeSilent } from "./remove/removeSilent.js";
 import { writeFile } from "./write/writeFile.js";
 import { writeJSON } from "./write/writeJSON.js";
 
@@ -338,6 +339,17 @@ export class HileSystemLocal {
    * @returns {void}
    */
   removeNonBlocking = removeNonBlocking;
+  /**
+   * @name removeSilent
+   * @description Removes files and directories (modeled on the standard POSIX rm utility).
+   * @summary Minimum Node version 14.14.0
+   * @since 0.1.36
+   * @async
+   * @param {string|Buffer|URL} pathLike
+   * @param {object=} options
+   * @returns {Promise<void>}
+   */
+  removeSilent = removeSilent;
   /**
    * @name writeFile
    * @description Asynchronously writes data to a file, replacing the file if it already exists.

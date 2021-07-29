@@ -1,5 +1,4 @@
-import { PathLike, promises, Stats } from "fs";
-import { ofAny } from "@await-of/of";
+import { PathLike, RmOptions, Stats } from "node:fs";
 
 //#region create
 
@@ -302,6 +301,18 @@ export function remove(pathLike: string): Promise<undefined | Error>;
  * @returns {void}
  */
 export function removeNonBlocking(pathLike: string): void;
+
+/**
+ * @name removeSilent
+ * @description Removes files and directories (modeled on the standard POSIX rm utility).
+ * @summary Minimum Node version 14.14.0
+ * @since 0.1.36
+ * @async
+ * @param {string|Buffer|URL} pathLike
+ * @param {object=} options
+ * @returns {Promise<void>}
+ */
+export function removeSilent(pathLike: string, options?: RmOptions): Promise<void>;
 
 //#endregion
 

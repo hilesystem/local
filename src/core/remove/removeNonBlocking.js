@@ -4,7 +4,7 @@ import { remove } from "./remove.js";
  * @name removeNonBlocking
  * @description Non-blocking remove of a file or directory.
  * @since 0.1.18
- * @param {string} pathLike
+ * @param {string|Buffer|URL} pathLike
  * @returns {void}
  */
 export function removeNonBlocking(pathLike) {

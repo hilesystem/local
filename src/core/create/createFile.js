@@ -1,4 +1,4 @@
-import path from "path";
+import { dirname } from "path";
 import { promises } from "fs";
 
 import { ofError } from "@await-of/of";
@@ -21,7 +21,7 @@ export async function createFile(pathLike, mode = "0777") {
   if (!error && status.isFile()) {
     return true;
   }
-  const dirPath = path.dirname(pathLike);
+  const dirPath = dirname(pathLike);
   if (error) {
     if (error.code === "ENOENT") {
       const dirCreated = await createDirectory(dirPath, mode);

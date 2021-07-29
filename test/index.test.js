@@ -28,6 +28,7 @@ const {
   readFileToString,
   remove,
   removeNonBlocking,
+  removeSilent,
   writeFile,
   writeJSON,
   listContents,
@@ -35,11 +36,13 @@ const {
   listFiles,
 } = require("../dist/index.cjs");
 
+const { normalize } = require("path");
+
 const IS_EXECUTABLE = false;
 
 describe("Imported functions", () => {
   it("absolutePathFrom()", () => {
-    expect(absolutePathFrom(["path", "to", "file.txt"])).toBe(__dirname.replace("test", "") + "path/to/file.txt");
+    expect(absolutePathFrom(["path", "to", "file.txt"])).toBe(__dirname.replace("test", "") + normalize("path/to/file.txt"));
   });
   it("createDirectory()", async () => {
     const is = await createDirectory("./test/temp/");
@@ -124,7 +127,7 @@ describe("Imported functions", () => {
     expect(result).toBe(true);
   });
   it("pathFrom()", () => {
-    expect(pathFrom(["path", "to", "file.txt"])).toBe("path/to/file.txt");
+    expect(pathFrom(["path", "to", "file.txt"])).toBe(normalize("path/to/file.txt"));
   });
   it("writeFile()", async () => {
     const is = await writeFile("./test/temp.txt", "test");
@@ -139,7 +142,11 @@ describe("Imported functions", () => {
     expect(result).toBe(undefined);
   });
   it("removeNonBlocking()", async () => {
-    const result = removeNonBlocking("./temp_that_not_exists");
+    const result = await removeNonBlocking("./temp_that_not_exists");
+    expect(result).toBe(undefined);
+  });
+  it("removeSilent()", async () => {
+    const result = await removeSilent("./temp_that_not_exists");
     expect(result).toBe(undefined);
   });
   it("readFileToString()", async () => {
@@ -176,7 +183,7 @@ describe("Class with static helpers", () => {
   const hileSystemLocal = new HileSystemLocal();
   it("HileSystemLocal.absolutePathFrom()", () => {
     expect(hileSystemLocal.absolutePathFrom(["path", "to", "file.txt"])).toBe(
-      __dirname.replace("test", "") + "path/to/file.txt",
+      __dirname.replace("test", "") + normalize("path/to/file.txt"),
     );
   });
   it("HileSystemLocal.createDirectory()", async () => {
@@ -262,7 +269,7 @@ describe("Class with static helpers", () => {
     expect(result).toBe(true);
   });
   it("HileSystemLocal.pathFrom()", () => {
-    expect(hileSystemLocal.pathFrom(["path", "to", "file.txt"])).toBe("path/to/file.txt");
+    expect(hileSystemLocal.pathFrom(["path", "to", "file.txt"])).toBe(normalize("path/to/file.txt"));
   });
   it("HileSystemLocal.writeFile()", async () => {
     const is = await hileSystemLocal.writeFile("./test/temp2.txt", "test2");
@@ -278,6 +285,10 @@ describe("Class with static helpers", () => {
   });
   it("HileSystemLocal.removeNonBlocking()", async () => {
     const result = hileSystemLocal.removeNonBlocking("./temp_that_not_exists");
+    expect(result).toBe(undefined);
+  });
+  it("HileSystemLocal.removeSilent()", async () => {
+    const result = await hileSystemLocal.removeSilent("./temp_that_not_exists");
     expect(result).toBe(undefined);
   });
   it("HileSystemLocal.readFileToString()", async () => {

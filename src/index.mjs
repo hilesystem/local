@@ -47,6 +47,7 @@ export { readFileToString } from "./core/read/readFileToString.js";
 //#region remove
 export { remove } from "./core/remove/remove.js";
 export { removeNonBlocking } from "./core/remove/removeNonBlocking.js";
+export { removeSilent } from "./core/remove/removeSilent.js";
 //#endregion
 
 //#region status

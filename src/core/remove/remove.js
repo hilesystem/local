@@ -1,6 +1,6 @@
-import * as fs from "fs";
+import fs from "fs";
 import assert from "assert";
-import path from "path";
+import { join } from "path";
 
 const IS_WINDOWS = process.platform === "win32";
 
@@ -179,7 +179,7 @@ function removeSubPath(pathLike, options, callback) {
       return options.rmdir(pathLike, callback);
     }
     files.forEach((filePath) => {
-      rimraf(path.join(pathLike, filePath), options, (error) => {
+      rimraf(join(pathLike, filePath), options, (error) => {
         if (errState) {
           return;
         }
@@ -205,10 +205,10 @@ function removeSubPath(pathLike, options, callback) {
  * @returns {Promise<undefined|Error|{name: string, message: string, stack?: string}>}
  */
 export async function remove(pathLike) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     rimraf(pathLike, {}, (error) => {
       if (error) {
-        reject(error);
+        resolve(error);
       } else {
         resolve();
       }

@@ -29,7 +29,7 @@ import {
   fileExtension, fileName, fileNameExt, filePath, pathFrom,
   listContents, listDirectories, listFiles,
   move,
-  remove, removeNonBlocking,
+  remove, removeNonBlocking, removeSilent,
   getStatus, isDirExists, isFileExists, isPathExists,
   writeFile, writeJSON,
 } from "@hilesystem/local";
@@ -223,6 +223,15 @@ Non-blocking remove of a file or directory.
 
 ```javascript
 removeNonBlocking("path/to/file.txt");
+```
+</details>
+
+<details>
+    <summary><b>removeSilent(pathLike, options)</b></summary>
+Removes files and directories (modeled on the standard POSIX rm utility).
+
+```javascript
+removeSilent("path/to/file.txt");
 ```
 </details>
 

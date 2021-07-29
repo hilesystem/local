@@ -1,4 +1,4 @@
-import { join } from "path";
+import { join, normalize } from "path";
 
 /**
  * @name pathFrom
@@ -18,5 +18,5 @@ export function pathFrom(paths, ...morePaths) {
   if (morePaths.length) {
     routes = routes.concat(morePaths.map((path) => path.toString()));
   }
-  return join(...routes);
+  return normalize(join(...routes));
 }

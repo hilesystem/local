@@ -145,9 +145,10 @@ export function fileTruncate(pathToFile: PathLike, length?: number): Promise<tru
  * @since 0.1.32
  * @async
  * @param {string|Buffer|URL} pathToDir
+ * @param {boolean} [ignoreJunk=true]
  * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
  */
-export function listContents(pathToDir: PathLike): Promise<string[] | Error>;
+export function listContents(pathToDir: PathLike, ignoreJunk?): Promise<string[] | Error>;
 
 /**
  * @name listDirectories
@@ -547,11 +548,11 @@ export class HileSystemLocal {
    * @description Lists files and directories in path
    * @since 0.1.32
    * @async
-   * @public
    * @param {string|Buffer|URL} pathToDir
+   * @param {boolean} [ignoreJunk=true]
    * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
    */
-  public listContents(pathToDir: PathLike): Promise<string[] | Error>;
+  public listContents(pathToDir: PathLike, ignoreJunk?): Promise<string[] | Error>;
 
   /**
    * @name listDirectories

@@ -361,7 +361,7 @@ const trueOrError = await fileIsWritable("path/to/file.ext");
 ### List
 
 <details>
-    <summary><b>listContents(pathToDir)</b></summary>
+    <summary><b>listContents(pathToDir, ignoreJunkOrSystem?)</b></summary>
 Lists files and directories in path.
 
 ```javascript

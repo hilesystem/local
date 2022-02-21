@@ -12,7 +12,6 @@ Filesystem abstraction layer and common function wrappers.
 [![Maintainability Rating][sonarcloud-img]][sonarcloud-url]
 [![LGTM][lgtm-img]][lgtm-url]
 [![Codacy Badge][codacy-img]][codacy-url]
-[![deepcode][deepcode-img]][deepcode-url]
 
 ## Usage
 
@@ -21,17 +20,27 @@ Filesystem abstraction layer and common function wrappers.
 ```javascript
 import {
   HileSystemLocal,
-  absolutePathFrom,
+
+  absolutePathFrom, pathFrom,
+
   createDirectory, createFile,
+
+  readFileToBase64, readFileToBuffer, readFileToString,
+
   dirIsEmpty, dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
-  fileTruncate,
-  fileExtension, fileName, fileNameExt, filePath, pathFrom,
-  listContents, listDirectories, listFiles,
-  move,
-  remove, removeNonBlocking, removeSilent,
+
   getStatus, isDirExists, isFileExists, isPathExists,
-  writeFile, writeJSON,
+  fileExtension, fileName, fileNameExt, filePath,
+
+  listContents, listDirectories, listFiles,
+
+  move,
+
+  remove, removeNonBlocking, removeSilent,
+
+  fileTruncate, writeFile, writeJSON,
+
 } from "@hilesystem/local";
 ```
 
@@ -195,14 +204,18 @@ const trueOrError = await writeFile(filePath, data, options);
 </details>
 
 <details>
-    <summary><b>writeJSON(filePath, data, options)</b></summary>
+    <summary><b>writeJSON(filePath, data, options, configuration)</b></summary>
 Asynchronously writes data to a file, replacing the file if it already exists.
 
 ```javascript
 const filePath = "./file.json";
 const data = { key: "value" };
 const options = { encoding: "utf8" };
-const trueOrError = await writeJSON(filePath, data, options);
+const config = {
+  sort: true,
+  space: "\t"
+};
+const trueOrError = await writeJSON(filePath, data, options, config);
 ```
 </details>
 
@@ -399,8 +412,6 @@ const arrayOfStringsOrError = await listFiles("path/to/dir");
 
 [codacy-img]: https://api.codacy.com/project/badge/Grade/3a4f33788cd44b799242cae7e080f9e3
 [codacy-url]: https://www.codacy.com/gh/hilesystem/local?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hilesystem/local&amp;utm_campaign=Badge_Grade
-[deepcode-img]: https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6ImhpbGVzeXN0ZW0iLCJyZXBvMSI6ImxvY2FsIiwiaW5jbHVkZUxpbnQiOmZhbHNlLCJhdXRob3JJZCI6MjA1OTEsImlhdCI6MTU5Nzg3NzU2NX0.ZPpTGdzeeHtgm0Vc-AfTBw_PQC4DGN135Vc6jAxk8H0
-[deepcode-url]: https://www.deepcode.ai/app/gh/hilesystem/local/_/dashboard?utm_content=gh%2Fhilesystem%2Flocal
 [lgtm-img]: https://badgen.net/lgtm/grade/g/hilesystem/local?&icon=lgtm&label=lgtm:js/ts&color=00C853
 [lgtm-url]: https://lgtm.com/projects/g/hilesystem/local
 [npm-downloads-img]: https://badgen.net/npm/dt/@hilesystem/local?&icon=terminal&label=downloads&color=009688

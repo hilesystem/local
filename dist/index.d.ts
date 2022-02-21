@@ -1,4 +1,33 @@
-import { PathLike, RmOptions, Stats } from "node:fs";
+import type { PathLike, Stats } from "fs";
+
+export interface RmOptions {
+  /**
+   * When `true`, exceptions will be ignored if `path` does not exist.
+   * @default false
+   */
+  force?: boolean | undefined;
+  /**
+   * If an `EBUSY`, `EMFILE`, `ENFILE`, `ENOTEMPTY`, or
+   * `EPERM` error is encountered, Node.js will retry the operation with a linear
+   * backoff wait of `retryDelay` ms longer on each try. This option represents the
+   * number of retries. This option is ignored if the `recursive` option is not
+   * `true`.
+   * @default 0
+   */
+  maxRetries?: number | undefined;
+  /**
+   * If `true`, perform a recursive directory removal. In
+   * recursive mode, operations are retried on failure.
+   * @default false
+   */
+  recursive?: boolean | undefined;
+  /**
+   * The amount of time in milliseconds to wait between retries.
+   * This option is ignored if the `recursive` option is not `true`.
+   * @default 100
+   */
+  retryDelay?: number | undefined;
+}
 
 //#region create
 
@@ -384,15 +413,17 @@ export function writeFile(
  * @description Asynchronously writes data to a file, replacing the file if it already exists.
  * @since 0.1.25
  * @async
- * @param {string|Buffer|URL|FileHandle} filePath
+ * @param {string|Buffer|URL} filePath
  * @param {*} data
  * @param {*|null|string=} options
- * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+ * @param {{sort: boolean, space: number|string}=} configuration
+ * @returns {Promise<boolean|Error|{name: string, message: string, stack: string}>}
  */
 export function writeJSON(
   filePath: PathLike,
   data: any,
   options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
+  configuration?: { sort?: boolean, space?: number | string },
 ): Promise<true | Error>;
 
 //#endregion
@@ -768,15 +799,17 @@ export class HileSystemLocal {
    * @since 0.1.25
    * @async
    * @public
-   * @param {string|Buffer|URL|FileHandle} filePath
+   * @param {string|Buffer|URL} filePath
    * @param {*} data
    * @param {*|null|string=} options
-   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   * @param {{sort: boolean, space: number|string}=} configuration
+   * @returns {Promise<boolean|Error|{name: string, message: string, stack: string}>}
    */
   public writeJSON(
     filePath: PathLike,
     data: any,
     options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
+    configuration?: { sort?: boolean, space?: number | string },
   ): Promise<true | Error>;
 
   //#endregion

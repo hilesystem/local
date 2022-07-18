@@ -46,7 +46,8 @@
       },
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
@@ -86,5 +87,5 @@
   },
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "0.2.1"
+  "version": "0.2.2"
 }

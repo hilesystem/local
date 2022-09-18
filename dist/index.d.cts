@@ -166,6 +166,73 @@ export function fileTruncate(pathToFile: PathLike, length?: number): Promise<tru
 
 //#endregion
 
+//#region info
+
+/**
+ * @name hash
+ * @description Calculate hash.
+ * @since 0.2.3
+ * @async
+ * @param {string|Buffer|URL} pathToFile
+ * @param {string} algorithm
+ * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+ * @throws {TypeError} If algorithm is not supported.
+ */
+export function hash(pathToFile: PathLike, algorithm: string): Promise<string | Error>;
+
+/**
+ * @name hashCrc32
+ * @description CRC32.
+ * @since 0.2.3
+ * @async
+ * @param {string|Buffer|URL} pathToFile
+ * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+ */
+export function hashCrc32(pathToFile: PathLike): Promise<string | Error>;
+
+/**
+ * @name hashMd5
+ * @description MD5.
+ * @since 0.2.3
+ * @async
+ * @param {string|Buffer|URL} pathToFile
+ * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+ */
+export function hashMd5(pathToFile: PathLike): Promise<string | Error>;
+
+/**
+ * @name hashSha1
+ * @description SHA-1.
+ * @since 0.2.3
+ * @async
+ * @param {string|Buffer|URL} pathToFile
+ * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+ */
+export function hashSha1(pathToFile: PathLike): Promise<string | Error>;
+
+/**
+ * @name hashSha256
+ * @description SHA-256.
+ * @since 0.2.3
+ * @async
+ * @param {string|Buffer|URL} pathToFile
+ * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+ */
+export function hashSha256(pathToFile: PathLike): Promise<string | Error>;
+
+/**
+ * @name size
+ * @description File size in bytes.
+ * @since 0.2.3
+ * @async
+ * @param {string|Buffer|URL} pathToFile
+ * @param {boolean=} [asString=false]
+ * @returns {Promise<number|string|Error|{name: string, message: string, stack?: string}>}
+ */
+export function size(pathToFile: PathLike, asString?: boolean): Promise<number | string | Error>;
+
+//#endregion
+
 //#region list
 
 /**

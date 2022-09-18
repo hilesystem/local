@@ -41,6 +41,8 @@ import {
 
   fileTruncate, writeFile, writeJSON,
 
+  hash, hashCrc32, hashMd5, hashSha1, hashSha256, size,
+
 } from "@hilesystem/local";
 ```
 
@@ -401,6 +403,90 @@ const arrayOfStringsOrError = await listFiles("path/to/dir");
 </details>
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+### Calculate
+
+<details>
+    <summary><b>hash(pathToFile, algorithm)</b></summary>
+Calculate hash.
+
+```javascript
+const hash = await hash("path/to/file", "md5");
+```
+</details>
+
+<details>
+    <summary><b>hashCrc32(pathToFile)</b></summary>
+CRC32.
+
+```javascript
+const hash = await hashCrc32("path/to/file");
+```
+</details>
+
+<details>
+    <summary><b>hashMd5(pathToFile)</b></summary>
+MD5.
+
+```javascript
+const hash = await hashMd5("path/to/file");
+```
+</details>
+
+<details>
+    <summary><b>hashSha1(pathToFile)</b></summary>
+SHA-1.
+
+```javascript
+const hash = await hashSha1("path/to/file");
+```
+</details>
+
+<details>
+    <summary><b>hashSha256(pathToFile)</b></summary>
+SHA-256.
+
+```javascript
+const hash = await hashSha256("path/to/file");
+```
+</details>
+
+<details>
+    <summary><b>size(pathToFile)</b></summary>
+File size in bytes.
+
+```javascript
+const sizeInBytes = await size("path/to/file");
+const sizeAsString = await size("path/to/file", true);
+```
+</details>
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## See also
 

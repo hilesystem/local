@@ -18,9 +18,17 @@ const {
   filePath,
   fileTruncate,
   getStatus,
+  hash,
+  hashCrc32,
+  hashMd5,
+  hashSha1,
+  hashSha256,
   isDirExists,
   isFileExists,
   isPathExists,
+  listContents,
+  listDirectories,
+  listFiles,
   move,
   pathFrom,
   readFileToBase64,
@@ -29,11 +37,9 @@ const {
   remove,
   removeNonBlocking,
   removeSilent,
+  size,
   writeFile,
   writeJSON,
-  listContents,
-  listDirectories,
-  listFiles,
 } = require("../dist/index.cjs");
 
 const { normalize } = require("path");
@@ -177,6 +183,34 @@ describe("Imported functions", () => {
     const isEmpty = await dirIsEmpty(".");
     expect(isEmpty).toBe(false);
   });
+  it("hash()", async () => {
+    const resultHash = await hash("./test/test.txt", "md5");
+    expect(resultHash).toBe("db89bb5ceab87f9c0fcc2ab36c189c2c");
+  });
+  it("hashCrc32()", async () => {
+    const resultHash = await hashCrc32("./test/test.txt");
+    expect(resultHash).toBe("98b2c5bd");
+  });
+  it("hashMd5()", async () => {
+    const resultHash = await hashMd5("./test/test.txt");
+    expect(resultHash).toBe("db89bb5ceab87f9c0fcc2ab36c189c2c");
+  });
+  it("hashSha1()", async () => {
+    const resultHash = await hashSha1("./test/test.txt");
+    expect(resultHash).toBe("cd36b370758a259b34845084a6cc38473cb95e27");
+  });
+  it("hashSha256()", async () => {
+    const resultHash = await hashSha256("./test/test.txt");
+    expect(resultHash).toBe("2d8c2f6d978ca21712b5f6de36c9d31fa8e96a4fa5d8ff8b0188dfb9e7c171bb");
+  });
+  it("size() number", async () => {
+    const resultSize = await size("./test/test.txt");
+    expect(resultSize).toBe(445);
+  });
+  it("size() string", async () => {
+    const resultSize = await size("./test/test.txt", true);
+    expect(resultSize).toBe("445");
+  });
 });
 
 describe("Class with static helpers", () => {
@@ -318,5 +352,33 @@ describe("Class with static helpers", () => {
   it("HileSystemLocal.dirIsEmpty()", async () => {
     const isEmpty = await hileSystemLocal.dirIsEmpty(".");
     expect(isEmpty).toBe(false);
+  });
+  it("HileSystemLocal.hash()", async () => {
+    const resultHash = await hileSystemLocal.hash("./test/test.txt", "md5");
+    expect(resultHash).toBe("db89bb5ceab87f9c0fcc2ab36c189c2c");
+  });
+  it("HileSystemLocal.hashCrc32()", async () => {
+    const resultHash = await hileSystemLocal.hashCrc32("./test/test.txt");
+    expect(resultHash).toBe("98b2c5bd");
+  });
+  it("HileSystemLocal.hashMd5()", async () => {
+    const resultHash = await hileSystemLocal.hashMd5("./test/test.txt");
+    expect(resultHash).toBe("db89bb5ceab87f9c0fcc2ab36c189c2c");
+  });
+  it("HileSystemLocal.hashSha1()", async () => {
+    const resultHash = await hileSystemLocal.hashSha1("./test/test.txt");
+    expect(resultHash).toBe("cd36b370758a259b34845084a6cc38473cb95e27");
+  });
+  it("HileSystemLocal.hashSha256()", async () => {
+    const resultHash = await hileSystemLocal.hashSha256("./test/test.txt");
+    expect(resultHash).toBe("2d8c2f6d978ca21712b5f6de36c9d31fa8e96a4fa5d8ff8b0188dfb9e7c171bb");
+  });
+  it("HileSystemLocal.size() number", async () => {
+    const resultSize = await hileSystemLocal.size("./test/test.txt");
+    expect(resultSize).toBe(445);
+  });
+  it("HileSystemLocal.size() string", async () => {
+    const resultSize = await hileSystemLocal.size("./test/test.txt", true);
+    expect(resultSize).toBe("445");
   });
 });

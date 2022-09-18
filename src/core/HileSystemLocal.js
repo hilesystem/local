@@ -33,6 +33,13 @@ import { removeSilent } from "./remove/removeSilent.js";
 import { writeFile } from "./write/writeFile.js";
 import { writeJSON } from "./write/writeJSON.js";
 
+import { hash } from "./info/hash.js";
+import { hashCrc32 } from "./info/hash-crc32.js";
+import { hashMd5 } from "./info/hash-md5.js";
+import { hashSha1 } from "./info/hash-sha1.js";
+import { hashSha256 } from "./info/hash-sha256.js";
+import { size } from "./info/size.js";
+
 export class HileSystemLocal {
   /**
    * @name absolutePathFrom
@@ -247,6 +254,58 @@ export class HileSystemLocal {
    */
   fileTruncate = fileTruncate;
   /**
+   * @name hash
+   * @description Calculate hash.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @param {string} algorithm
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   * @throws {TypeError} If algorithm is not supported.
+   */
+  hash = hash;
+  /**
+   * @name hashCrc32
+   * @description CRC32.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  hashCrc32 = hashCrc32;
+  /**
+   * @name hashMd5
+   * @description MD5.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  hashMd5 = hashMd5;
+  /**
+   * @name hashSha1
+   * @description SHA-1.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  hashSha1 = hashSha1;
+  /**
+   * @name hashSha256
+   * @description SHA-256.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  hashSha256 = hashSha256;
+  /**
    * @name listContents
    * @description Lists files and directories in path
    * @since 0.1.32
@@ -350,6 +409,17 @@ export class HileSystemLocal {
    * @returns {Promise<void>}
    */
   removeSilent = removeSilent;
+  /**
+   * @name size
+   * @description File size in bytes.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @param {boolean=} [asString=false]
+   * @returns {Promise<number|string|Error|{name: string, message: string, stack?: string}>}
+   */
+  size = size;
   /**
    * @name writeFile
    * @description Asynchronously writes data to a file, replacing the file if it already exists.

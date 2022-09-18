@@ -11,6 +11,15 @@ export { dirIsVisible } from "./core/dir/dirIsVisible.js";
 export { dirIsWritable } from "./core/dir/dirIsWritable.js";
 //#endregion
 
+//#region info
+export { hash } from "./core/info/hash.js";
+export { hashCrc32 } from "./core/info/hash-crc32.js";
+export { hashMd5 } from "./core/info/hash-md5.js";
+export { hashSha1 } from "./core/info/hash-sha1.js";
+export { hashSha256 } from "./core/info/hash-sha256.js";
+export { size } from "./core/info/size.js";
+//#endregion
+
 //#region file
 export { fileIsExecutable } from "./core/file/fileIsExecutable.js";
 export { fileIsReadable } from "./core/file/fileIsReadable.js";

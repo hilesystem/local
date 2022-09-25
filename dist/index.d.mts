@@ -650,7 +650,7 @@ export class HileSystemLocal {
    * @param {boolean} [ignoreJunk=true]
    * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
    */
-  public listContents(pathToDir: PathLike, ignoreJunk?): Promise<string[] | Error>;
+  public listContents(pathToDir: PathLike, ignoreJunk?: boolean): Promise<string[] | Error>;
 
   /**
    * @name listDirectories

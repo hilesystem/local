@@ -15,7 +15,7 @@
   "description": "Filesystem abstraction layer and common function wrappers",
   "devDependencies": {
     "@r37r0m0d3l/rollup-config-pkg": "git+https://github.com/r37r0m0d3l/rollup-config-pkg.git",
-    "@types/node": "12.20.0",
+    "@types/node": "18.11.18",
     "babel-eslint": "10.1.0",
     "eslint": "8.23.1",
     "eslint-config-prettier": "8.5.0",

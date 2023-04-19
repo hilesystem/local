@@ -479,15 +479,11 @@ const sizeAsString = await size("path/to/file", true);
 
 [codacy-img]: https://api.codacy.com/project/badge/Grade/3a4f33788cd44b799242cae7e080f9e3
 [codacy-url]: https://www.codacy.com/gh/hilesystem/local?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hilesystem/local&amp;utm_campaign=Badge_Grade
-[lgtm-img]: https://badgen.net/lgtm/grade/g/hilesystem/local?&icon=lgtm&label=lgtm:js/ts&color=00C853
-[lgtm-url]: https://lgtm.com/projects/g/hilesystem/local
 [npm-downloads-img]: https://badgen.net/npm/dt/@hilesystem/local?&icon=terminal&label=downloads&color=009688
 [npm-downloads-url]: https://npmjs.com/package/@hilesystem/local
 [npm-version-img]: https://badgen.net/npm/v/@hilesystem/local?&icon=npm&label=npm&color=DD3636
 [npm-version-url]: https://npmjs.com/package/@hilesystem/local
 [sonarcloud-img]: https://sonarcloud.io/api/project_badges/measure?project=hilesystem_local&metric=sqale_rating
 [sonarcloud-url]: https://sonarcloud.io/dashboard?id=hilesystem_local
-[travis-img]: https://badgen.net/travis/hilesystem/local?&icon=travis&label=build
-[travis-url]: https://travis-ci.com/github/hilesystem/local
 [ts-img]: https://badgen.net/npm/types/@hilesystem/local?&icon=typescript&label=types&color=1E90FF
 [ts-url]: https://github.com/hilesystem/local/blob/master/dist/index.d.ts

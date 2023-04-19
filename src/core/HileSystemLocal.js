@@ -38,6 +38,7 @@ import { hashCrc32 } from "./info/hash-crc32.js";
 import { hashMd5 } from "./info/hash-md5.js";
 import { hashSha1 } from "./info/hash-sha1.js";
 import { hashSha256 } from "./info/hash-sha256.js";
+import { hashSha512 } from "./info/hash-sha512.js";
 import { size } from "./info/size.js";
 
 export class HileSystemLocal {
@@ -305,6 +306,16 @@ export class HileSystemLocal {
    * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
    */
   hashSha256 = hashSha256;
+  /**
+   * @name hashSha512
+   * @description SHA-512.
+   * @since 0.2.6
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  hashSha512 = hashSha512;
   /**
    * @name listContents
    * @description Lists files and directories in path

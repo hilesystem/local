@@ -17,6 +17,7 @@ export { hashCrc32 } from "./core/info/hash-crc32.js";
 export { hashMd5 } from "./core/info/hash-md5.js";
 export { hashSha1 } from "./core/info/hash-sha1.js";
 export { hashSha256 } from "./core/info/hash-sha256.js";
+export { hashSha512 } from "./core/info/hash-sha512.js";
 export { size } from "./core/info/size.js";
 //#endregion
 

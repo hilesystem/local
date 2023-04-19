@@ -7,10 +7,7 @@ Filesystem abstraction layer and common function wrappers.
 [![NPM Version][npm-version-img]][npm-version-url]
 [![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 [![TypeScript Typings][ts-img]][ts-url]
-[![Travis CI][travis-img]][travis-url]
-
 [![Maintainability Rating][sonarcloud-img]][sonarcloud-url]
-[![LGTM][lgtm-img]][lgtm-url]
 [![Codacy Badge][codacy-img]][codacy-url]
 
 ## Usage
@@ -41,7 +38,7 @@ import {
 
   fileTruncate, writeFile, writeJSON,
 
-  hash, hashCrc32, hashMd5, hashSha1, hashSha256, size,
+  hash, hashCrc32, hashMd5, hashSha1, hashSha256, hashSha512, size,
 
 } from "@hilesystem/local";
 ```
@@ -404,19 +401,6 @@ const arrayOfStringsOrError = await listFiles("path/to/dir");
 
 ---
 
-
-
-
-
-
-
-
-
-
-
-
----
-
 ### Calculate
 
 <details>
@@ -465,6 +449,15 @@ const hash = await hashSha256("path/to/file");
 </details>
 
 <details>
+    <summary><b>hashSha512(pathToFile)</b></summary>
+SHA-512.
+
+```javascript
+const hash = await hashSha512("path/to/file");
+```
+</details>
+
+<details>
     <summary><b>size(pathToFile)</b></summary>
 File size in bytes.
 
@@ -475,18 +468,6 @@ const sizeAsString = await size("path/to/file", true);
 </details>
 
 ---
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## See also
 

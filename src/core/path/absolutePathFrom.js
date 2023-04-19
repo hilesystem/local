@@ -1,5 +1,7 @@
 import { resolve } from "path";
 
+import { absolutePath } from "./absolutePath.js";
+
 /**
  * @name absolutePathFrom
  * @description Join all arguments together and normalize the resulting path.
@@ -19,5 +21,5 @@ export function absolutePathFrom(paths, ...morePaths) {
   if (morePaths.length) {
     routes = routes.concat(morePaths.map((path) => path.toString()));
   }
-  return resolve(...routes);
+  return absolutePath(resolve(...routes));
 }

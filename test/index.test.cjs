@@ -44,6 +44,7 @@ const {
   removeSilent,
   size,
   writeFile,
+  writeFileTail,
   writeJSON,
 } = require("../dist/index.cjs");
 
@@ -145,6 +146,10 @@ test.describe("Imported functions", () => {
   });
   test.it("writeFile()", async () => {
     const is = await writeFile("./test/temp.txt", "test");
+    assert.strictEqual(is, true);
+  });
+  test.it("writeFileTail()", async () => {
+    const is = await writeFileTail("./test/temp-tail.txt", "tail");
     assert.strictEqual(is, true);
   });
   test.it("writeJSON()", async () => {
@@ -323,6 +328,10 @@ test.describe("Class with static helpers", () => {
   });
   test.it("HileSystemLocal.writeFile()", async () => {
     const is = await hileSystemLocal.writeFile("./test/temp2.txt", "test2");
+    assert.strictEqual(is, true);
+  });
+  test.it("HileSystemLocal.writeFileTail()", async () => {
+    const is = await hileSystemLocal.writeFileTail("./test/temp-tail.txt", "tail");
     assert.strictEqual(is, true);
   });
   test.it("HileSystemLocal.writeJSON()", async () => {

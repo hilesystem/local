@@ -31,6 +31,7 @@ import { remove } from "./remove/remove.js";
 import { removeNonBlocking } from "./remove/removeNonBlocking.js";
 import { removeSilent } from "./remove/removeSilent.js";
 import { writeFile } from "./write/writeFile.js";
+import { writeFileTail } from "./write/writeFileTail.js";
 import { writeJSON } from "./write/writeJSON.js";
 
 import { hash } from "./info/hash.js";
@@ -443,6 +444,18 @@ export class HileSystemLocal {
    * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
    */
   writeFile = writeFile;
+  /**
+   * @name writeFileTail
+   * @description  Asynchronously writes data to the end of a file.
+   * @since 1.0.1
+   * @async
+   * @public
+   * @param {string|Buffer|URL} filePath
+   * @param {string} data
+   * @param {*|null|string=} options
+   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   */
+  writeFileTail = writeFileTail;
   /**
    * @name writeJSON
    * @description Asynchronously writes data to a file, replacing the file if it already exists.

@@ -8,5 +8,8 @@ const HOME_DIRECTORY = os.homedir();
  * @returns {string}
  */
 export function absolutePath(pathWithTilde) {
-  return HOME_DIRECTORY ? String(pathWithTilde).replace(/^~(?=$|\/|\\)/, HOME_DIRECTORY) : String(pathWithTilde);
+  if (HOME_DIRECTORY) {
+    return String(pathWithTilde).replace(/^~(?=$|\/|\\)/, HOME_DIRECTORY);
+  }
+  return String(pathWithTilde);
 }

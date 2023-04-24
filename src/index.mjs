@@ -69,6 +69,7 @@ export { isPathExists } from "./core/status/isPathExists.js";
 
 //#region write
 export { writeFile } from "./core/write/writeFile.js";
+export { writeFileTail } from "./core/write/writeFileTail.js";
 export { writeJSON } from "./core/write/writeJSON.js";
 //#endregion
 

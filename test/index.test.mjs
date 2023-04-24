@@ -4,6 +4,7 @@ import test from "node:test";
 import url from "node:url";
 
 import {
+  HileSystemLocal,
   absolutePathFrom,
   createDirectory,
   createFile,
@@ -28,7 +29,6 @@ import {
   hashSha1,
   hashSha256,
   hashSha512,
-  HileSystemLocal,
   isDirExists,
   isFileExists,
   isPathExists,
@@ -45,6 +45,7 @@ import {
   removeSilent,
   size,
   writeFile,
+  writeFileTail,
   writeJSON,
 } from "../dist/index.mjs";
 
@@ -149,6 +150,10 @@ test.describe("Imported functions", () => {
   });
   test.it("writeFile()", async () => {
     const is = await writeFile("./test/temp.txt", "test");
+    assert.strictEqual(is, true);
+  });
+  test.it("writeFileTail()", async () => {
+    const is = await writeFileTail("./test/temp-tail.txt", "tail");
     assert.strictEqual(is, true);
   });
   test.it("writeJSON()", async () => {
@@ -327,6 +332,10 @@ test.describe("Class with static helpers", () => {
   });
   test.it("HileSystemLocal.writeFile()", async () => {
     const is = await hileSystemLocal.writeFile("./test/temp2.txt", "test2");
+    assert.strictEqual(is, true);
+  });
+  test.it("HileSystemLocal.writeFileTail()", async () => {
+    const is = await hileSystemLocal.writeFileTail("./test/temp-tail.txt", "tail");
     assert.strictEqual(is, true);
   });
   test.it("HileSystemLocal.writeJSON()", async () => {

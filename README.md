@@ -1,6 +1,6 @@
 ![HileSystem Local](.github/assets/banner.webp?raw=true "HileSystem Local")
 
-# 🖴 HileSystem Local
+# HileSystem Local
 
 Filesystem abstraction layer and common function wrappers.
 
@@ -12,34 +12,23 @@ Filesystem abstraction layer and common function wrappers.
 
 ## Usage
 
-### Tree-shaking imports
+### Import
 
 ```javascript
 import {
   HileSystemLocal,
-
   absolutePathFrom, pathFrom,
-
   createDirectory, createFile,
-
   readFileToBase64, readFileToBuffer, readFileToString,
-
   dirIsEmpty, dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
   fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
-
   getStatus, isDirExists, isFileExists, isPathExists,
   fileExtension, fileName, fileNameExt, filePath,
-
   listContents, listDirectories, listFiles,
-
   move,
-
   remove, removeNonBlocking, removeSilent,
-
-  fileTruncate, writeFile, writeJSON,
-
+  fileTruncate, writeFile, writeFileTail, writeJSON,
   hash, hashCrc32, hashMd5, hashSha1, hashSha256, hashSha512, size,
-
 } from "@hilesystem/local";
 ```
 
@@ -199,6 +188,18 @@ const filePath = "./file.txt";
 const data = "Text";
 const options = { encoding: "utf8" };
 const trueOrError = await writeFile(filePath, data, options);
+```
+</details>
+
+<details>
+    <summary><b>writeFileTail(filePath, data, options)</b></summary>
+Asynchronously writes data to the end of a file.
+
+```javascript
+const filePath = "./file.txt";
+const data = "Text to add to the end of the file.";
+const options = { encoding: "utf8" };
+const trueOrError = await writeFileTail(filePath, data, options);
 ```
 </details>
 

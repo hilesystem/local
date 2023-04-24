@@ -476,6 +476,22 @@ export function writeFile(
 ): Promise<true | Error>;
 
 /**
+ * @name writeFileTail
+ * @description Asynchronously writes data to the end of a file.
+ * @since 1.0.1
+ * @async
+ * @param {string|Buffer|URL|FileHandle} filePath
+ * @param {string} data
+ * @param {*|null|string=} options
+ * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+ */
+export function writeFileTail(
+  filePath: PathLike,
+  data: string,
+  options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
+): Promise<true | Error>;
+
+/**
  * @name writeJSON
  * @description Asynchronously writes data to a file, replacing the file if it already exists.
  * @since 0.1.25
@@ -490,7 +506,7 @@ export function writeJSON(
   filePath: PathLike,
   data: any,
   options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
-  configuration?: { sort?: boolean, space?: number | string },
+  configuration?: { sort?: boolean; space?: number | string },
 ): Promise<true | Error>;
 
 //#endregion
@@ -861,6 +877,23 @@ export class HileSystemLocal {
   ): Promise<true | Error>;
 
   /**
+   * @name writeFileTail
+   * @description Asynchronously writes data to the end of a file.
+   * @since 1.0.1
+   * @async
+   * @public
+   * @param {string|Buffer|URL|FileHandle} filePath
+   * @param {*=} data
+   * @param {*|null|string=} options
+   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   */
+  public writeFileTail(
+    filePath: PathLike,
+    data: string,
+    options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
+  ): Promise<true | Error>;
+
+  /**
    * @name writeJSON
    * @description Asynchronously writes data to a file, replacing the file if it already exists.
    * @since 0.1.25
@@ -876,7 +909,7 @@ export class HileSystemLocal {
     filePath: PathLike,
     data: any,
     options?: { encoding?: string | null; mode?: string | number; flag?: string | number },
-    configuration?: { sort?: boolean, space?: number | string },
+    configuration?: { sort?: boolean; space?: number | string },
   ): Promise<true | Error>;
 
   //#endregion

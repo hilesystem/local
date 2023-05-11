@@ -125,7 +125,8 @@ export class HileSystemLocal {
    * @public
    * @param {string|Buffer|URL} pathToDir
    * @param {boolean=} excludeSystemFiles
-   * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+   * @returns {Promise<boolean>}
+   * @throws {Error} If path is not a dir or is not readable.
    */
   dirIsEmpty = dirIsEmpty;
   /**

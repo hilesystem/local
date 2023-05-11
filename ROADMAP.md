@@ -15,3 +15,9 @@
 -   https://flysystem.thephpleague.com/docs/usage/filesystem-api/
 
 -   https://nodejs.org/en/blog/announcements/v20-release-announce
+
+-   https://www.sitepoint.com/node-js-20-new/
+
+  - process.permission.has('fs.write');
+
+-   https://github.com/jsenv/jsenv-util

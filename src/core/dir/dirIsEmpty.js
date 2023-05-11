@@ -1,3 +1,5 @@
+import { errorExtractOptions } from "../error/errorExtractOptions.js";
+import { dirIsReadable } from "./dirIsReadable.js";
 import { listContents } from "../list/contents.js";
 
 const EXCLUDE = [
@@ -48,32 +50,35 @@ const EXCLUDE = [
  * @async
  * @param {string|Buffer|URL} pathToDir
  * @param {boolean=} excludeSystemFiles
- * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+ * @returns {Promise<boolean>}
+ * @throws {Error} If path is not a dir or is not readable.
  */
 export async function dirIsEmpty(pathToDir, excludeSystemFiles = true) {
-  let contents = await listContents(pathToDir);
-  if (!Array.isArray(contents)) {
-    return contents;
+  const isReadableOrError = await dirIsReadable(pathToDir);
+  if (isReadableOrError !== true) {
+    throw new Error(isReadableOrError.message, errorExtractOptions(isReadableOrError));
   }
-  if (contents.length === 0) {
+  let listOfDirsAndFiles = await listContents(pathToDir);
+  if (!Array.isArray(listOfDirsAndFiles)) {
+    return listOfDirsAndFiles;
+  }
+  if (listOfDirsAndFiles.length === 0) {
     return true;
   }
   if (!excludeSystemFiles) {
     return false;
   }
-  for (let contentIndex = 0; contentIndex < contents.length; contentIndex += 1) {
-    for (let excludeIndex = 0; excludeIndex < EXCLUDE.length; excludeIndex += 1) {
-      if (!contents[contentIndex]) {
+  const content = new Set(listOfDirsAndFiles);
+  listOfDirsAndFiles.length = 0;
+  content.forEach((dirOrFileName) => {
+    for (const nameToExclude of EXCLUDE) {
+      if (!dirOrFileName) {
         continue;
       }
-      if (
-        contents[contentIndex] === EXCLUDE[excludeIndex] ||
-        contents[contentIndex].match(RegExp(EXCLUDE[excludeIndex]))
-      ) {
-        delete contents[contentIndex];
-        contents = contents.filter((content) => content);
+      if (dirOrFileName === nameToExclude || dirOrFileName.match(RegExp(nameToExclude))) {
+        content.delete(dirOrFileName);
       }
     }
-  }
-  return contents.length === 0;
+  });
+  return content.size === 0;
 }

@@ -1,3 +1,5 @@
+import { errorExtractOptions } from "../error/errorExtractOptions.js";
+import { dirIsReadable } from "./dirIsReadable.js";
 import { listContents } from "../list/contents.js";
 
 const EXCLUDE = [
@@ -42,38 +44,50 @@ const EXCLUDE = [
 ];
 
 /**
+ * @name isEmptyContent
+ * @param {Array.<string>} listOfDirsAndFiles
+ * @returns {boolean}
+ */
+function isEmptyContent(listOfDirsAndFiles) {
+  const content = new Set(listOfDirsAndFiles);
+  listOfDirsAndFiles.length = 0;
+  content.forEach((dirOrFileName) => {
+    for (const nameToExclude of EXCLUDE) {
+      if (!dirOrFileName) {
+        continue;
+      }
+      if (dirOrFileName === nameToExclude || dirOrFileName.match(RegExp(nameToExclude))) {
+        content.delete(dirOrFileName);
+      }
+    }
+  });
+  return content.size === 0;
+}
+
+/**
  * @name dirIsEmpty
  * @description Check if a directory is empty
  * @since 0.1.33
  * @async
  * @param {string|Buffer|URL} pathToDir
  * @param {boolean=} excludeSystemFiles
- * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
+ * @returns {Promise<boolean>}
+ * @throws {Error} If path is not a dir or is not readable.
  */
 export async function dirIsEmpty(pathToDir, excludeSystemFiles = true) {
-  let contents = await listContents(pathToDir);
-  if (!Array.isArray(contents)) {
-    return contents;
+  const isReadableOrError = await dirIsReadable(pathToDir);
+  if (isReadableOrError !== true) {
+    throw new Error(isReadableOrError.message, errorExtractOptions(isReadableOrError));
   }
-  if (contents.length === 0) {
+  let listOfDirsAndFiles = await listContents(pathToDir);
+  if (listOfDirsAndFiles instanceof Error) {
+    throw listOfDirsAndFiles;
+  }
+  if (listOfDirsAndFiles.length === 0) {
     return true;
   }
   if (!excludeSystemFiles) {
     return false;
   }
-  for (let contentIndex = 0; contentIndex < contents.length; contentIndex += 1) {
-    for (let excludeIndex = 0; excludeIndex < EXCLUDE.length; excludeIndex += 1) {
-      if (!contents[contentIndex]) {
-        continue;
-      }
-      if (
-        contents[contentIndex] === EXCLUDE[excludeIndex] ||
-        contents[contentIndex].match(RegExp(EXCLUDE[excludeIndex]))
-      ) {
-        delete contents[contentIndex];
-        contents = contents.filter((content) => content);
-      }
-    }
-  }
-  return contents.length === 0;
+  return isEmptyContent(listOfDirsAndFiles);
 }

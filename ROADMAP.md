@@ -18,6 +18,6 @@
 
 -   https://www.sitepoint.com/node-js-20-new/
 
-  - process.permission.has('fs.write');
+-   process.permission.has('fs.write');
 
 -   https://github.com/jsenv/jsenv-util

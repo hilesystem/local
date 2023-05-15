@@ -5,9 +5,7 @@
  */
 export function errorExtractOptions(error) {
   if (!(error instanceof Error)) {
-    return {
-      cause: error,
-    };
+    return { cause: error };
   }
   if ("code" in error && "errno" in error && "path" in error && "syscall" in error) {
     return {

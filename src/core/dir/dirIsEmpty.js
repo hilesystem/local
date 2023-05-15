@@ -46,7 +46,7 @@ const EXCLUDE = [
 /**
  * @name isEmptyContent
  * @param {Array.<string>} listOfDirsAndFiles
- * @return {boolean}
+ * @returns {boolean}
  */
 function isEmptyContent(listOfDirsAndFiles) {
   const content = new Set(listOfDirsAndFiles);

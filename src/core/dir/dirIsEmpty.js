@@ -44,6 +44,27 @@ const EXCLUDE = [
 ];
 
 /**
+ * @name isEmptyContent
+ * @param {Array.<string>} listOfDirsAndFiles
+ * @return {boolean}
+ */
+function isEmptyContent(listOfDirsAndFiles) {
+  const content = new Set(listOfDirsAndFiles);
+  listOfDirsAndFiles.length = 0;
+  content.forEach((dirOrFileName) => {
+    for (const nameToExclude of EXCLUDE) {
+      if (!dirOrFileName) {
+        continue;
+      }
+      if (dirOrFileName === nameToExclude || dirOrFileName.match(RegExp(nameToExclude))) {
+        content.delete(dirOrFileName);
+      }
+    }
+  });
+  return content.size === 0;
+}
+
+/**
  * @name dirIsEmpty
  * @description Check if a directory is empty
  * @since 0.1.33
@@ -59,8 +80,8 @@ export async function dirIsEmpty(pathToDir, excludeSystemFiles = true) {
     throw new Error(isReadableOrError.message, errorExtractOptions(isReadableOrError));
   }
   let listOfDirsAndFiles = await listContents(pathToDir);
-  if (!Array.isArray(listOfDirsAndFiles)) {
-    return listOfDirsAndFiles;
+  if (listOfDirsAndFiles instanceof Error) {
+    throw listOfDirsAndFiles;
   }
   if (listOfDirsAndFiles.length === 0) {
     return true;
@@ -68,17 +89,5 @@ export async function dirIsEmpty(pathToDir, excludeSystemFiles = true) {
   if (!excludeSystemFiles) {
     return false;
   }
-  const content = new Set(listOfDirsAndFiles);
-  listOfDirsAndFiles.length = 0;
-  content.forEach((dirOrFileName) => {
-    for (const nameToExclude of EXCLUDE) {
-      if (!dirOrFileName) {
-        continue;
-      }
-      if (dirOrFileName === nameToExclude || dirOrFileName.match(RegExp(nameToExclude))) {
-        content.delete(dirOrFileName);
-      }
-    }
-  });
-  return content.size === 0;
+  return isEmptyContent(listOfDirsAndFiles);
 }

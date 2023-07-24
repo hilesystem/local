@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { ofError } from "@await-of/of";
+import { truncate } from "node:fs/promises";
 
 /**
  * @name fileTruncate
@@ -12,9 +10,10 @@ import { ofError } from "@await-of/of";
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export async function fileTruncate(pathToFile, length = 0) {
-  const fsError = await ofError(promises.truncate(pathToFile, length));
-  if (!fsError) {
+  try {
+    await truncate(pathToFile, length);
     return true;
+  } catch (error) {
+    return error;
   }
-  return fsError;
 }

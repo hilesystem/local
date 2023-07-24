@@ -1,4 +1,4 @@
-import { constants, promises } from "fs";
+import { constants, promises } from "node:fs";
 
 /**
  * @name isVisible

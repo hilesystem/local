@@ -1,4 +1,4 @@
-import { join, normalize } from "path";
+import { join, normalize } from "node:path";
 
 /**
  * @name pathFrom

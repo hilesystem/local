@@ -2,6 +2,24 @@
 
 ---
 
+## [1.1.0] - 2023-07-25
+
+### Added
+
+- `getLinkStatus` - Get file status unless `path` refers to a symbolic link.
+
+### Dependencies
+
+- Removed `@await-of/of` dependency.
+
+### Requirements
+
+- Minimal required Node.js version is now `16.17.0`.
+
+- Removed `browser` module support.
+
+---
+
 ## [1.0.2] - 2023-05-12
 
 ### Changed

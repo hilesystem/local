@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { of } from "@await-of/of";
+import { readFile } from "node:fs/promises";
 
 /**
  * @name readFileToBase64
@@ -11,9 +9,10 @@ import { of } from "@await-of/of";
  * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
  */
 export async function readFileToBase64(pathLike) {
-  const [result, error] = await of(promises.readFile(pathLike, "base64"));
-  if (error) {
+  try {
+    const result = await readFile(pathLike, "base64");
+    return result.toString();
+  } catch (error) {
     return error;
   }
-  return result.toString();
 }

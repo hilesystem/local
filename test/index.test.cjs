@@ -21,6 +21,7 @@ const {
   fileNameExt,
   filePath,
   fileTruncate,
+  getLinkStatus,
   getStatus,
   hash,
   hashCrc32,
@@ -114,6 +115,11 @@ test.describe("Imported functions", () => {
   test.it("fileTruncate()", async () => {
     const is = await fileTruncate("./test/test.file");
     assert.strictEqual(is, true);
+  });
+  test.it("getLinkStatus()", async () => {
+    const [status, error] = await getLinkStatus(`./test/${FILE_NAME}`);
+    assert.notEqual(status, undefined);
+    assert.strictEqual(error, undefined);
   });
   test.it("getStatus()", async () => {
     const [status, error] = await getStatus(`./test/${FILE_NAME}`);
@@ -296,6 +302,11 @@ test.describe("Class with static helpers", () => {
   test.it("HileSystemLocal.fileTruncate()", async () => {
     const is = await hileSystemLocal.fileTruncate("./test/test.file");
     assert.strictEqual(is, true);
+  });
+  test.it("HileSystemLocal.getLinkStatus()", async () => {
+    const [status, error] = await hileSystemLocal.getLinkStatus(`./test/${FILE_NAME}`);
+    assert.notEqual(status, undefined);
+    assert.strictEqual(error, undefined);
   });
   test.it("HileSystemLocal.getStatus()", async () => {
     const [status, error] = await hileSystemLocal.getStatus(`./test/${FILE_NAME}`);

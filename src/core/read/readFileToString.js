@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { of } from "@await-of/of";
+import { readFile } from "node:fs/promises";
 
 import { absolutePath } from "../path/absolutePath.js";
 
@@ -13,9 +11,10 @@ import { absolutePath } from "../path/absolutePath.js";
  * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
  */
 export async function readFileToString(pathLike) {
-  const [result, error] = await of(promises.readFile(absolutePath(pathLike), "utf8"));
-  if (error) {
+  try {
+    const result = await readFile(absolutePath(pathLike), "utf8");
+    return result.toString();
+  } catch (error) {
     return error;
   }
-  return result.toString();
 }

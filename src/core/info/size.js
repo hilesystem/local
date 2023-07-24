@@ -1,4 +1,4 @@
-import { promises } from "fs";
+import { stat } from "node:fs/promises";
 
 /**
  * @name size
@@ -10,7 +10,7 @@ import { promises } from "fs";
  * @returns {Promise<number|string|Error|{name: string, message: string, stack?: string}>}
  */
 export async function size(pathToFile, asString = false) {
-  const fileStats = await promises.stat(pathToFile);
+  const fileStats = await stat(pathToFile);
   if (!asString) {
     return fileStats.size;
   }

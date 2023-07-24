@@ -1,6 +1,6 @@
 import fs from "fs";
-import assert from "assert";
-import { join } from "path";
+import assert from "node:assert";
+import { join } from "node:path";
 
 const IS_WINDOWS = process.platform === "win32";
 

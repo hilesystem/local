@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { of } from "@await-of/of";
+import { readFile } from "node:fs/promises";
 
 /**
  * @name readFileToBuffer
@@ -11,9 +9,10 @@ import { of } from "@await-of/of";
  * @returns {Promise<Buffer|Error|{name: string, message: string, stack?: string}>}
  */
 export async function readFileToBuffer(pathLike) {
-  const [result, error] = await of(promises.readFile(pathLike, "binary"));
-  if (error) {
+  try {
+    const result = await readFile(pathLike, "binary");
+    return Buffer.from(result);
+  } catch (error) {
     return error;
   }
-  return Buffer.from(result);
 }

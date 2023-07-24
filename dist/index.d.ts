@@ -416,6 +416,17 @@ export function removeSilent(pathLike: string, options?: RmOptions): Promise<voi
 //#region status
 
 /**
+ * @name getLinkStatus
+ * @description Get file status unless `path` refers to a symbolic link, in which case the link itself is stat-ed, not the file that it refers to.
+ * @url http://man7.org/linux/man-pages/man2/lstat.2.html
+ * @since 1.1.0
+ * @async
+ * @param {string|Buffer|URL} path
+ * @returns {Promise<Array.<(object|undefined|Error|{name: string, message: string, stack?: string})>>}
+ */
+export function getLinkStatus(path: PathLike): Promise<[Stats?, Error?]>;
+
+/**
  * @name getStatus
  * @description Get file status.
  * @since 0.0.11
@@ -886,7 +897,16 @@ export class HileSystemLocal {
   //#endregion
 
   //#region status
-
+  /**
+   * @name getLinkStatus
+   * @description Get file status unless `path` refers to a symbolic link, in which case the link itself is stat-ed, not the file that it refers to.
+   * @url http://man7.org/linux/man-pages/man2/lstat.2.html
+   * @since 1.1.0
+   * @async
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<Array.<(object|undefined|Error|{name: string, message: string, stack?: string})>>}
+   */
+  public getLinkStatus(path: PathLike): Promise<[Stats?, Error?]>;
   /**
    * @name getStatus
    * @description Get file status.

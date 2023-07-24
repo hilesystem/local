@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { ofAny } from "@await-of/of";
+import { readdir } from "node:fs/promises";
 
 import { isNotSystemJunk } from "./is-not-system-junk.js";
 
@@ -14,12 +12,13 @@ import { isNotSystemJunk } from "./is-not-system-junk.js";
  * @returns {Promise<Array.<string>|Error|{name: string, message: string, stack?: string}>}
  */
 export async function listContents(pathToDir, ignoreJunk = true) {
-  const [contents, fsError] = await ofAny(promises.readdir(pathToDir));
-  if (fsError) {
-    return fsError;
+  try {
+    const contents = await readdir(pathToDir);
+    if (ignoreJunk) {
+      return contents.filter(isNotSystemJunk);
+    }
+    return contents;
+  } catch (error) {
+    return error;
   }
-  if (ignoreJunk) {
-    return contents.filter(isNotSystemJunk);
-  }
-  return contents;
 }

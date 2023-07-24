@@ -1,7 +1,5 @@
-import { dirname } from "path";
-import { promises } from "fs";
-
-import { ofError } from "@await-of/of";
+import { dirname } from "node:path";
+import { readdir } from "node:fs/promises";
 
 import { createDirectory } from "./createDirectory.js";
 import { getStatus } from "../status/getStatus.js";
@@ -38,6 +36,11 @@ export async function createFile(pathLike, mode = "0777") {
   if (status.isDirectory()) {
     return await writeFile(pathLike, "", { mode, flag: "w" });
   } else {
-    return await ofError(promises.readdir(dirPath));
+    try {
+      await readdir(dirPath);
+      return undefined;
+    } catch (error) {
+      return error;
+    }
   }
 }

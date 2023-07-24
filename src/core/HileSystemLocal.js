@@ -1,11 +1,14 @@
 import { absolutePathFrom } from "./path/absolutePathFrom.js";
+
 import { createDirectory } from "./create/createDirectory.js";
 import { createFile } from "./create/createFile.js";
+
 import { dirIsExecutable } from "./dir/dirIsExecutable.js";
 import { dirIsReadable } from "./dir/dirIsReadable.js";
 import { dirIsVisible } from "./dir/dirIsVisible.js";
 import { dirIsWritable } from "./dir/dirIsWritable.js";
 import { dirIsEmpty } from "./dir/dirIsEmpty.js";
+
 import { fileExtension } from "./path/fileExtension.js";
 import { fileIsExecutable } from "./file/fileIsExecutable.js";
 import { fileIsReadable } from "./file/fileIsReadable.js";
@@ -15,21 +18,29 @@ import { fileName } from "./path/fileName.js";
 import { fileNameExt } from "./path/fileNameExt.js";
 import { filePath } from "./path/filePath.js";
 import { fileTruncate } from "./file/fileTruncate.js";
+
 import { listContents } from "./list/contents.js";
 import { listDirectories } from "./list/directories.js";
 import { listFiles } from "./list/files.js";
+
+import { getLinkStatus } from "./status/getLinkStatus.js";
 import { getStatus } from "./status/getStatus.js";
+
 import { isDirExists } from "./status/isDirExists.js";
 import { isFileExists } from "./status/isFileExists.js";
 import { isPathExists } from "./status/isPathExists.js";
+
 import { move } from "./move/move.js";
+
 import { pathFrom } from "./path/pathFrom.js";
+
 import { readFileToBase64 } from "./read/readFileToBase64.js";
 import { readFileToBuffer } from "./read/readFileToBuffer.js";
 import { readFileToString } from "./read/readFileToString.js";
 import { remove } from "./remove/remove.js";
 import { removeNonBlocking } from "./remove/removeNonBlocking.js";
 import { removeSilent } from "./remove/removeSilent.js";
+
 import { writeFile } from "./write/writeFile.js";
 import { writeFileTail } from "./write/writeFileTail.js";
 import { writeJSON } from "./write/writeJSON.js";
@@ -40,6 +51,7 @@ import { hashMd5 } from "./info/hash-md5.js";
 import { hashSha1 } from "./info/hash-sha1.js";
 import { hashSha256 } from "./info/hash-sha256.js";
 import { hashSha512 } from "./info/hash-sha512.js";
+
 import { size } from "./info/size.js";
 
 export class HileSystemLocal {
@@ -129,6 +141,16 @@ export class HileSystemLocal {
    * @throws {Error} If path is not a dir or is not readable.
    */
   dirIsEmpty = dirIsEmpty;
+  /**
+   * @name getLinkStatus
+   * @description Get file status unless `path` refers to a symbolic link, in which case the link itself is stat-ed, not the file that it refers to.
+   * @url http://man7.org/linux/man-pages/man2/lstat.2.html
+   * @since 1.1.0
+   * @async
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<Array.<(object|undefined|Error|{name: string, message: string, stack?: string})>>}
+   */
+  getLinkStatus = getLinkStatus;
   /**
    * @name getStatus
    * @description Get file status.

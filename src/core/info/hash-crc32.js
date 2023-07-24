@@ -1,4 +1,4 @@
-import { promises } from "fs";
+import { readFile } from "node:fs/promises";
 
 function crc32(text) {
   let chars = [];
@@ -27,5 +27,5 @@ function crc32(text) {
  * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
  */
 export async function hashCrc32(pathToFile) {
-  return crc32((await promises.readFile(pathToFile)).toString("binary")).toString(16);
+  return crc32((await readFile(pathToFile)).toString("binary")).toString(16);
 }

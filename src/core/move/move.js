@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { ofError } from "@await-of/of";
+import { rename } from "node:fs/promises";
 
 /**
  * @name move
@@ -11,9 +9,10 @@ import { ofError } from "@await-of/of";
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export async function move(pathFrom, pathTo) {
-  const errorRename = await ofError(promises.rename(pathFrom, pathTo));
-  if (errorRename) {
-    return errorRename;
+  try {
+    await rename(pathFrom, pathTo);
+    return true;
+  } catch (error) {
+    return error;
   }
-  return true;
 }

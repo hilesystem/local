@@ -1,4 +1,4 @@
-import { promises } from "fs";
+import { rm } from "node:fs/promises";
 
 /**
  * @name removeSilent
@@ -12,7 +12,7 @@ import { promises } from "fs";
  */
 export async function removeSilent(pathLike, options) {
   try {
-    await promises.rm(pathLike, {
+    await rm(pathLike, {
       force: true,
       recursive: true,
       ...options,

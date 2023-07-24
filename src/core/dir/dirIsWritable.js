@@ -1,4 +1,4 @@
-import { constants } from "fs";
+import { constants } from "node:fs";
 
 import { accessWrapper } from "../access/wrapper.js";
 

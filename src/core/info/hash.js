@@ -1,5 +1,5 @@
-import { createHash, getHashes } from "crypto";
-import { promises } from "fs";
+import { createHash, getHashes } from "node:crypto";
+import { readFile } from "node:fs/promises";
 
 /**
  * @name hash
@@ -16,6 +16,6 @@ export async function hash(pathToFile, algorithm) {
     throw new TypeError(`Digest algorithm [${algorithm}] is not supported.`);
   }
   return createHash(algorithm)
-    .update(await promises.readFile(pathToFile))
+    .update(await readFile(pathToFile))
     .digest("hex");
 }

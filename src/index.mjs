@@ -61,6 +61,7 @@ export { removeSilent } from "./core/remove/removeSilent.js";
 //#endregion
 
 //#region status
+export { getLinkStatus } from "./core/status/getLinkStatus.js";
 export { getStatus } from "./core/status/getStatus.js";
 export { isDirExists } from "./core/status/isDirExists.js";
 export { isFileExists } from "./core/status/isFileExists.js";

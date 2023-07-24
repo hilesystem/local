@@ -416,6 +416,17 @@ export function removeSilent(pathLike: string, options?: RmOptions): Promise<voi
 //#region status
 
 /**
+ * @name getLinkStatus
+ * @description Get file status unless `path` refers to a symbolic link, in which case the link itself is stat-ed, not the file that it refers to.
+ * @url http://man7.org/linux/man-pages/man2/lstat.2.html
+ * @since 1.1.0
+ * @async
+ * @param {string|Buffer|URL} path
+ * @returns {Promise<Array.<(object|undefined|Error|{name: string, message: string, stack?: string})>>}
+ */
+export function getLinkStatus(path: PathLike): Promise<[Stats?, Error?]>;
+
+/**
  * @name getStatus
  * @description Get file status.
  * @since 0.0.11
@@ -655,6 +666,79 @@ export class HileSystemLocal {
 
   //#endregion
 
+  //#region info
+
+  /**
+   * @name hash
+   * @description Calculate hash.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @param {string} algorithm
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   * @throws {TypeError} If algorithm is not supported.
+   */
+  public hash(pathToFile: PathLike, algorithm: string): Promise<string | Error>;
+
+  /**
+   * @name hashCrc32
+   * @description CRC32.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  public hashCrc32(pathToFile: PathLike): Promise<string | Error>;
+
+  /**
+   * @name hashMd5
+   * @description MD5.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  public hashMd5(pathToFile: PathLike): Promise<string | Error>;
+
+  /**
+   * @name hashSha1
+   * @description SHA-1.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  public hashSha1(pathToFile: PathLike): Promise<string | Error>;
+
+  /**
+   * @name hashSha256
+   * @description SHA-256.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @returns {Promise<string|Error|{name: string, message: string, stack?: string}>}
+   */
+  public hashSha256(pathToFile: PathLike): Promise<string | Error>;
+
+  /**
+   * @name size
+   * @description File size in bytes.
+   * @since 0.2.3
+   * @async
+   * @public
+   * @param {string|Buffer|URL} pathToFile
+   * @param {boolean=} [asString=false]
+   * @returns {Promise<number|string|Error|{name: string, message: string, stack?: string}>}
+   */
+  public size(pathToFile: PathLike, asString?: boolean): Promise<number | string | Error>;
+
+  //#endregion
+
   //#region list
 
   /**
@@ -813,7 +897,16 @@ export class HileSystemLocal {
   //#endregion
 
   //#region status
-
+  /**
+   * @name getLinkStatus
+   * @description Get file status unless `path` refers to a symbolic link, in which case the link itself is stat-ed, not the file that it refers to.
+   * @url http://man7.org/linux/man-pages/man2/lstat.2.html
+   * @since 1.1.0
+   * @async
+   * @param {string|Buffer|URL} path
+   * @returns {Promise<Array.<(object|undefined|Error|{name: string, message: string, stack?: string})>>}
+   */
+  public getLinkStatus(path: PathLike): Promise<[Stats?, Error?]>;
   /**
    * @name getStatus
    * @description Get file status.

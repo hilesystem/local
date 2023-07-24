@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { ofError } from "@await-of/of";
+import { access } from "node:fs/promises";
 
 /**
  * @name accessWrapper
@@ -12,9 +10,10 @@ import { ofError } from "@await-of/of";
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export async function accessWrapper(mode, path) {
-  const fsError = await ofError(promises.access(path, mode));
-  if (!fsError) {
+  try {
+    await access(path, mode);
     return true;
+  } catch (error) {
+    return error;
   }
-  return fsError;
 }

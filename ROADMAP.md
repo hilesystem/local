@@ -21,3 +21,5 @@
 -   process.permission.has('fs.write');
 
 -   https://github.com/jsenv/jsenv-util
+
+-   https://twitter.com/tshemsedinov/status/1681888355288489984

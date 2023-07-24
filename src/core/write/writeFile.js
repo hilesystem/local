@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { ofError } from "@await-of/of";
+import { writeFile as writeFileNative } from "node:fs/promises";
 
 /**
  * @name writeFile
@@ -26,9 +24,10 @@ import { ofError } from "@await-of/of";
  * controller.abort();
  */
 export async function writeFile(filePath, data, options) {
-  const writeError = await ofError(promises.writeFile(filePath, data, options));
-  if (writeError) {
-    return writeError;
+  try {
+    await writeFileNative(filePath, data, options);
+    return true;
+  } catch (error) {
+    return error;
   }
-  return true;
 }

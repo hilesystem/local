@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { ofError } from "@await-of/of";
+import { mkdir } from "node:fs/promises";
 
 /**
  * @name createDirectory
@@ -13,9 +11,10 @@ import { ofError } from "@await-of/of";
  * @returns {Promise<boolean|Error|{name: string, message: string, stack?: string}>}
  */
 export async function createDirectory(dirPath, mode = "0777", recursive = true) {
-  const dirError = await ofError(promises.mkdir(dirPath, { mode, recursive }));
-  if (dirError) {
-    return dirError;
+  try {
+    await mkdir(dirPath, { mode, recursive });
+    return true;
+  } catch (error) {
+    return error;
   }
-  return true;
 }

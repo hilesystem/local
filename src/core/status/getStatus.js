@@ -1,6 +1,4 @@
-import { promises } from "fs";
-
-import { of } from "@await-of/of";
+import { stat } from "node:fs/promises";
 
 /**
  * @name getStatus
@@ -11,5 +9,9 @@ import { of } from "@await-of/of";
  * @returns {Promise<Array.<(object|undefined|Error|{name: string, message: string, stack?: string})>>}
  */
 export async function getStatus(path) {
-  return of(promises.stat(path));
+  try {
+    return [await stat(path)];
+  } catch (error) {
+    return [undefined, error];
+  }
 }

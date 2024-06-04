@@ -1,2 +1,559 @@
-"use strict";function _interopDefault(e){return e&&"object"==typeof e&&"default"in e?e.default:e}Object.defineProperty(exports,"__esModule",{value:!0});var e=require("node:fs/promises"),t=require("node:path"),r=require("node:fs"),i=require("node:crypto"),s=_interopDefault(require("os")),n=_interopDefault(require("fs")),a=_interopDefault(require("node:assert"));async function createDirectory(t,r="0777",i=!0){try{return await e.mkdir(t,{mode:r,recursive:i}),!0}catch(e){return e}}async function getStatus(t){try{return[await e.stat(t)]}catch(e){return[void 0,e]}}async function writeFile(t,r,i){try{return await e.writeFile(t,r,i),!0}catch(e){return e}}async function createFile(r,i="0777"){const[s,n]=await getStatus(r);if(!n&&s.isFile())return!0;const a=t.dirname(r);if(n&&"ENOENT"===n.code){const e=await createDirectory(a,i);if(!0!==e)return e;const t=await writeFile(r,"",{mode:i,flag:"w"});return!0===t||t}if(s.isDirectory())return await writeFile(r,"",{mode:i,flag:"w"});try{return void await e.readdir(a)}catch(n){return n}}async function accessWrapper(t,r){try{return await e.access(r,t),!0}catch(e){return e}}async function dirIsReadable(e){return accessWrapper(r.constants.R_OK,e)}const o=new RegExp(["^npm-debug\\.log$","^\\..*\\.swp$","^\\.DS_Store$","^\\.AppleDouble$","^\\.LSOverride$","^Icon\\r$","^\\._.*","^\\.Spotlight-V100(?:$|\\/)","\\.Trashes","^__MACOSX$","~$","^Thumbs\\.db$","^ehthumbs\\.db$","^Desktop\\.ini$","@eaDir$","^\\$RECYCLE.BIN$","^System Volume Information$"].join("|"));function isNotSystemJunk(e){return!function isSystemJunk(e){return o.test(e)}(e)}async function listContents(t,r=!0){try{const i=await e.readdir(t);return r?i.filter(isNotSystemJunk):i}catch(e){return e}}const c=[".AppleDB",".AppleDesktop",".AppleDouble",".DS_Store",".DocumentRevisions-V100",".LSOverride",".Spotlight-V100",".TemporaryItems",".Trashes",".VolumeIcon.icns",".apdisk",".com.apple.timemachine.donotpresent",".fseventsd","Network Trash Folder","Temporary Items","$RECYCLE.BIN/","Desktop.ini","Thumbs.db","Thumbs.db:encryptable","desktop.ini","ehthumbs.db","ehthumbs_vista.db",".directory"];async function dirIsEmpty(e,t=!0){const r=await dirIsReadable(e);if(!0!==r)throw new Error(r.message,function errorExtractOptions(e){return e instanceof Error?"code"in e&&"errno"in e&&"path"in e&&"syscall"in e?{cause:{code:e.code,values:{errno:e.errno,path:e.path,syscall:e.syscall}}}:void 0:{cause:e}}(r));let i=await listContents(e);if(i instanceof Error)throw i;return 0===i.length||!!t&&function isEmptyContent(e){const t=new Set(e);return e.length=0,t.forEach(e=>{for(const r of c)e&&(e===r||e.match(RegExp(r)))&&t.delete(e)}),0===t.size}(i)}async function dirIsExecutable(e){return accessWrapper(r.constants.X_OK,e)}async function dirIsVisible(e){return accessWrapper(r.constants.F_OK,e)}async function dirIsWritable(e){return accessWrapper(r.constants.W_OK,e)}async function hash(t,r){if(!i.getHashes().includes(r))throw new TypeError(`Digest algorithm [${r}] is not supported.`);return i.createHash(r).update(await e.readFile(t)).digest("hex")}async function hashCrc32(t){return function crc32(e){let t,r=[];for(let e=0;e<256;e++){t=e;for(let e=0;e<8;e++)t=1&t?3988292384^t>>>1:t>>>1;r[e]=t}let i=-1,s=0;for(;s<e.length;s++)i=i>>>8^r[255&(i^e.charCodeAt(s))];return(-1^i)>>>0}((await e.readFile(t)).toString("binary")).toString(16)}async function hashMd5(e){return hash(e,"md5")}async function hashSha1(e){return hash(e,"sha1")}async function hashSha256(e){return hash(e,"sha256")}async function hashSha512(e){return hash(e,"sha512")}async function size(t,r=!1){const i=await e.stat(t);return r?i.size.toLocaleString("en").replace(/,/g,"_"):i.size}async function fileIsExecutable(e){return accessWrapper(r.constants.X_OK,e)}async function fileIsReadable(e){return accessWrapper(r.constants.R_OK,e)}async function fileIsVisible(e){return accessWrapper(r.constants.F_OK,e)}async function fileIsWritable(e){return accessWrapper(r.constants.W_OK,e)}async function fileTruncate(t,r=0){try{return await e.truncate(t,r),!0}catch(e){return e}}function pathFrom(e,...r){let i;return i=Array.isArray(e)?e.map(e=>e.toString()):[e.toString()],r.length&&(i=i.concat(r.map(e=>e.toString()))),t.normalize(t.join(...i))}async function listDirectories(e){const t=await listContents(e);if(!Array.isArray(t))return t;return(await Promise.all(t.map(async t=>{const r=pathFrom(e,t),[i,s]=await getStatus(r);if(!s&&i.isDirectory())return t}))).filter(e=>e)}async function listFiles(e){const t=await listContents(e);if(!Array.isArray(t))return t;return(await Promise.all(t.map(async t=>{const r=pathFrom(e,t),[i,s]=await getStatus(r);if(!s&&!i.isDirectory())return t}))).filter(e=>e)}async function move(t,r){try{return await e.rename(t,r),!0}catch(e){return e}}const l=s.homedir();function absolutePath(e){return l?String(e).replace(/^~(?=$|\/|\\)/,l):String(e)}function absolutePathFrom(e,...r){let i;return i=Array.isArray(e)?e.map(e=>e.toString()):[e.toString()],r.length&&(i=i.concat(r.map(e=>e.toString()))),absolutePath(t.resolve(...i))}function fileExtension(e){return t.extname(e).substring(1)}function fileName(e){return t.parse(e).name}function fileNameExt(e){return t.basename(e)}function filePath(e){return t.dirname(e)}async function readFileToBase64(t){try{return(await e.readFile(t,"base64")).toString()}catch(e){return e}}async function readFileToBuffer(t){try{const r=await e.readFile(t,"binary");return Buffer.from(r)}catch(e){return e}}async function readFileToString(t){try{return(await e.readFile(absolutePath(t),"utf8")).toString()}catch(e){return e}}const u="win32"===process.platform;function rimraf(e,t,r){let i=0,s=r,o=t;"function"==typeof o&&(s=o,o={}),a(e,"remove(): missing path"),a.strictEqual(typeof e,"string","remove(): path should be a string"),a.strictEqual(typeof s,"function","remove(): callback function required"),a(o,"remove(): invalid options argument provided"),a.strictEqual(typeof o,"object","remove(): options should be object"),function defaults(e){["unlink","chmod","stat","lstat","rmdir","readdir"].forEach(t=>{e[t]=e[t]||n[t]}),e.maxBusyTries=e.maxBusyTries||3}(o),rimraf_(e,o,(function callbackRimraf(t){if(t){if(("EBUSY"===t.code||"ENOTEMPTY"===t.code||"EPERM"===t.code)&&i<o.maxBusyTries){i++;return void setTimeout(()=>rimraf_(e,o,callbackRimraf),100*i)}if("ENOENT"===t.code)return void s(null)}s(t)}))}function rimraf_(e,t,r){a(e),a(t),a("function"==typeof r),t.lstat(e,(i,s)=>i&&"ENOENT"===i.code?r(null):i&&"EPERM"===i.code&&u?fixWinEPERM(e,t,i,r):s&&s.isDirectory()?rmdir(e,t,i,r):void t.unlink(e,i=>{if(i){if("ENOENT"===i.code)return r(null);if("EPERM"===i.code)return u?fixWinEPERM(e,t,i,r):rmdir(e,t,i,r);if("EISDIR"===i.code)return rmdir(e,t,i,r)}return r(i)}))}function fixWinEPERM(e,t,r,i){return a(e),a(t),a("function"==typeof i),r&&a(r instanceof Error),t.chmod(e,438,s=>{s?"ENOENT"===s.code?i(null):i(r):t.stat(e,(s,n)=>{s?"ENOENT"===s.code?i(null):i(r):n.isDirectory()?rmdir(e,t,r,i):t.unlink(e,i)})}),null}function rmdir(e,r,i,s){return a(e),a(r),i&&a(i instanceof Error),a("function"==typeof s),r.rmdir(e,n=>{!n||"ENOTEMPTY"!==n.code&&"EEXIST"!==n.code&&"EPERM"!==n.code?n&&"ENOTDIR"===n.code?s(i):s(n):function removeSubPath(e,r,i){a(e),a(r),a("function"==typeof i),r.readdir(e,(s,n)=>{if(s)return i(s);let a,o=n.length;if(0===o)return r.rmdir(e,i);n.forEach(s=>{rimraf(t.join(e,s),r,t=>{a||(t?i(a=t):(--o,0===o&&r.rmdir(e,i)))})})})}(e,r,s)}),null}async function remove(e){return new Promise(t=>{rimraf(e,{},e=>{e?t(e):t()})})}function removeNonBlocking(e){remove(e).then(()=>{}).catch(()=>{})}async function removeSilent(t,r){try{await e.rm(t,{force:!0,recursive:!0,...r})}catch(e){}}async function getLinkStatus(t){try{return[await e.lstat(t)]}catch(e){return[void 0,e]}}async function isDirExists(e){const[t,r]=await getStatus(e);return!r&&t.isDirectory()}async function isFileExists(e){const[t,r]=await getStatus(e);return!r&&t.isFile()}async function isPathExists(e){const[t]=await getStatus(e);return Boolean(t)}async function writeFileTail(e,t,r){if(!1===await isFileExists(e)){const t=await createFile(e);if(!0!==t)return t}const i=await readFileToString(e);return i instanceof Error?i:new Promise((s,n)=>{setTimeout(()=>{writeFile(e,`${String(i)}${String(t)}`,r).then(()=>{s(!0)}).catch(e=>{n(e)})},1)})}function isObjectLike(e){return null!==e&&"object"==typeof e&&!Array.isArray(e)}function collectionSortKeys(e,t=!0){if(!isObjectLike(e))return Array.isArray(e)?e.map(e=>collectionSortKeys(e,t)):e;const r=function objectKeys(e){return Object.keys(e).sort((e,t)=>e.localeCompare(t))}(e);return r.length?r.reduce((r,i)=>(t&&isObjectLike(e[i])||t&&Array.isArray(e[i])?r[i]=collectionSortKeys(e[i],t):r[i]=e[i],r),{}):e}async function writeJSON(e,t,r,i){let s,n=t;try{i?(i.sort&&(n=isObjectLike(t)?collectionSortKeys(JSON.parse(JSON.stringify(t))):Array.isArray(t)?JSON.parse(JSON.stringify(t)):t),i.space&&(s=JSON.stringify(n,null,i.space))):s=JSON.stringify(n)}catch(e){return e}return writeFile(e,s,r)}function _defineProperty(e,t,r){return(t=function _toPropertyKey(e){var t=function _toPrimitive(e,t){if("object"!=typeof e||null===e)return e;var r=e[Symbol.toPrimitive];if(void 0!==r){var i=r.call(e,t||"default");if("object"!=typeof i)return i;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===t?String:Number)(e)}(e,"string");return"symbol"==typeof t?t:String(t)}(t))in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}exports.HileSystemLocal=class HileSystemLocal{constructor(){_defineProperty(this,"absolutePathFrom",absolutePathFrom),_defineProperty(this,"createDirectory",createDirectory),_defineProperty(this,"createFile",createFile),_defineProperty(this,"dirIsExecutable",dirIsExecutable),_defineProperty(this,"dirIsReadable",dirIsReadable),_defineProperty(this,"dirIsVisible",dirIsVisible),_defineProperty(this,"dirIsWritable",dirIsWritable),_defineProperty(this,"dirIsEmpty",dirIsEmpty),_defineProperty(this,"getLinkStatus",getLinkStatus),_defineProperty(this,"getStatus",getStatus),_defineProperty(this,"isDirExists",isDirExists),_defineProperty(this,"isFileExists",isFileExists),_defineProperty(this,"isPathExists",isPathExists),_defineProperty(this,"fileExtension",fileExtension),_defineProperty(this,"fileName",fileName),_defineProperty(this,"fileNameExt",fileNameExt),_defineProperty(this,"filePath",filePath),_defineProperty(this,"fileIsExecutable",fileIsExecutable),_defineProperty(this,"fileIsReadable",fileIsReadable),_defineProperty(this,"fileIsVisible",fileIsVisible),_defineProperty(this,"fileIsWritable",fileIsWritable),_defineProperty(this,"fileTruncate",fileTruncate),_defineProperty(this,"hash",hash),_defineProperty(this,"hashCrc32",hashCrc32),_defineProperty(this,"hashMd5",hashMd5),_defineProperty(this,"hashSha1",hashSha1),_defineProperty(this,"hashSha256",hashSha256),_defineProperty(this,"hashSha512",hashSha512),_defineProperty(this,"listContents",listContents),_defineProperty(this,"listDirectories",listDirectories),_defineProperty(this,"listFiles",listFiles),_defineProperty(this,"move",move),_defineProperty(this,"pathFrom",pathFrom),_defineProperty(this,"readFileToBase64",readFileToBase64),_defineProperty(this,"readFileToBuffer",readFileToBuffer),_defineProperty(this,"readFileToString",readFileToString),_defineProperty(this,"remove",remove),_defineProperty(this,"removeNonBlocking",removeNonBlocking),_defineProperty(this,"removeSilent",removeSilent),_defineProperty(this,"size",size),_defineProperty(this,"writeFile",writeFile),_defineProperty(this,"writeFileTail",writeFileTail),_defineProperty(this,"writeJSON",writeJSON)}},exports.absolutePathFrom=absolutePathFrom,exports.createDirectory=createDirectory,exports.createFile=createFile,exports.dirIsEmpty=dirIsEmpty,exports.dirIsExecutable=dirIsExecutable,exports.dirIsReadable=dirIsReadable,exports.dirIsVisible=dirIsVisible,exports.dirIsWritable=dirIsWritable,exports.fileExtension=fileExtension,exports.fileIsExecutable=fileIsExecutable,exports.fileIsReadable=fileIsReadable,exports.fileIsVisible=fileIsVisible,exports.fileIsWritable=fileIsWritable,exports.fileName=fileName,exports.fileNameExt=fileNameExt,exports.filePath=filePath,exports.fileTruncate=fileTruncate,exports.getLinkStatus=getLinkStatus,exports.getStatus=getStatus,exports.hash=hash,exports.hashCrc32=hashCrc32,exports.hashMd5=hashMd5,exports.hashSha1=hashSha1,exports.hashSha256=hashSha256,exports.hashSha512=hashSha512,exports.isDirExists=isDirExists,exports.isFileExists=isFileExists,exports.isPathExists=isPathExists,exports.listContents=listContents,exports.listDirectories=listDirectories,exports.listFiles=listFiles,exports.move=move,exports.pathFrom=pathFrom,exports.readFileToBase64=readFileToBase64,exports.readFileToBuffer=readFileToBuffer,exports.readFileToString=readFileToString,exports.remove=remove,exports.removeNonBlocking=removeNonBlocking,exports.removeSilent=removeSilent,exports.size=size,exports.writeFile=writeFile,exports.writeFileTail=writeFileTail,exports.writeJSON=writeJSON;
-//# sourceMappingURL=index.js.map
+import { mkdir as j, stat as x, writeFile as z, readdir as F, access as Y, readFile as y, truncate as X, rename as H, rm as U, lstat as q } from "node:fs/promises";
+import { dirname as v, normalize as G, join as R, resolve as Q, extname as Z, parse as L, basename as k } from "node:path";
+import tt, { constants as a } from "node:fs";
+import { getHashes as et, createHash as rt } from "node:crypto";
+import { homedir as nt } from "node:os";
+import c from "node:assert";
+async function p(t, e = "0777", r = !0) {
+  try {
+    return await j(t, { mode: e, recursive: r }), !0;
+  } catch (n) {
+    return n;
+  }
+}
+async function l(t) {
+  try {
+    return [await x(t), void 0];
+  } catch (e) {
+    return [void 0, e];
+  }
+}
+async function h(t, e, r = null) {
+  try {
+    return await z(t, e, r), !0;
+  } catch (n) {
+    return n;
+  }
+}
+async function A(t, e = "0777") {
+  const [r, n] = await l(t);
+  if (!n && r.isFile())
+    return !0;
+  const i = v(t);
+  if (n && n.code === "ENOENT") {
+    const s = await p(i, e);
+    if (s !== !0)
+      return s;
+    const u = await h(t, "", { mode: e, flag: "w" });
+    return u !== !0 ? u : !0;
+  }
+  if (r.isDirectory())
+    return await h(t, "", { mode: e, flag: "w" });
+  try {
+    await F(i);
+    return;
+  } catch (s) {
+    return s;
+  }
+}
+function it(t) {
+  return t instanceof Error ? "code" in t && "errno" in t && "path" in t && "syscall" in t ? {
+    cause: {
+      code: t.code,
+      values: {
+        errno: t.errno,
+        path: t.path,
+        syscall: t.syscall
+      }
+    }
+  } : { cause: t } : { cause: t };
+}
+async function f(t, e) {
+  try {
+    return await Y(e, t), !0;
+  } catch (r) {
+    return r;
+  }
+}
+async function $(t) {
+  var e, r;
+  if (((e = process == null ? void 0 : process.permission) == null ? void 0 : e.has("fs.read")) !== void 0) {
+    const n = (r = process.permission) == null ? void 0 : r.has("fs.read", t);
+    if (n !== void 0)
+      return n;
+  }
+  return f(a.R_OK, t);
+}
+const st = [
+  // # All
+  "^npm-debug\\.log$",
+  // Error log for npm
+  "^\\..*\\.swp$",
+  // Swap file for vim state
+  // # macOS
+  "^\\.DS_Store$",
+  // Stores custom folder attributes
+  "^\\.AppleDouble$",
+  // Stores additional file resources
+  "^\\.LSOverride$",
+  // Contains the absolute path to the app to be used
+  "^Icon\\r$",
+  // Custom Finder icon: http://superuser.com/questions/298785/icon-file-on-os-x-desktop
+  "^\\._.*",
+  // Thumbnail
+  "^\\.Spotlight-V100(?:$|\\/)",
+  // Directory that might appear on external disk
+  "\\.Trashes",
+  // File that might appear on external disk
+  "^__MACOSX$",
+  // Resource fork
+  // # Linux
+  "~$",
+  // Backup file
+  // # Windows
+  "^Thumbs\\.db$",
+  // Image file cache
+  "^ehthumbs\\.db$",
+  // Folder config file
+  "^Desktop\\.ini$",
+  // Stores custom folder attributes
+  "@eaDir$",
+  // Synology Diskstation "hidden" folder where the server stores thumbnails
+  "^\\$RECYCLE.BIN$",
+  // Special folder with columns like Date deleted and Original location
+  "^System Volume Information$"
+], ut = new RegExp(st.join("|"));
+function ct(t) {
+  return ut.test(t);
+}
+function ot(t) {
+  return !ct(t);
+}
+async function S(t, e = !0) {
+  try {
+    const r = await F(t);
+    return e ? r.filter(ot) : r;
+  } catch (r) {
+    return r;
+  }
+}
+const at = [
+  // macOS
+  ".AppleDB",
+  ".AppleDesktop",
+  ".AppleDouble",
+  ".DS_Store",
+  ".DocumentRevisions-V100",
+  ".LSOverride",
+  ".Spotlight-V100",
+  ".TemporaryItems",
+  ".Trashes",
+  ".VolumeIcon.icns",
+  // "._*",
+  ".apdisk",
+  ".com.apple.timemachine.donotpresent",
+  ".fseventsd",
+  "Network Trash Folder",
+  "Temporary Items",
+  // Windows
+  "$RECYCLE.BIN/",
+  // "*.cab",
+  // "*.lnk",
+  // "*.msi",
+  // "*.msix",
+  // "*.msm",
+  // "*.msp",
+  // "*.stackdump",
+  "Desktop.ini",
+  "Thumbs.db",
+  "Thumbs.db:encryptable",
+  "desktop.ini",
+  "ehthumbs.db",
+  "ehthumbs_vista.db",
+  // Linux
+  // "*~",
+  // ".Trash-*",
+  ".directory"
+  // ".fuse_hidden*",
+  // ".nfs*",
+];
+function ft(t) {
+  const e = new Set(t);
+  return t.length = 0, e.forEach((r) => {
+    for (const n of at)
+      r && (r === n || r.match(RegExp(n))) && e.delete(r);
+  }), e.size === 0;
+}
+async function lt(t, e = !0) {
+  const r = await $(t);
+  if (r !== !0)
+    throw new Error(r.message, it(r));
+  let n = await S(t);
+  if (n instanceof Error)
+    throw n;
+  return n.length === 0 ? !0 : e ? ft(n) : !1;
+}
+async function ht(t) {
+  return f(a.X_OK, t);
+}
+async function yt(t) {
+  return f(a.F_OK, t);
+}
+async function mt(t) {
+  var e, r;
+  if (((e = process == null ? void 0 : process.permission) == null ? void 0 : e.has("fs.write")) !== void 0) {
+    const n = (r = process.permission) == null ? void 0 : r.has("fs.write", t);
+    if (n !== void 0)
+      return n;
+  }
+  return f(a.W_OK, t);
+}
+async function m(t, e) {
+  if (!et().includes(e))
+    throw new TypeError(`Digest algorithm [${e}] is not supported.`);
+  return rt(e).update(await y(t)).digest("hex");
+}
+function dt(t) {
+  let e = [], r;
+  for (let s = 0; s < 256; s++) {
+    r = s;
+    for (let u = 0; u < 8; u++)
+      r = 1 & r ? 3988292384 ^ r >>> 1 : r >>> 1;
+    e[s] = r;
+  }
+  let n = -1, i = 0;
+  for (; i < t.length; i++)
+    n = n >>> 8 ^ e[255 & (n ^ t.charCodeAt(i))];
+  return (-1 ^ n) >>> 0;
+}
+async function _(t) {
+  return dt((await y(t)).toString("binary")).toString(16);
+}
+async function D(t) {
+  return m(t, "md5");
+}
+async function P(t) {
+  return m(t, "sha1");
+}
+async function C(t) {
+  return m(t, "sha256");
+}
+async function B(t) {
+  return m(t, "sha512");
+}
+async function Et(t) {
+  return await Promise.all([
+    _(t),
+    D(t),
+    P(t),
+    C(t),
+    B(t)
+  ]).then(
+    ([
+      //
+      e,
+      r,
+      n,
+      i,
+      s
+    ]) => ({ crc32: e, md5: r, sha1: n, sha256: i, sha512: s })
+  );
+}
+async function wt(t, e = !1) {
+  const r = await x(t);
+  return e ? r.size.toLocaleString("en").replace(/,/g, "_") : r.size;
+}
+async function St(t) {
+  return f(a.X_OK, t);
+}
+async function gt(t) {
+  return f(a.R_OK, t);
+}
+async function Ot(t) {
+  return f(a.F_OK, t);
+}
+async function It(t) {
+  return f(a.W_OK, t);
+}
+async function bt(t, e = 0) {
+  try {
+    return await X(t, e), !0;
+  } catch (r) {
+    return r;
+  }
+}
+function O(t, ...e) {
+  let r;
+  return Array.isArray(t) ? r = t.map((n) => n.toString()) : r = [t.toString()], e.length && (r = r.concat(e.map((n) => n.toString()))), G(R(...r));
+}
+async function Nt(t) {
+  const e = await S(t);
+  return Array.isArray(e) ? (await Promise.all(
+    e.map(async (n) => {
+      const i = O(t, n), [s, u] = await l(i);
+      if (!u && s.isDirectory())
+        return n;
+    })
+  )).filter((n) => n) : e;
+}
+async function Tt(t) {
+  const e = await S(t);
+  return Array.isArray(e) ? (await Promise.all(
+    e.map(async (n) => {
+      const i = O(t, n), [s, u] = await l(i);
+      if (!u && !s.isDirectory())
+        return n;
+    })
+  )).filter((n) => n) : e;
+}
+async function xt(t, e) {
+  try {
+    return await H(t, e), !0;
+  } catch (r) {
+    return r;
+  }
+}
+const I = nt();
+function M(t) {
+  return I ? String(t).replace(/^~(?=$|\/|\\)/, I) : String(t);
+}
+function Ft(t, ...e) {
+  let r;
+  return Array.isArray(t) ? r = t.map((n) => n.toString()) : r = [t.toString()], e.length && (r = r.concat(e.map((n) => n.toString()))), M(Q(...r));
+}
+function vt(t) {
+  return Z(t).substring(1);
+}
+function Rt(t) {
+  return L(t).name;
+}
+function pt(t) {
+  return k(t);
+}
+function At(t) {
+  return v(t);
+}
+async function $t(t) {
+  try {
+    return (await y(t, "base64")).toString();
+  } catch (e) {
+    return e;
+  }
+}
+async function _t(t) {
+  try {
+    const e = await y(t, "binary");
+    return Buffer.from(e);
+  } catch (e) {
+    return e;
+  }
+}
+async function W(t) {
+  try {
+    return (await y(M(t), "utf8")).toString();
+  } catch (e) {
+    return e;
+  }
+}
+const b = process.platform === "win32";
+function Dt(t) {
+  ["unlink", "chmod", "stat", "lstat", "rmdir", "readdir"].forEach((r) => {
+    t[r] = t[r] || tt[r];
+  }), t.maxBusyTries = t.maxBusyTries || 3;
+}
+function J(t, e, r) {
+  let n = 0, i = r, s = e;
+  typeof s == "function" && (i = s, s = {}), c(t, "remove(): missing path"), c(s, "remove(): invalid options argument provided"), Dt(s), N(t, s, function u(o) {
+    if (o) {
+      if ((o.code === "EBUSY" || o.code === "ENOTEMPTY" || o.code === "EPERM") && n < s.maxBusyTries) {
+        n++;
+        const d = n * 100;
+        setTimeout(() => N(t, s, u), d);
+        return;
+      }
+      if (o.code === "ENOENT") {
+        i(null);
+        return;
+      }
+    }
+    i(o);
+  });
+}
+function N(t, e, r) {
+  c(t), c(e), c(typeof r == "function"), e.lstat(t, (n, i) => {
+    if (n && n.code === "ENOENT")
+      return r(null);
+    if (n && n.code === "EPERM" && b)
+      return T(t, e, n, r);
+    if (i && i.isDirectory())
+      return E(t, e, n, r);
+    e.unlink(t, (s) => {
+      if (s) {
+        if (s.code === "ENOENT")
+          return r(null);
+        if (s.code === "EPERM")
+          return b ? T(t, e, s, r) : E(t, e, s, r);
+        if (s.code === "EISDIR")
+          return E(t, e, s, r);
+      }
+      return r(s);
+    });
+  });
+}
+function T(t, e, r, n) {
+  return c(t), c(e), c(typeof n == "function"), r && c(r instanceof Error), e.chmod(t, 438, (i) => {
+    i ? i.code === "ENOENT" ? n(null) : n(r) : e.stat(
+      t,
+      (s, u) => {
+        s ? s.code === "ENOENT" ? n(null) : n(r) : u.isDirectory() ? E(t, e, r, n) : e.unlink(t, n);
+      }
+    );
+  }), null;
+}
+function E(t, e, r, n) {
+  return c(t), c(e), r && c(r instanceof Error), c(typeof n == "function"), e.rmdir(t, (i) => {
+    i && (i.code === "ENOTEMPTY" || i.code === "EEXIST" || i.code === "EPERM") ? Pt(t, e, n) : i && i.code === "ENOTDIR" ? n(r) : n(i);
+  }), null;
+}
+function Pt(t, e, r) {
+  c(t), c(e), c(typeof r == "function"), e.readdir(t, (n, i) => {
+    if (n)
+      return r(n);
+    let s = i.length, u = null;
+    if (s === 0)
+      return e.rmdir(t, r);
+    i.forEach((o) => {
+      J(R(t, o), e, (d) => {
+        if (!u) {
+          if (d) {
+            r(u = d);
+            return;
+          }
+          --s, s === 0 && e.rmdir(t, r);
+        }
+      });
+    });
+  });
+}
+async function K(t) {
+  return new Promise((e) => {
+    J(t, {}, (r) => {
+      e(r || !0);
+    });
+  });
+}
+function Ct(t) {
+  K(t).then(() => {
+  }).catch(() => {
+  });
+}
+async function Bt(t, e) {
+  try {
+    await U(t, {
+      force: !0,
+      recursive: !0,
+      ...e
+    });
+  } catch {
+  }
+}
+async function Mt(t) {
+  try {
+    return [await q(t), void 0];
+  } catch (e) {
+    return [void 0, e];
+  }
+}
+async function Wt(t) {
+  const [e, r] = await l(t);
+  return r ? !1 : e.isDirectory();
+}
+async function V(t) {
+  const [e, r] = await l(t);
+  return r ? !1 : e.isFile();
+}
+async function Jt(t) {
+  const [e] = await l(t);
+  return !!e;
+}
+async function Kt(t, e, r = null) {
+  if (!await V(t)) {
+    const s = await A(t);
+    if (s !== !0)
+      return s;
+  }
+  const i = await W(t);
+  return i instanceof Error ? i : new Promise((s, u) => {
+    setTimeout(() => {
+      h(t, `${String(i)}${String(e)}`, r).then(() => {
+        s(!0);
+      }).catch((o) => {
+        u(o);
+      });
+    }, 1);
+  });
+}
+function Vt(t) {
+  return Object.keys(t).sort((e, r) => e.localeCompare(r));
+}
+function g(t) {
+  return t !== null && typeof t == "object" && !Array.isArray(t);
+}
+function w(t, e = !0) {
+  if (!g(t))
+    return Array.isArray(t) ? t.map((n) => w(n, e)) : t;
+  const r = Vt(t);
+  return r.length ? r.reduce((n, i) => (e && g(t[i]) || e && Array.isArray(t[i]) ? n[i] = w(t[i], e) : n[i] = t[i], n), {}) : t;
+}
+async function jt(t, e, r = null, n) {
+  let i, s = e;
+  try {
+    n ? (n.sort && (g(e) ? s = w(JSON.parse(JSON.stringify(e))) : Array.isArray(e) && (s = JSON.parse(JSON.stringify(e)))), n.space && (i = JSON.stringify(s, null, n.space))) : i = JSON.stringify(s);
+  } catch (u) {
+    return u;
+  }
+  return h(t, i, r);
+}
+class Gt {
+  constructor() {
+    this.absolutePathFrom = Ft, this.createDirectory = p, this.createFile = A, this.dirIsExecutable = ht, this.dirIsReadable = $, this.dirIsVisible = yt, this.dirIsWritable = mt, this.dirIsEmpty = lt, this.getLinkStatus = Mt, this.getStatus = l, this.isDirExists = Wt, this.isFileExists = V, this.isPathExists = Jt, this.fileExtension = vt, this.fileName = Rt, this.fileNameExt = pt, this.filePath = At, this.fileIsExecutable = St, this.fileIsReadable = gt, this.fileIsVisible = Ot, this.fileIsWritable = It, this.fileTruncate = bt, this.hash = m, this.hashCrc32 = _, this.hashMd5 = D, this.hashMulti = Et, this.hashSha1 = P, this.hashSha256 = C, this.hashSha512 = B, this.listContents = S, this.listDirectories = Nt, this.listFiles = Tt, this.move = xt, this.pathFrom = O, this.readFileToBase64 = $t, this.readFileToBuffer = _t, this.readFileToString = W, this.remove = K, this.removeNonBlocking = Ct, this.removeSilent = Bt, this.size = wt, this.writeFile = h, this.writeFileTail = Kt, this.writeJson = jt;
+  }
+}
+export {
+  Gt as HileSystemLocal,
+  Ft as absolutePathFrom,
+  p as createDirectory,
+  A as createFile,
+  lt as dirIsEmpty,
+  ht as dirIsExecutable,
+  $ as dirIsReadable,
+  yt as dirIsVisible,
+  mt as dirIsWritable,
+  vt as fileExtension,
+  St as fileIsExecutable,
+  gt as fileIsReadable,
+  Ot as fileIsVisible,
+  It as fileIsWritable,
+  Rt as fileName,
+  pt as fileNameExt,
+  At as filePath,
+  bt as fileTruncate,
+  Mt as getLinkStatus,
+  l as getStatus,
+  m as hash,
+  _ as hashCrc32,
+  D as hashMd5,
+  Et as hashMulti,
+  P as hashSha1,
+  C as hashSha256,
+  B as hashSha512,
+  Wt as isDirExists,
+  V as isFileExists,
+  Jt as isPathExists,
+  S as listContents,
+  Nt as listDirectories,
+  Tt as listFiles,
+  xt as move,
+  O as pathFrom,
+  $t as readFileToBase64,
+  _t as readFileToBuffer,
+  W as readFileToString,
+  K as remove,
+  Ct as removeNonBlocking,
+  Bt as removeSilent,
+  wt as size,
+  h as writeFile,
+  Kt as writeFileTail,
+  jt as writeJson
+};
+//# sourceMappingURL=index.mjs.map

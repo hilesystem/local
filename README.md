@@ -7,6 +7,7 @@ Filesystem abstraction layer and common function wrappers.
 [![NPM Version][npm-version-img]][npm-version-url]
 [![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 [![TypeScript Typings][ts-img]][ts-url]
+
 [![Maintainability Rating][sonarcloud-img]][sonarcloud-url]
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hilesystem_local&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=hilesystem_local)
 [![Codacy Badge][codacy-img]][codacy-url]

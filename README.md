@@ -19,19 +19,49 @@ Filesystem abstraction layer and common function wrappers.
 
 ```javascript
 import {
-  HileSystemLocal,
-  absolutePathFrom, pathFrom,
-  createDirectory, createFile,
-  readFileToBase64, readFileToBuffer, readFileToString,
-  dirIsEmpty, dirIsExecutable, dirIsReadable, dirIsVisible, dirIsWritable,
-  fileIsExecutable, fileIsReadable, fileIsVisible, fileIsWritable,
-  getStatus, isDirExists, isFileExists, isPathExists,
-  fileExtension, fileName, fileNameExt, filePath,
-  listContents, listDirectories, listFiles,
-  move,
-  remove, removeNonBlocking, removeSilent,
-  fileTruncate, writeFile, writeFileTail, writeJSON,
-  hash, hashCrc32, hashMd5, hashSha1, hashSha256, hashSha512, size,
+	HileSystemLocal,
+	absolutePathFrom,
+	pathFrom,
+	createDirectory,
+	createFile,
+	readFileToBase64,
+	readFileToBuffer,
+	readFileToString,
+	dirIsEmpty,
+	dirIsExecutable,
+	dirIsReadable,
+	dirIsVisible,
+	dirIsWritable,
+	fileIsExecutable,
+	fileIsReadable,
+	fileIsVisible,
+	fileIsWritable,
+	getStatus,
+	isDirExists,
+	isFileExists,
+	isPathExists,
+	fileExtension,
+	fileName,
+	fileNameExt,
+	filePath,
+	listContents,
+	listDirectories,
+	listFiles,
+	move,
+	remove,
+	removeNonBlocking,
+	removeSilent,
+	fileTruncate,
+	writeFile,
+	writeFileTail,
+	writeJson,
+	hash,
+	hashCrc32,
+	hashMd5,
+	hashSha1,
+	hashSha256,
+	hashSha512,
+	size,
 } from "@hilesystem/local";
 ```
 
@@ -62,8 +92,9 @@ Join all arguments together and normalize the resulting path.
 
 ```javascript
 const paths = ["path", "to", "file.txt"];
-const str = absolutePathFrom(paths) // "/user/me/path/to/file.txt"
+const str = absolutePathFrom(paths); // "/user/me/path/to/file.txt"
 ```
+
 </details>
 
 <details>
@@ -73,6 +104,7 @@ Get file extension.
 ```javascript
 const str = fileExtension("path/to/file.txt"); // "txt"
 ```
+
 </details>
 
 <details>
@@ -82,6 +114,7 @@ Return the file name without extension.
 ```javascript
 const str = fileName("path/to/file.txt"); // "file"
 ```
+
 </details>
 
 <details>
@@ -91,6 +124,7 @@ Return the last portion of a path.
 ```javascript
 const str = fileNameExt("path/to/file.txt"); // "file.txt"
 ```
+
 </details>
 
 <details>
@@ -100,6 +134,7 @@ Return the directory name of a path.
 ```javascript
 const str = filePath("path/to/file.txt"); // "path/to"
 ```
+
 </details>
 
 <details>
@@ -107,8 +142,9 @@ const str = filePath("path/to/file.txt"); // "path/to"
 Join all arguments together and normalize the resulting path.
 
 ```javascript
-const str = pathFrom(["path", "to", "file.txt"]) // "path/to/file.txt"
+const str = pathFrom(["path", "to", "file.txt"]); // "path/to/file.txt"
 ```
+
 </details>
 
 ### Create
@@ -120,6 +156,7 @@ Asynchronous create a directory.
 ```javascript
 const trueOrError = await createDirectory("path/to/dir", "0777", true);
 ```
+
 </details>
 
 <details>
@@ -129,6 +166,7 @@ Asynchronous create a file.
 ```javascript
 const trueOrError = await createFile("path/to/dir", "0777");
 ```
+
 </details>
 
 ### Read
@@ -140,6 +178,7 @@ Reads the file into a string.
 ```javascript
 const stringOrError = await readFileToBase64("path/to/img.png");
 ```
+
 </details>
 
 <details>
@@ -149,6 +188,7 @@ Reads the file into a buffer.
 ```javascript
 const bufferOrError = await readFileToBuffer("path/to/file.txt");
 ```
+
 </details>
 
 <details>
@@ -158,6 +198,7 @@ Reads the file into a string.
 ```javascript
 const stringOrError = await readFileToString("path/to/file.txt");
 ```
+
 </details>
 
 ### Move
@@ -169,6 +210,7 @@ Change the name or location of a file or directory.
 ```javascript
 const trueOrError = await move("path/to/file.ext", "path/to-another/file.ext");
 ```
+
 </details>
 
 ### Write
@@ -180,6 +222,7 @@ Truncate a file to a specified length.
 ```javascript
 const trueOrError = await fileTruncate("path/to/file.ext");
 ```
+
 </details>
 
 <details>
@@ -192,6 +235,7 @@ const data = "Text";
 const options = { encoding: "utf8" };
 const trueOrError = await writeFile(filePath, data, options);
 ```
+
 </details>
 
 <details>
@@ -204,10 +248,11 @@ const data = "Text to add to the end of the file.";
 const options = { encoding: "utf8" };
 const trueOrError = await writeFileTail(filePath, data, options);
 ```
+
 </details>
 
 <details>
-    <summary><b>writeJSON(filePath, data, options, configuration)</b></summary>
+    <summary><b>writeJson(filePath, data, options, configuration)</b></summary>
 Asynchronously writes data to a file, replacing the file if it already exists.
 
 ```javascript
@@ -215,11 +260,12 @@ const filePath = "./file.json";
 const data = { key: "value" };
 const options = { encoding: "utf8" };
 const config = {
-  sort: true,
-  space: "\t"
+	sort: true,
+	space: "\t",
 };
-const trueOrError = await writeJSON(filePath, data, options, config);
+const trueOrError = await writeJson(filePath, data, options, config);
 ```
+
 </details>
 
 ### Delete
@@ -231,6 +277,7 @@ Removes a file or directory.
 ```javascript
 const voidOrError = await remove("path/to/file.txt");
 ```
+
 </details>
 
 <details>
@@ -240,6 +287,7 @@ Non-blocking remove of a file or directory.
 ```javascript
 removeNonBlocking("path/to/file.txt");
 ```
+
 </details>
 
 <details>
@@ -249,6 +297,7 @@ Removes files and directories (modeled on the standard POSIX rm utility).
 ```javascript
 removeSilent("path/to/file.txt");
 ```
+
 </details>
 
 ### Information
@@ -260,6 +309,7 @@ Get file status.
 ```javascript
 const [status, error] = await getStatus("path/to/file.ext");
 ```
+
 </details>
 
 <details>
@@ -269,6 +319,7 @@ Get directory status.
 ```javascript
 const trueOrFalse = await isDirExists("path/to/");
 ```
+
 </details>
 
 <details>
@@ -278,6 +329,7 @@ Get file status.
 ```javascript
 const trueOrFalse = await isFileExists("path/to/file.ext");
 ```
+
 </details>
 
 <details>
@@ -287,6 +339,7 @@ Get path status.
 ```javascript
 const trueOrFalse = await isPathExists("path/to/file_or_directory");
 ```
+
 </details>
 
 ### Check
@@ -298,6 +351,7 @@ Check if a directory is empty.
 ```javascript
 const booleanOrError = await dirIsEmpty("path/to/dir", true);
 ```
+
 </details>
 
 <details>
@@ -307,6 +361,7 @@ Is directory executable.
 ```javascript
 const trueOrError = await dirIsExecutable("path/to/dir");
 ```
+
 </details>
 
 <details>
@@ -316,6 +371,7 @@ Is directory readable.
 ```javascript
 const trueOrError = await dirIsReadable("path/to/dir");
 ```
+
 </details>
 
 <details>
@@ -325,6 +381,7 @@ Is directory visible.
 ```javascript
 const trueOrError = await dirIsVisible("path/to/dir");
 ```
+
 </details>
 
 <details>
@@ -334,6 +391,7 @@ Is directory writable.
 ```javascript
 const trueOrError = await dirIsWritable("path/to/dir");
 ```
+
 </details>
 
 <details>
@@ -343,6 +401,7 @@ Is file executable.
 ```javascript
 const trueOrError = await fileIsExecutable("path/to/file.ext");
 ```
+
 </details>
 
 <details>
@@ -352,6 +411,7 @@ Is file readable.
 ```javascript
 const trueOrError = await fileIsReadable("path/to/file.ext");
 ```
+
 </details>
 
 <details>
@@ -361,6 +421,7 @@ Is file visible.
 ```javascript
 const trueOrError = await fileIsVisible("path/to/file.ext");
 ```
+
 </details>
 
 <details>
@@ -370,6 +431,7 @@ Is file writable.
 ```javascript
 const trueOrError = await fileIsWritable("path/to/file.ext");
 ```
+
 </details>
 
 ---
@@ -383,6 +445,7 @@ Lists files and directories in path.
 ```javascript
 const arrayOfStringsOrError = await listContents("path/to/dir");
 ```
+
 </details>
 
 <details>
@@ -392,6 +455,7 @@ Lists files and directories in path.
 ```javascript
 const arrayOfStringsOrError = await listDirectories("path/to/dir");
 ```
+
 </details>
 
 <details>
@@ -401,6 +465,7 @@ Lists files in path.
 ```javascript
 const arrayOfStringsOrError = await listFiles("path/to/dir");
 ```
+
 </details>
 
 ---
@@ -414,6 +479,7 @@ Calculate hash.
 ```javascript
 const hash = await hash("path/to/file", "md5");
 ```
+
 </details>
 
 <details>
@@ -423,6 +489,17 @@ CRC32.
 ```javascript
 const hash = await hashCrc32("path/to/file");
 ```
+
+</details>
+
+<details>
+    <summary><b>hashMulti(pathToFile)</b></summary>
+Calculates multiple hashes.
+
+```javascript
+const hashes = await hashMulti("path/to/file");
+```
+
 </details>
 
 <details>
@@ -432,6 +509,7 @@ MD5.
 ```javascript
 const hash = await hashMd5("path/to/file");
 ```
+
 </details>
 
 <details>
@@ -441,6 +519,7 @@ SHA-1.
 ```javascript
 const hash = await hashSha1("path/to/file");
 ```
+
 </details>
 
 <details>
@@ -450,6 +529,7 @@ SHA-256.
 ```javascript
 const hash = await hashSha256("path/to/file");
 ```
+
 </details>
 
 <details>
@@ -459,6 +539,7 @@ SHA-512.
 ```javascript
 const hash = await hashSha512("path/to/file");
 ```
+
 </details>
 
 <details>
@@ -469,6 +550,7 @@ File size in bytes.
 const sizeInBytes = await size("path/to/file");
 const sizeAsString = await size("path/to/file", true);
 ```
+
 </details>
 
 ---
@@ -477,12 +559,12 @@ const sizeAsString = await size("path/to/file", true);
 
 [My other projects](https://r37r0m0d3l.icu/open_source_map)
 
-<img src="https://raw.githubusercontent.com/r37r0m0d3l/r37r0m0d3l/master/osmap.svg?sanitize=true" width="960" height="520" style="display:block;height:auto;margin-left:auto;margin-right:auto;min-height:520px;min-width:960px;width:100%;">
+<img alt="Projects map" src="https://raw.githubusercontent.com/r37r0m0d3l/r37r0m0d3l/master/osmap.svg?sanitize=true" width="960" height="520" style="display:block;height:auto;margin-left:auto;margin-right:auto;min-height:520px;min-width:960px;width:100%;">
 
 <!-- Badges -->
 
 [codacy-img]: https://api.codacy.com/project/badge/Grade/3a4f33788cd44b799242cae7e080f9e3
-[codacy-url]: https://www.codacy.com/gh/hilesystem/local?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hilesystem/local&amp;utm_campaign=Badge_Grade
+[codacy-url]: https://www.codacy.com/gh/hilesystem/local?utm_source=github.com&utm_medium=referral&utm_content=hilesystem/local&utm_campaign=Badge_Grade
 [npm-downloads-img]: https://badgen.net/npm/dt/@hilesystem/local?&icon=terminal&label=downloads&color=009688
 [npm-downloads-url]: https://npmjs.com/package/@hilesystem/local
 [npm-version-img]: https://badgen.net/npm/v/@hilesystem/local?&icon=npm&label=npm&color=DD3636

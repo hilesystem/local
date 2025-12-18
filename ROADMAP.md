@@ -1,5 +1,7 @@
 # RoadMap
 
+## Links
+
 -   implement all from [https://medium.com/javascript-in-plain-english/6-useful-node-js-internal-modules-b3748c89c899](https://medium.com/javascript-in-plain-english/6-useful-node-js-internal-modules-b3748c89c899)
 
 -   implement [https://github.com/thecodrr/fdir](https://github.com/thecodrr/fdir)
@@ -22,4 +24,61 @@
 
 -   https://github.com/jsenv/jsenv-util
 
--   https://twitter.com/tshemsedinov/status/1681888355288489984
+-   https://deno.land/std/fs
+
+-   https://github.com/denoland/deno/issues/5916
+
+-   Make checksumers not only async but also streamable https://github.com/archiverjs/node-crc32-stream
+
+## TODO
+
+```ts
+class Roadmap {
+	//#region File
+
+	clearFile() {}
+	copyDirectory() {}
+	createDirectory() {}
+	deleteDirectory() {}
+	ensureFileExists() {}
+	ensureSymlinkExists() {}
+	getDirectoryVisibility() {}
+	getFileLastModified() {}
+	getFileMimeType() {}
+	getFileSize() {}
+	getFileTimestamp() {}
+	getFileVisibility() {}
+	isFileExists() {}
+	moveFile() {}
+	putStringToFile() {}
+	readFileIntoJson() {}
+	readStreamFromFile() {}
+	readStringFromFile() {}
+	renameFile() {}
+	setFileVisibility() {}
+	writeJsonFile() {}
+	writeStreamToFile() {}
+	writeStringToFile() {}
+
+	//#endregion
+
+	//#region Directory
+
+	addStringToFile() {}
+	clearDirectory() {}
+	copyFile() {}
+	deleteFile() {}
+	ensureDirectoryExists() {}
+	getDirectoryLastModified() {}
+	getDirectorySize() {}
+	getDirectoryTimestamp() {}
+	isDirectoryExists() {}
+	listDirectoryContent() {}
+	moveDirectory() {}
+	removeDirectoryContents() {}
+	renameDirectory() {}
+	setDirectoryVisibility() {}
+
+	//#endregion
+}
+```

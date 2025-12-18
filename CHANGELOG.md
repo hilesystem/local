@@ -2,21 +2,41 @@
 
 ---
 
+## [1.2.0]
+
+### Requirements
+
+-  Minimal required Node.js version is now `18.20.2`.
+
+---
+
+## [1.1.1] - 2023-08-14
+
+### Added
+
+-   `hashMulti` - Get hash of multiple files.
+
+### Changed
+
+-   `writeJSON` renamed to `writeJson`.
+
+---
+
 ## [1.1.0] - 2023-07-25
 
 ### Added
 
-- `getLinkStatus` - Get file status unless `path` refers to a symbolic link.
+-   `getLinkStatus` - Get file status unless `path` refers to a symbolic link.
 
 ### Dependencies
 
-- Removed `@await-of/of` dependency.
+-   Removed `@await-of/of` dependency.
 
 ### Requirements
 
-- Minimal required Node.js version is now `16.17.0`.
+-   Minimal required Node.js version is now `16.17.0`.
 
-- Removed `browser` module support.
+-   Removed `browser` module support.
 
 ---
 
@@ -24,7 +44,7 @@
 
 ### Changed
 
-- `dirIsEmpty` now returns throw error when path is not a directory or is not readable.
+-   `dirIsEmpty` now returns throw error when path is not a directory or is not readable.
 
 ---
 
@@ -32,13 +52,13 @@
 
 ### Added
 
-- Added `writeFileTail` function to write strin to the end of a file. Extremely useful for logging.
+-   Added `writeFileTail` function to write string to the end of a file. Extremely useful for logging.
 
 ---
 
 ## [1.0.0] - 2023-04-20
 
-- Initial release 🍾🥂
+-   Initial release 🍾🥂
 
 ---
 

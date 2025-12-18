@@ -1,69 +1,81 @@
 {
-  "author": "Anton Trofymenko",
-  "bugs": {
-    "url": "https://github.com/hilesystem/local/issues"
-  },
-  "contributors": [
-    {
-      "email": "r37r0m0d3l@protonmail.com",
-      "name": "Anton Trofymenko"
-    }
-  ],
-  "description": "Filesystem abstraction layer and common function wrappers",
-  "devDependencies": {
-    "@r37r0m0d3l/rollup-config-pkg": "git+https://github.com/r37r0m0d3l/rollup-config-pkg.git",
-    "@types/node": "16.11.7"
-  },
-  "engines": {
-    "node": ">=16.17.0"
-  },
-  "engineStrict": true,
-  "exports": {
-    ".": {
-      "node": {
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.cjs"
-      },
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
-  },
-  "files": [
-    "dist/index.cjs",
-    "dist/index.cjs.map",
-    "dist/index.d.cts",
-    "dist/index.d.mts",
-    "dist/index.d.ts",
-    "dist/index.js",
-    "dist/index.js.map",
-    "dist/index.mjs",
-    "dist/index.mjs.map"
-  ],
-  "keywords": [
-    "@hilesystem",
-    "file system",
-    "file",
-    "fs"
-  ],
-  "license": "MIT",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "name": "@hilesystem/local",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hilesystem/local.git"
-  },
-  "scripts": {
-    "build": "rollup --config rollup.config.mjs",
-    "build:watch": "rollup --config rollup.config.mjs --watch",
-    "lint": "eslint ./src/**/*.js",
-    "test": "npm run test:cjs && npm run test:mjs",
-    "test:cjs": "node --test ./test/index.test.cjs",
-    "test:mjs": "node --test ./test/index.test.mjs"
-  },
-  "type": "module",
-  "types": "./dist/index.d.ts",
-  "version": "1.1.0"
+	"author": "Anton Trofymenko",
+	"bugs": {
+		"url": "https://github.com/hilesystem/local/issues"
+	},
+	"contributors": [
+		{
+			"email": "r37r0m0d3l@protonmail.com",
+			"name": "Anton Trofymenko"
+		}
+	],
+	"description": "Filesystem abstraction layer and common function wrappers",
+	"devDependencies": {
+		"@types/node": "20.14.0",
+		"eslint": "8.57.0",
+		"eslint-config-standard": "17.1.0",
+		"eslint-plugin-import": "2.29.1",
+		"eslint-plugin-n": "16.6.2",
+		"eslint-plugin-promise": "6.2.0",
+		"prettier": "3.3.0",
+		"shx": "0.3.4",
+		"tsup": "8.1.0",
+		"typescript": "5.4.5",
+		"vite": "5.2.12",
+		"vite-plugin-node-externals": "0.0.1"
+	},
+	"engines": {
+		"node": ">=18.20.2"
+	},
+	"engineStrict": false,
+	"exports": {
+		".": {
+			"node": {
+				"import": "./dist/index.mjs",
+				"require": "./dist/index.cjs"
+			},
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs",
+			"default": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist/index.cjs",
+		"dist/index.cjs.map",
+		"dist/index.d.cts",
+		"dist/index.d.mts",
+		"dist/index.d.ts",
+		"dist/index.js",
+		"dist/index.js.map",
+		"dist/index.mjs",
+		"dist/index.mjs.map"
+	],
+	"keywords": [
+		"@hilesystem",
+		"file system",
+		"file",
+		"fs"
+	],
+	"license": "MIT",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"name": "@hilesystem/local",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hilesystem/local.git"
+	},
+	"scripts": {
+		"build": "vite build --mode production & npm run build:after",
+		"build:after": "npm run build:dts & shx cp ./dist/index.mjs ./dist/index.js & shx cp ./dist/index.mjs.map ./dist/index.js.map & shx cp ./dist/index.d.ts ./dist/index.d.mts",
+		"build:dts": "tsup --dts & shx rm -r ./dist/src/",
+		"format": "prettier --write ./src/**/*.ts",
+		"lint": "eslint",
+		"test": "npm run test:cjs && npm run test:mjs",
+		"test:cjs": "node --test ./test/index.test.cjs",
+		"test:mjs": "node --test ./test/index.test.mjs"
+	},
+	"type": "module",
+	"types": "./dist/index.d.ts",
+	"version": "1.2.0"
 }

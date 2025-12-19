@@ -18,7 +18,7 @@
 		"eslint-plugin-n": "16.6.2",
 		"eslint-plugin-promise": "6.2.0",
 		"prettier": "3.3.0",
-		"shx": "0.3.4",
+		"shx": "0.4.0",
 		"tsup": "8.1.0",
 		"typescript": "5.4.5",
 		"vite": "5.2.12",
